@@ -1,6 +1,6 @@
 package starters;
 
-import implementations.UserDAOMySQL;
+import implementations.mysql.UserDAOImplem;
 import interfaces.UserDAO;
 import models.User;
 
@@ -8,7 +8,7 @@ public class Demo {
 	
 	
 	public static void main(String[] args) {
-		UserDAO ud = new UserDAOMySQL();
+		UserDAO ud = new UserDAOImplem();
 		User besina = ud.findUser("test@testus.com", "sidetest");
 		System.out.println(besina);
 	}

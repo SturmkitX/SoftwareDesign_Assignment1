@@ -25,6 +25,10 @@ public class User {
 		return isAdmin;
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+	
 	public String toString() {
 		return String.format("ID: %s\nE-mail: %s\nPass: %s\nAdmin: %b\n", id, email, password, isAdmin);
 	}

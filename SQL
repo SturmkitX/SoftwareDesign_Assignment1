@@ -3,3 +3,8 @@ CREATE TABLE `sql11227258`.`users` ( `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 
 
 INSERT INTO Users (email, password, isadmin) VALUES ('test@testus.com', 'sidetest', false);
+
+CREATE TABLE `sql11227258`.`Games` ( `id` INT NOT NULL AUTO_INCREMENT , `p1score` INT NOT NULL , `p2score` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+<-- create games database
+
+

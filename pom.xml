@@ -5,6 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
+  	<module>business</module>
   	<module>dao</module>
   	<module>ui</module>
   	<module>utils</module>
