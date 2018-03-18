@@ -1,0 +1,5 @@
+CREATE TABLE `sql11227258`.`users` ( `id` INT UNSIGNED NOT NULL AUTO_INCREMENT , `email` VARCHAR(50) NOT NULL , `password` VARCHAR(50) NOT NULL , `isadmin` BOOLEAN NOT NULL , PRIMARY KEY (`id`), UNIQUE `email_unique` (`email`(50))) ENGINE = InnoDB;
+<-- create users database
+
+
+INSERT INTO Users (email, password, isadmin) VALUES ('test@testus.com', 'sidetest', false);
