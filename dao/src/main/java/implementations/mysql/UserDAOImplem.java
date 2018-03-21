@@ -13,10 +13,10 @@ public class UserDAOImplem implements UserDAO {
 	
 	private Connection conn = ConnDriver.getInstance();
 
-	public User findUser(String email, String password) {
+	public User findUserByEmailAndPassword(String email, String password) {
 		try {
-			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users WHERE email=? AND " +
-					"password=?");
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users WHERE email=? " +
+					"AND password=?");
 			stmt.setString(1, email);
 			stmt.setString(2, password);
 			
@@ -31,9 +31,39 @@ public class UserDAOImplem implements UserDAO {
 			results.next();
 			boolean isAdmin = results.getBoolean("isadmin");
 			int id = results.getInt("id");
+			String name = results.getString("name");
 			
 			results.close();
-			return new User(id, email, password, isAdmin);
+			return new User(id, email, password, name, isAdmin);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public User findUserById(int id) {
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users WHERE id=?");
+			stmt.setInt(1, id);
+			
+			ResultSet results = stmt.executeQuery();
+			// System.out.println(results);
+			
+			if(!results.isBeforeFirst()) {
+				stmt.close();
+				return null;
+			}
+			
+			results.next();
+			boolean isAdmin = results.getBoolean("isadmin");
+			String email = results.getString("email");
+			String name = results.getString("name");
+			String password = results.getString("password");
+			
+			results.close();
+			return new User(id, email, password, name, isAdmin);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
