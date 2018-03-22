@@ -1,7 +1,7 @@
 package models;
 
 public class Game {
-	private int id;
+	private final int id;
 	private int p1Score;
 	private int p2Score;
 	

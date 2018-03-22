@@ -3,7 +3,7 @@ package models;
 import java.util.List;
 
 public class Tournament {
-	private int id;
+	private final int id;
 	private String name;
 	private List<Match> matches;
 	
