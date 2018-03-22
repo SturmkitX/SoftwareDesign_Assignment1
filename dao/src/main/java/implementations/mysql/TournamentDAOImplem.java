@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import interfaces.TournamentDAO;
 import models.Match;
 import models.Tournament;
 
-public class TournamentImplem implements TournamentDAO {
+public class TournamentDAOImplem implements TournamentDAO {
 	
 	Connection conn = ConnDriver.getInstance();
 
@@ -107,8 +108,58 @@ public class TournamentImplem implements TournamentDAO {
 	}
 
 	public void deleteTournament(int id) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement stmt = conn.prepareStatement("DELETE FROM Tournaments WHERE id = ?");
+			PreparedStatement stmt2 = conn.prepareStatement("DELETE FROM MatchTournament WHERE tournament_id = ?");
+			
+			stmt.setInt(1, id);
+			stmt2.setInt(1, id);
+			
+			stmt.executeUpdate();
+			stmt2.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+	}
+
+	public List<Tournament> findAll() {
+		try {
+			Statement stmt = conn.createStatement();
+			PreparedStatement stmt2 = conn.prepareStatement("SELECT match_id FROM MatchTournament " + 
+					"WHERE tournament_id = ?");
+			
+			ResultSet results = stmt.executeQuery("SELECT * FROM Tournaments");
+			
+			MatchDAO matchDao = new MatchDAOImplem();
+			List<Tournament> tournaments = new ArrayList<Tournament>();
+			
+			while(results.next()) {
+				String name = results.getString("name");
+				int id = results.getInt("id");
+				List<Match> matches = new ArrayList<Match>();
+				
+				stmt2.setInt(1, id);
+				ResultSet resultsMatch = stmt2.executeQuery();
+				while(resultsMatch.next()) {
+					int match_id = resultsMatch.getInt("match_id");
+					matches.add(matchDao.findMatch(match_id));
+				}
+				
+				tournaments.add(new Tournament(id, name, matches));
+				resultsMatch.close();
+			}
+			
+			results.close();
+			
+			return tournaments;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }
