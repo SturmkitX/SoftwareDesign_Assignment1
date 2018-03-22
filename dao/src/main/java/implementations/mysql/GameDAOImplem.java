@@ -73,6 +73,8 @@ public class GameDAOImplem implements GameDAO {
 		try {
 			PreparedStatement stmt = conn.prepareStatement("DELETE FROM Games WHERE id = ?");
 			stmt.setInt(1, id);
+			
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

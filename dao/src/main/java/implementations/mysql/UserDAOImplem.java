@@ -107,6 +107,8 @@ public class UserDAOImplem implements UserDAO {
 		try {
 			PreparedStatement stmt = conn.prepareStatement("DELETE FROM Users WHERE email = ?");
 			stmt.setString(1, email);
+			
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
