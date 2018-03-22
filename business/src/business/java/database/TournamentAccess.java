@@ -17,4 +17,8 @@ public final class TournamentAccess {
 	public static List<Tournament> getAllTournaments() {
 		return dao.findAll();
 	}
+	
+	public static Tournament getTournamentByName(String name) {
+		return dao.findTournamentByName(name);
+	}
 }

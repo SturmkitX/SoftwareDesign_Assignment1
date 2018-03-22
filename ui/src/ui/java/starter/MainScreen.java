@@ -17,7 +17,8 @@ public class MainScreen extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		stage.setTitle("Window title");
-		this.stage = stage;
+		
+		setStage(stage);
 		
 		Pane layout = new LogInPane();
 		
@@ -29,6 +30,10 @@ public class MainScreen extends Application {
 	
 	public static void setScene(Scene scene) {
 		stage.setScene(scene);
+	}
+	
+	private static void setStage(Stage arg0) {
+		stage = arg0;
 	}
 
 }

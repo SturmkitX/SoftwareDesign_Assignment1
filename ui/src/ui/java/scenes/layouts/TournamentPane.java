@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.TournamentAccess;
+import handlers.TournamentListHandler;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import models.Tournament;
+import session.UserSession;
 
 public class TournamentPane extends GridPane {
 	
@@ -23,7 +28,8 @@ public class TournamentPane extends GridPane {
 	private List<Text> tournamentTexts;
 	private int rows, cols;
 	
-	public TournamentPane(boolean isAdmin) {
+	public TournamentPane() {
+		super();
 		setAlignment(Pos.CENTER);
 		setHgap(20);
 		setVgap(20);
@@ -32,6 +38,12 @@ public class TournamentPane extends GridPane {
 		
 		// show at most 3 tournaments per row
 		setUpTournamentView();
+		TournamentListHandler tlh = new TournamentListHandler();
+		
+		addTournamentBtn.setOnAction(getButtonEventHandler());
+		for(Text t : tournamentTexts) {
+			t.setOnMousePressed(tlh);
+		}
 		
 		
 	}
@@ -54,6 +66,21 @@ public class TournamentPane extends GridPane {
 		}
 		
 		addTournamentBtn = new Button("Add Tournament");
-		add(addTournamentBtn, cols, rows);
+		if(UserSession.getLoggedInUser().getIsAdmin()) {
+			add(addTournamentBtn, cols, rows);
+		}
+		
 	}
+	
+	private EventHandler<ActionEvent> getButtonEventHandler() {
+		return new EventHandler<ActionEvent>() {
+
+			public void handle(ActionEvent arg0) {
+				Stage stage = new Stage();
+				stage.show();
+			}
+			
+		};
+	}
+	
 }

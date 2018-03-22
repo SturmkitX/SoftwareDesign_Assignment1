@@ -21,7 +21,7 @@ public class TournamentDAOImplem implements TournamentDAO {
 	public Tournament findTournament(int id) {
 		try {
 			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Tournaments WHERE id = ?");
-			PreparedStatement stmt2 = conn.prepareStatement("SELECT game_id FROM MatchTournament " + 
+			PreparedStatement stmt2 = conn.prepareStatement("SELECT match_id FROM MatchTournament " + 
 					"WHERE tournament_id = ?");
 			stmt.setInt(1, id);
 			stmt2.setInt(1, id);
@@ -154,6 +154,49 @@ public class TournamentDAOImplem implements TournamentDAO {
 			results.close();
 			
 			return tournaments;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public Tournament findTournamentByName(String name) {
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Tournaments WHERE name = ?");
+			PreparedStatement stmt2 = conn.prepareStatement("SELECT match_id FROM MatchTournament " + 
+					"WHERE tournament_id = ?");
+			stmt.setString(1, name);
+			
+			
+			ResultSet results = stmt.executeQuery();
+			
+			// System.out.println(results);
+			
+			if(!results.isBeforeFirst()) {
+				stmt.close();
+				return null;
+			}
+			
+			results.next();
+			
+			MatchDAO matchDao = new MatchDAOImplem();
+			int id = results.getInt("id");
+			List<Match> matches = new ArrayList<Match>();
+			
+			stmt2.setInt(1, id);
+			ResultSet resultsMatch = stmt2.executeQuery();
+			
+			while(resultsMatch.next()) {
+				Match m = matchDao.findMatch(resultsMatch.getInt("match_id"));
+				matches.add(m);
+			}
+			
+			results.close();
+			resultsMatch.close();
+			
+			return new Tournament(id, name, matches);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

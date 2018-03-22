@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import models.User;
+import session.UserSession;
 import starter.MainScreen;
 
 public class LogInPane extends GridPane {
@@ -27,6 +28,7 @@ public class LogInPane extends GridPane {
 	private Text status;
 
 	public LogInPane() {
+		super();
 		setAlignment(Pos.CENTER);
 		setHgap(10);
 		setVgap(10);
@@ -74,13 +76,14 @@ public class LogInPane extends GridPane {
 				String password = passField.getText();
 				
 				User logUser = UserAccess.getUserByEmailAndPassword(email, password);
+				UserSession.setLoggedInUser(logUser);
 				if(logUser == null) {
 					status.setFill(Color.RED);
 					status.setText("Invalid user information!");
 				} else {
 					status.setFill(Color.GREEN);
 					status.setText("Welcome, " + logUser.getName());
-					MainScreen.setScene(new Scene(new TournamentPane(true), 600, 400));
+					MainScreen.setScene(new Scene(new TournamentPane(), 600, 400));
 				}
 				
 			}
