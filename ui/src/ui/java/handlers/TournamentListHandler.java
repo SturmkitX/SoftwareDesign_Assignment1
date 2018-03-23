@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import models.Tournament;
-import scenes.layouts.TournamentViewPane;
+import scenes.layouts.TournamentMatchPane;
 import session.UserSession;
 import starter.MainScreen;
 
@@ -19,7 +19,7 @@ public class TournamentListHandler implements EventHandler<MouseEvent> {
 		
 		UserSession.setActiveTournament(tournament);
 		
-		MainScreen.setScene(new Scene(new TournamentViewPane(tournament), 600, 400));
+		MainScreen.setScene(new Scene(new TournamentMatchPane(), 1024, 768));
 	}
 
 }

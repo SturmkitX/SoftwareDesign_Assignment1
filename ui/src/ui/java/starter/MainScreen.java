@@ -22,7 +22,7 @@ public class MainScreen extends Application {
 		
 		Pane layout = new LogInPane();
 		
-		Scene scene = new Scene(layout, 600, 400);
+		Scene scene = new Scene(layout, 1024, 768);
 		stage.setScene(scene);
 		stage.show();
 		

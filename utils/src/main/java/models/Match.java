@@ -6,12 +6,14 @@ public class Match {
 	private final int id;
 	private User p1;
 	private User p2;
+	private int stage;
 	private List<Game> games;
 	
-	public Match(int id, User p1, User p2, List<Game> games) {
+	public Match(int id, User p1, User p2, int stage, List<Game> games) {
 		this.id = id;
 		this.p1 = p1;
 		this.p2 = p2;
+		this.stage = stage;
 		this.games = games;
 	}
 	
@@ -25,6 +27,10 @@ public class Match {
 	
 	public User getP2() {
 		return p2;
+	}
+	
+	public int getStage() {
+		return stage;
 	}
 	
 	public List<Game> getGames() {

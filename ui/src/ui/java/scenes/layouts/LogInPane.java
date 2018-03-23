@@ -65,6 +65,10 @@ public class LogInPane extends GridPane {
 		status = new Text();
 		add(status, 1, 8);
 		
+		// set some default values
+		userField.setText("bogdanr@utcluj.ro");
+		passField.setText("adminpass");
+		
 		
 	}
 	
@@ -83,7 +87,7 @@ public class LogInPane extends GridPane {
 				} else {
 					status.setFill(Color.GREEN);
 					status.setText("Welcome, " + logUser.getName());
-					MainScreen.setScene(new Scene(new TournamentPane(), 600, 400));
+					MainScreen.setScene(new Scene(new TournamentPane(), 1024, 768));
 				}
 				
 			}
