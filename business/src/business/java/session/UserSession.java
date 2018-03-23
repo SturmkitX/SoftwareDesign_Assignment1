@@ -1,5 +1,6 @@
 package session;
 
+import database.TournamentAccess;
 import models.Match;
 import models.Tournament;
 import models.User;
@@ -36,5 +37,9 @@ public final class UserSession {
 	
 	public static Tournament getActiveTournament() {
 		return activeTournament;
+	}
+	
+	public static void refreshActiveTournament() {
+		activeTournament = TournamentAccess.getTournamentById(activeTournament.getId());
 	}
 }

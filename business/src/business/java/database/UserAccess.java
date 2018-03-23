@@ -18,4 +18,9 @@ public final class UserAccess {
 		return dao.findUserByEmailAndPassword(email, password);
 		
 	}
+	
+	public static User getUserById(int id) {
+		return dao.findUserById(id);
+		
+	}
 }

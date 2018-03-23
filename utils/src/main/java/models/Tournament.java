@@ -24,4 +24,8 @@ public class Tournament {
 	public List<Match> getMatches() {
 		return matches;
 	}
+	
+	public void addMatch(Match match) {
+		matches.add(match);
+	}
 }

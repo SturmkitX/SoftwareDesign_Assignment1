@@ -64,7 +64,7 @@ public class MatchDAOImplem implements MatchDAO {
 
 	public void insertMatch(Match match) {
 		try {
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Matches (p1score, p2score, stage) " +
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Matches (player1_id, player2_id, stage) " +
 					"VALUES (?, ?, ?)");
 			PreparedStatement stmt2 = conn.prepareStatement("INSERT INTO GameMatch (game_id, match_id) " + 
 					"VALUES (?, ?)");

@@ -3,6 +3,8 @@ package scenes.layouts;
 import java.util.ArrayList;
 import java.util.List;
 
+import handlers.MatchAddHandler;
+import handlers.TournamentControlHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -25,6 +27,7 @@ public class TournamentMatchPane extends GridPane {
 	private Tournament tournament;
 	private List<VBox> matchTexts;
 	private Button quarterButton, semifinalButton, finalButton;
+	private Button updateTour, deleteTour;
 
 	public TournamentMatchPane() {
 		super();
@@ -41,6 +44,7 @@ public class TournamentMatchPane extends GridPane {
 		
 		setUpLabels();
 		setUpMatches();
+		setUpControls();
 		
 	}
 	
@@ -119,5 +123,22 @@ public class TournamentMatchPane extends GridPane {
 				cols[2] += 4;
 			}
 		}
+		
+		// add button handlers
+		quarterButton.setOnAction(new MatchAddHandler(1));
+		semifinalButton.setOnAction(new MatchAddHandler(2));
+		finalButton.setOnAction(new MatchAddHandler(3));
 	}
+
+	private void setUpControls() {
+		updateTour = new Button("Update Tournament");
+		deleteTour = new Button("Delete Tournament");
+		
+		add(updateTour, 0, 17, 2, 1);
+		add(deleteTour, 2, 17, 2, 1);
+		
+		updateTour.setOnAction(new TournamentControlHandler(1));
+		deleteTour.setOnAction(new TournamentControlHandler(2));
+	}
+
 }

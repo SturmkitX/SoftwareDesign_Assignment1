@@ -35,5 +35,9 @@ public class MainScreen extends Application {
 	private static void setStage(Stage arg0) {
 		stage = arg0;
 	}
+	
+	public static Stage getStage() {
+		return stage;
+	}
 
 }
