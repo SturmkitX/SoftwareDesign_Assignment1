@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.Statement;
+
 import drivers.ConnDriver;
 import interfaces.UserDAO;
 import models.User;
@@ -76,12 +78,17 @@ public class UserDAOImplem implements UserDAO {
 		// TODO Auto-generated method stub
 		try {
 			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Users (email, password, isadmin) " +
-					"VALUES (?, ?, ?)");
+					"VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, user.getEmail());
 			stmt.setString(2, user.getPassword());
 			stmt.setBoolean(3, user.getIsAdmin());
 			
 			stmt.executeUpdate();
+			
+			ResultSet keys = stmt.getGeneratedKeys();
+			if(keys.next()) {
+				user.setId(keys.getInt(1));
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

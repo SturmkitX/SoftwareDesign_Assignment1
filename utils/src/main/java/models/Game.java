@@ -1,7 +1,7 @@
 package models;
 
 public class Game {
-	private final int id;
+	private int id;
 	private int p1Score;
 	private int p2Score;
 	
@@ -21,5 +21,17 @@ public class Game {
 	
 	public int getP2Score() {
 		return p2Score;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public void setP1Score(int score) {
+		this.p1Score = score;
+	}
+	
+	public void setP2Score(int score) {
+		this.p2Score = score;
 	}
 }

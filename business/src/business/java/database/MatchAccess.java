@@ -3,6 +3,8 @@ package database;
 import implementations.mysql.MatchDAOImplem;
 import interfaces.MatchDAO;
 import models.Match;
+import models.Tournament;
+import session.UserSession;
 
 public class MatchAccess {
 
@@ -12,8 +14,21 @@ public class MatchAccess {
 		
 	}
 	
-	public static Match insertMatch(Match match) {
+	public static void insertMatch(Match match) {
 		dao.insertMatch(match);
-		return dao.findMatchByTuple(match.getP1().getId(), match.getP2().getId(), match.getStage());
+	}
+	
+	public static void updateMatch(Match match) {
+		dao.updateMatch(match);
+	}
+	
+	public static void deleteMatch(Match match) {
+		// first, remove the match from tournament list
+		Tournament t = UserSession.getActiveTournament();
+		t.getMatches().remove(match);
+		
+		dao.deleteMatch(match.getId());
+		TournamentAccess.updateTournament(t);
+		
 	}
 }

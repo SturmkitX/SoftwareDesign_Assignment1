@@ -3,7 +3,9 @@ package scenes.layouts;
 import java.util.ArrayList;
 import java.util.List;
 
+import handlers.GameAddHandler;
 import handlers.MatchDetailHandler;
+import handlers.MatchGameHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -138,11 +140,12 @@ public class MatchDetailPane extends GridPane {
 	
 	private void setControls() {
 		int winStatus = MatchLogic.getWinner(match);
-		if(winStatus == 0 && UserSession.getLoggedInUser().getIsAdmin()) {
-			addGameBtn = new Button("Add game");
+		addGameBtn = new Button("Add game");
+		if(winStatus == 0 && UserSession.getLoggedInUser().getIsAdmin() && match.getGames().size() < 5) {
 			add(addGameBtn, 1, gameRow, 2, 1);
 		} else {
 			String winner = (winStatus == 1) ? match.getP1().getName() : match.getP2().getName();
+			winner = (winStatus == 0) ? "None" : winner;
 			Text winField = new Text("Winner: " + winner);
 			winField.setFill(Color.GREEN);
 			winField.setFont(Font.font(24));
@@ -167,8 +170,8 @@ public class MatchDetailPane extends GridPane {
 		
 		// add handlers
 		addGameBtn.setOnAction(new GameAddHandler(match));
-		updateMatch.setOnAction(new MatchGameHandler(1));
-		deleteMatch.setOnAction(new MatchGameHandler(2));
+		updateMatch.setOnAction(new MatchGameHandler(1, match, idField1, idField2, scoresP1, scoresP2));
+		deleteMatch.setOnAction(new MatchGameHandler(2, match, idField1, idField2, scoresP1, scoresP2));
 	}
 
 }

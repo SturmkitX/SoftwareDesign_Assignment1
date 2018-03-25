@@ -3,7 +3,7 @@ package models;
 import java.util.List;
 
 public class Match {
-	private final int id;
+	private int id;
 	private User p1;
 	private User p2;
 	private int stage;
@@ -35,5 +35,17 @@ public class Match {
 	
 	public List<Game> getGames() {
 		return games;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public void setP1(User p) {
+		this.p1 = p;
+	}
+	
+	public void setP2(User p) {
+		this.p2 = p;
 	}
 }

@@ -61,7 +61,7 @@ public class TournamentDAOImplem implements TournamentDAO {
 	public void insertTournament(Tournament tournament) {
 		try {
 			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Tournaments (name) " +
-					"VALUES (?)");
+					"VALUES (?)", Statement.RETURN_GENERATED_KEYS);
 			PreparedStatement stmt2 = conn.prepareStatement("INSERT INTO MatchTournament (match_id, tournament_id) " + 
 					"VALUES (?, ?)");
 			stmt.setString(1, tournament.getName());
@@ -72,6 +72,11 @@ public class TournamentDAOImplem implements TournamentDAO {
 				stmt2.setInt(1, match.getId());
 				stmt2.setInt(2, tournament.getId());
 				stmt2.executeUpdate();
+			}
+			
+			ResultSet keys = stmt.getGeneratedKeys();
+			if(keys.next()) {
+				tournament.setId(keys.getInt(1));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

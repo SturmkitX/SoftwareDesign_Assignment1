@@ -1,7 +1,7 @@
 package models;
 
 public class User {
-	private final int id;
+	private int id;
 	private String email;
 	private String password;
 	private String name;
@@ -37,5 +37,9 @@ public class User {
 	
 	public String toString() {
 		return String.format("ID: %s\nE-mail: %s\nPass: %s\nAdmin: %b\n", id, email, password, isAdmin);
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 }
