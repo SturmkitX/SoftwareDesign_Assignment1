@@ -19,10 +19,11 @@ import javafx.scene.text.Text;
 import models.Match;
 import models.Tournament;
 import session.UserSession;
+import starter.MainScreen;
 
 public class TournamentMatchPane extends GridPane {
 	
-	private Node idField;
+	private Text idField;
 	private Node nameField;
 	private Tournament tournament;
 	private List<VBox> matchTexts;
@@ -42,6 +43,8 @@ public class TournamentMatchPane extends GridPane {
 		
 		setPadding(new Insets(25, 25, 25, 25));
 		
+		MainScreen.getStage().setTitle("Tournament details");
+		
 		setUpLabels();
 		setUpMatches();
 		setUpControls();
@@ -57,11 +60,11 @@ public class TournamentMatchPane extends GridPane {
 		Label idLabel = new Label("Tournament ID: ");		
 		Label nameLabel = new Label("Tournament Name: ");
 		
+		idField = new Text("" + tournament.getId());
+		
 		if(UserSession.getLoggedInUser().getIsAdmin()) {
-			idField = new TextField("" + tournament.getId());
 			nameField = new TextField(tournament.getName());
 		} else {
-			idField = new Text("" + tournament.getId());
 			nameField = new Text(tournament.getName());
 		}
 		
@@ -137,8 +140,8 @@ public class TournamentMatchPane extends GridPane {
 		add(updateTour, 0, 17, 2, 1);
 		add(deleteTour, 2, 17, 2, 1);
 		
-		updateTour.setOnAction(new TournamentControlHandler(1));
-		deleteTour.setOnAction(new TournamentControlHandler(2));
+		updateTour.setOnAction(new TournamentControlHandler(1, nameField));
+		deleteTour.setOnAction(new TournamentControlHandler(2, null));
 	}
 
 }

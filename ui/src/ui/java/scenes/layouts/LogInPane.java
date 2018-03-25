@@ -35,6 +35,8 @@ public class LogInPane extends GridPane {
 		
 		setPadding(new Insets(25, 25, 25, 25));
 		
+		MainScreen.getStage().setTitle("Log In");
+		
 		// set title
 		title = new Text("Welcome! Please, Log In");
 		add(title, 0, 0, 2, 1);

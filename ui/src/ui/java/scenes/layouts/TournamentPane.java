@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import models.Tournament;
 import session.UserSession;
+import starter.MainScreen;
 
 public class TournamentPane extends GridPane {
 	
@@ -35,6 +36,8 @@ public class TournamentPane extends GridPane {
 		setVgap(20);
 		
 		setPadding(new Insets(25, 25, 25, 25));
+		
+		MainScreen.getStage().setTitle("Tournament list");
 		
 		// show at most 3 tournaments per row
 		setUpTournamentView();

@@ -65,7 +65,7 @@ public class MatchAddPane extends GridPane implements EventHandler<ActionEvent> 
 		List<Game> games = new ArrayList<Game>();
 		
 		Match match = new Match(0, p1, p2, stage, games);
-		MatchAccess.insertMatch(match);
+		match = MatchAccess.insertMatch(match);
 		UserSession.getActiveTournament().addMatch(match);
 		
 		MatchAddHandler.getStage().close();

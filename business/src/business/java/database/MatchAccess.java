@@ -12,7 +12,8 @@ public class MatchAccess {
 		
 	}
 	
-	public static void insertMatch(Match match) {
+	public static Match insertMatch(Match match) {
 		dao.insertMatch(match);
+		return dao.findMatchByTuple(match.getP1().getId(), match.getP2().getId(), match.getStage());
 	}
 }

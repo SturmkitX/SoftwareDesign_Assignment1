@@ -130,4 +130,51 @@ public class MatchDAOImplem implements MatchDAO {
 		}
 	}
 
+	public Match findMatchByTuple(int p1Id, int p2Id, int stage) {
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT id FROM Matches WHERE " +
+					"player1_id = ? AND player2_id = ? AND stage = ?");
+			PreparedStatement stmt2 = conn.prepareStatement("SELECT game_id FROM GameMatch " + 
+					"WHERE match_id = ?");
+			stmt.setInt(1, p1Id);
+			stmt.setInt(2, p2Id);
+			stmt.setInt(3, stage);
+			
+			ResultSet results = stmt.executeQuery();
+			// System.out.println(results);
+			
+			if(!results.isBeforeFirst()) {
+				stmt.close();
+				return null;
+			}
+			
+			results.next();
+			
+			UserDAO userDao = new UserDAOImplem();
+			GameDAO gameDao = new GameDAOImplem();
+			User u1 = userDao.findUserById(p1Id);
+			User u2 = userDao.findUserById(p2Id);
+			int match_id = results.getInt("id");
+			List<Game> games = new ArrayList<Game>();
+			
+			stmt2.setInt(1, match_id);
+			ResultSet resultsGame = stmt2.executeQuery();
+			
+			while(resultsGame.next()) {
+				Game g = gameDao.findGame(resultsGame.getInt("game_id"));
+				games.add(g);
+			}
+			
+			results.close();
+			resultsGame.close();
+			
+			return new Match(match_id, u1, u2, stage, games);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
 }

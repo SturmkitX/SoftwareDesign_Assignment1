@@ -28,4 +28,8 @@ public class Tournament {
 	public void addMatch(Match match) {
 		matches.add(match);
 	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
 }
