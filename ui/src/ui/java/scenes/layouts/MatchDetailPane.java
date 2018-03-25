@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import logic.GameLogic;
+import logic.MatchLogic;
 import models.Game;
 import models.Match;
 import session.UserSession;
@@ -26,7 +27,8 @@ public class MatchDetailPane extends GridPane {
 	private List<Node> scoresP1;
 	private List<Node> scoresP2;
 	private Button addGameBtn;
-	private Button updateGame, deleteGame;
+	private Button updateMatch, deleteMatch;
+	private int gameRow;
 	
 	public MatchDetailPane(Match match) {
 		super();
@@ -40,10 +42,11 @@ public class MatchDetailPane extends GridPane {
 		
 		MatchDetailHandler.getStage().setTitle("Match details");
 		
-		int winStatus = 0;
+		gameRow = 0;
 		
 		setUpHeader();
 		setGamesPlayed();
+		setControls();
 	}
 	
 	private void setUpHeader() {
@@ -82,7 +85,7 @@ public class MatchDetailPane extends GridPane {
 	}
 	
 	private void setGamesPlayed() {
-		int gameRow = 5;
+		gameRow = 5;
 		int gameNumber = 0;
 		scoresP1 = new ArrayList<Node>();
 		scoresP2 = new ArrayList<Node>();
@@ -131,6 +134,41 @@ public class MatchDetailPane extends GridPane {
 			gameRow += 3;
 			gameNumber++;
 		}
+	}
+	
+	private void setControls() {
+		int winStatus = MatchLogic.getWinner(match);
+		if(winStatus == 0 && UserSession.getLoggedInUser().getIsAdmin()) {
+			addGameBtn = new Button("Add game");
+			add(addGameBtn, 1, gameRow, 2, 1);
+		} else {
+			String winner = (winStatus == 1) ? match.getP1().getName() : match.getP2().getName();
+			Text winField = new Text("Winner: " + winner);
+			winField.setFill(Color.GREEN);
+			winField.setFont(Font.font(24));
+			add(winField, 1, gameRow, 2, 1);
+		}
+		
+		gameRow += 2;
+		
+		
+		// update the update button
+		updateMatch = new Button("Update Match");
+		if(UserSession.getLoggedInUser().getIsAdmin() || UserSession.getLoggedInUser().getId() == match.getP1().getId() || 
+				UserSession.getLoggedInUser().getId() == match.getP2().getId()) {
+			add(updateMatch, 1, gameRow);
+		}
+		
+		// add the delete button
+		deleteMatch = new Button("Delete Match");
+		if(UserSession.getLoggedInUser().getIsAdmin()) {
+			add(deleteMatch, 2, gameRow);
+		}
+		
+		// add handlers
+		addGameBtn.setOnAction(new GameAddHandler(match));
+		updateMatch.setOnAction(new MatchGameHandler(1));
+		deleteMatch.setOnAction(new MatchGameHandler(2));
 	}
 
 }

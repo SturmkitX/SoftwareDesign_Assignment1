@@ -81,4 +81,31 @@ public class GameDAOImplem implements GameDAO {
 		}
 	}
 
+	public Game findEmptyGame() {
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Games WHERE id = ?");
+			stmt.setInt(1, id);
+			
+			ResultSet results = stmt.executeQuery();
+			// System.out.println(results);
+			
+			if(!results.isBeforeFirst()) {
+				stmt.close();
+				return null;
+			}
+			
+			results.next();
+			int p1Score = results.getInt("p1score");
+			int p2Score = results.getInt("p2score");
+			
+			results.close();
+			return new Game(id, p1Score, p2Score);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
 }

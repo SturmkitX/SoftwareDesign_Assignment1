@@ -32,5 +32,9 @@ public class MatchDetailHandler implements EventHandler<MouseEvent> {
 	public static Stage getStage() {
 		return stage;
 	}
+	
+	public static void setScene(Scene scene) {
+		stage.setScene(scene);
+	}
 
 }
