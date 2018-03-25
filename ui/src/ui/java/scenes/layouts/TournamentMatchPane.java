@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import handlers.MatchAddHandler;
+import handlers.MatchDetailHandler;
 import handlers.TournamentControlHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -106,6 +107,7 @@ public class TournamentMatchPane extends GridPane {
 			default : add(v, cols[2], 13, 4, 2); cols[3] += 4;
 			}
 			matchTexts.add(v);
+			v.setOnMousePressed(new MatchDetailHandler(m));
 		}
 		
 		// see if all matches are present
