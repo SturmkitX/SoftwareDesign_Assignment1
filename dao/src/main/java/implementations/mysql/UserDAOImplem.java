@@ -2,10 +2,11 @@ package implementations.mysql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.mysql.jdbc.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import drivers.ConnDriver;
 import interfaces.UserDAO;
@@ -114,6 +115,47 @@ public class UserDAOImplem implements UserDAO {
 		try {
 			PreparedStatement stmt = conn.prepareStatement("DELETE FROM Users WHERE email = ?");
 			stmt.setString(1, email);
+			
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public List<User> findAllUsers() {
+		try {
+			Statement stmt = conn.createStatement();
+			
+			ResultSet results = stmt.executeQuery("SELECT * FROM Users");
+			
+			List<User> users = new ArrayList<User>();
+			
+			while(results.next()) {
+				String name = results.getString("name");
+				int id = results.getInt("id");
+				String email = results.getString("email");
+				String pass = results.getString("password");
+				boolean isAdmin = results.getBoolean("isadmin");
+				
+				users.add(new User(id, email, pass, name,  isAdmin));
+			}
+			
+			results.close();
+			
+			return users;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public void deleteUser(int id) {
+		try {
+			PreparedStatement stmt = conn.prepareStatement("DELETE FROM Users WHERE id = ?");
+			stmt.setInt(1, id);
 			
 			stmt.executeUpdate();
 		} catch (SQLException e) {

@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.util.List;
+
 import models.User;
 
 /*
@@ -11,9 +13,11 @@ import models.User;
 public interface UserDAO {
 	public User findUserByEmailAndPassword(String email, String password);
 	public User findUserById(int id);
+	public List<User> findAllUsers();
 	public void insertUser(User user);
 	public void updateUser(User user);
 	public void deleteUser(String email);
+	public void deleteUser(int id);
 	
 	
 }

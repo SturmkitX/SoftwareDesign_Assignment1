@@ -3,6 +3,7 @@ package handlers;
 import java.util.Iterator;
 import java.util.List;
 
+import database.GameAccess;
 import database.MatchAccess;
 import database.UserAccess;
 import javafx.event.ActionEvent;
@@ -86,6 +87,8 @@ public class MatchGameHandler implements EventHandler<ActionEvent> {
 			
 			g.setP1Score(Integer.parseInt(p1String));
 			g.setP2Score(Integer.parseInt(p2String));
+			
+			GameAccess.updateGame(g);
 		}
 		
 		match.setP1(player1);

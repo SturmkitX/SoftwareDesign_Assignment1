@@ -16,7 +16,7 @@ import models.Tournament;
 
 public class TournamentDAOImplem implements TournamentDAO {
 	
-	Connection conn = ConnDriver.getInstance();
+	private Connection conn = ConnDriver.getInstance();
 
 	public Tournament findTournament(int id) {
 		try {

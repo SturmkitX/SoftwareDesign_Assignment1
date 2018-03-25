@@ -15,4 +15,8 @@ public class GameAccess {
 	public static void insertGame(Game game) {
 		dao.insertGame(game);
 	}
+	
+	public static void updateGame(Game game) {
+		dao.updateGame(game);
+	}
 }

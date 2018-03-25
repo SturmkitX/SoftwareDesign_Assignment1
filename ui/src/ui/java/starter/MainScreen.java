@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 public class MainScreen extends Application {
 	
 	private static Stage stage;
+	private static Stage userStage;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -19,6 +20,7 @@ public class MainScreen extends Application {
 		stage.setTitle("Window title");
 		
 		setStage(stage);
+		userStage = new Stage();
 		
 		Pane layout = new LogInPane();
 		
@@ -38,6 +40,10 @@ public class MainScreen extends Application {
 	
 	public static Stage getStage() {
 		return stage;
+	}
+	
+	public static Stage getUserStage() {
+		return userStage;
 	}
 
 }

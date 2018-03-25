@@ -18,20 +18,25 @@ public class MatchLogic {
 			return 0;
 		}
 		
-		int total = 0;
+		int p1Points = 0;
+		int p2Points = 0;
 		for(Game g : match.getGames()) {
 			int partResult = GameLogic.getWinner(g);
 			switch(partResult) {
-			case 1 : total++; break;
-			case 2 : total--; break;
+			case 1 : p1Points++; break;
+			case 2 : p2Points++; break;
 			default : ;	// nothing
 			}
 		}
 		
-		if(total == 0) {	// tie; match must continue
-			return 0;
+		if(p1Points >= 3) {
+			return 1;
 		}
 		
-		return ((total > 0) ? 1 : 2);
+		if(p2Points >= 3) {
+			return 2;
+		}
+		
+		return 0;
 	}
 }

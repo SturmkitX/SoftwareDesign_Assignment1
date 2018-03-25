@@ -7,9 +7,14 @@ import models.User;
 
 public final class UserSession {
 	
+	private static final int TOURNAMENT_SELECT_LIMIT = 12;
+	private static final int USER_SELECT_LIMIT = 20;
+	
 	private static User loggedUser;
 	private static Tournament activeTournament;
 	private static Match activeMatch;
+	private static int tournamentOffset = 0;
+	private static int userOffset = 0;
 	
 	private UserSession() {
 		
@@ -41,5 +46,29 @@ public final class UserSession {
 	
 	public static void refreshActiveTournament() {
 		activeTournament = TournamentAccess.getTournamentById(activeTournament.getId());
+	}
+	
+	public static int getTournamentOffset() {
+		return tournamentOffset;
+	}
+	
+	public static void incrementTournamentOffset() {
+		tournamentOffset += TOURNAMENT_SELECT_LIMIT;
+	}
+	
+	public static void decrementTournamentOffset() {
+		tournamentOffset -= TOURNAMENT_SELECT_LIMIT;
+	}
+	
+	public static int getUserOffset() {
+		return userOffset;
+	}
+	
+	public static void incrementUserOffset() {
+		tournamentOffset += USER_SELECT_LIMIT;
+	}
+	
+	public static void decrementUserOffset() {
+		tournamentOffset -= USER_SELECT_LIMIT;
 	}
 }
