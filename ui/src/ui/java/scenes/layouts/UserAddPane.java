@@ -1,5 +1,8 @@
 package scenes.layouts;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import database.UserAccess;
 import handlers.UserAddHandler;
 import javafx.event.ActionEvent;
@@ -78,11 +81,13 @@ public class UserAddPane extends GridPane {
 				String pass = passField.getText();
 				boolean isAdmin = adminField.getValue().equals("Regular User") ? false : true;
 				
-				User user = new User(0, email, pass, name, isAdmin);
-				UserAccess.insertUser(user);
-				
-				UserAddHandler.getStage().close();
-				MainScreen.getUserStage().setScene(new Scene(new UsersViewPane(), 1024, 768));
+				Matcher m = Pattern.compile("\\S+@\\S+\\.\\S+").matcher(email);
+				if(m.find()) {
+					User user = new User(0, email, pass, name, isAdmin);
+					UserAccess.insertUser(user);
+					UserAddHandler.getStage().close();
+					MainScreen.getUserStage().setScene(new Scene(new UsersViewPane(), 1024, 768));
+				}
 			}
 			
 		};
