@@ -1,8 +1,5 @@
 package scenes.layouts;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import database.UserAccess;
 import handlers.UserAddHandler;
 import javafx.event.ActionEvent;
@@ -15,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import logic.ValidityChecker;
 import models.User;
 import starter.MainScreen;
 
@@ -81,8 +79,7 @@ public class UserAddPane extends GridPane {
 				String pass = passField.getText();
 				boolean isAdmin = adminField.getValue().equals("Regular User") ? false : true;
 				
-				Matcher m = Pattern.compile("\\S+@\\S+\\.\\S+").matcher(email);
-				if(m.find()) {
+				if(ValidityChecker.checkValidEmail(email)) {
 					User user = new User(0, email, pass, name, isAdmin);
 					UserAccess.insertUser(user);
 					UserAddHandler.getStage().close();

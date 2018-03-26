@@ -19,13 +19,13 @@ public class GameLogic {
 			return 0;
 		}
 		
-		int scoreDiff = Math.abs(game.getP1Score() - game.getP2Score());
+		int scoreDiff = game.getP1Score() - game.getP2Score();
 		
 		if(game.getP1Score() >= 11 && scoreDiff >= 2) {
 			return 1;
 		}
 		
-		if(game.getP2Score() >= 11 && scoreDiff >= 2) {
+		if(game.getP2Score() >= 11 && scoreDiff <= -2) {
 			return 2;
 		}
 		
