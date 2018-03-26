@@ -37,4 +37,8 @@ public final class UserAccess {
 	public static void deleteUser(int id) {
 		dao.deleteUser(id);
 	}
+	
+	public static void insertUser(User user) {
+		dao.insertUser(user);
+	}
 }

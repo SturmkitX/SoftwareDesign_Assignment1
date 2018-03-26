@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.scene.Scene;
 import scenes.layouts.TournamentMatchPane;
 import scenes.layouts.TournamentPane;
@@ -14,17 +15,24 @@ import starter.MainScreen;
 public class TournamentControlHandler implements EventHandler<ActionEvent> {
 	
 	private final int type;
-	private TextField name;
+	private Node nameField;
 	
 	public TournamentControlHandler(int type, Node nameField) {
 		this.type = type;
-		this.name = (TextField)nameField;
+		this.nameField = nameField;
 	}
 
 	public void handle(ActionEvent arg0) {
 		switch(type) {
 		case 1 : {
-			UserSession.getActiveTournament().setName(name.getText());
+			if(UserSession.getLoggedInUser().getIsAdmin()) {
+				TextField name = (TextField)nameField;
+				UserSession.getActiveTournament().setName(name.getText());
+			} else {
+				Text name = (Text)nameField;
+				UserSession.getActiveTournament().setName(name.getText());
+			}
+			
 			TournamentAccess.updateTournament(UserSession.getActiveTournament());
 			
 			// refresh tournament data

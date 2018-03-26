@@ -78,11 +78,12 @@ public class UserDAOImplem implements UserDAO {
 	public void insertUser(User user) {
 		// TODO Auto-generated method stub
 		try {
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Users (email, password, isadmin) " +
-					"VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Users (email, password, name, isadmin) " +
+					"VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, user.getEmail());
 			stmt.setString(2, user.getPassword());
-			stmt.setBoolean(3, user.getIsAdmin());
+			stmt.setString(3, user.getName());
+			stmt.setBoolean(4, user.getIsAdmin());
 			
 			stmt.executeUpdate();
 			

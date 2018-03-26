@@ -9,10 +9,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import models.Match;
 import models.Tournament;
 import session.UserSession;
 import starter.MainScreen;
@@ -79,8 +80,8 @@ public class TournamentPane extends GridPane {
 		return new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent arg0) {
-				Stage stage = new Stage();
-				stage.show();
+				TournamentAccess.insertTournament(new Tournament(0, "New Tournament", new ArrayList<Match>()));
+				MainScreen.setScene(new Scene(new TournamentPane(), 1024, 768));
 			}
 			
 		};

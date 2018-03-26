@@ -33,4 +33,8 @@ public final class TournamentAccess {
 	public static void deleteTournament(int id) {
 		dao.deleteTournament(id);
 	}
+	
+	public static void insertTournament(Tournament tournament) {
+		dao.insertTournament(tournament);
+	}
 }

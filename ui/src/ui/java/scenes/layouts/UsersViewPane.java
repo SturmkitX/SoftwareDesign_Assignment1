@@ -3,6 +3,8 @@ package scenes.layouts;
 import java.util.List;
 
 import database.UserAccess;
+import handlers.UserAddHandler;
+import handlers.UserInfoHandler;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -63,5 +65,7 @@ public class UsersViewPane extends GridPane {
 		
 		addUserBtn = new Button("Add user");
 		add(addUserBtn, cols, rows);
+		
+		addUserBtn.setOnAction(new UserAddHandler());
 	}
 }
