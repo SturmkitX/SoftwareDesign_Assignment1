@@ -139,8 +139,11 @@ public class TournamentMatchPane extends GridPane {
 		updateTour = new Button("Update Tournament");
 		deleteTour = new Button("Delete Tournament");
 		
-		add(updateTour, 0, 17, 2, 1);
-		add(deleteTour, 2, 17, 2, 1);
+		if(UserSession.getLoggedInUser().getIsAdmin()) {
+			add(updateTour, 0, 17, 2, 1);
+			add(deleteTour, 2, 17, 2, 1);
+		}
+		
 		
 		updateTour.setOnAction(new TournamentControlHandler(1, nameField));
 		deleteTour.setOnAction(new TournamentControlHandler(2, null));

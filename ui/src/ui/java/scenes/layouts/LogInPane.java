@@ -91,9 +91,12 @@ public class LogInPane extends GridPane {
 					status.setText("Welcome, " + logUser.getName());
 					MainScreen.setScene(new Scene(new TournamentPane(), 1024, 768));
 					
-					MainScreen.getUserStage().setTitle("User Manager");
-					MainScreen.getUserStage().setScene(new Scene(new UsersViewPane(), 1024, 768));
-					MainScreen.getUserStage().show();
+					if(logUser.getIsAdmin()) {
+						MainScreen.getUserStage().setTitle("User Manager");
+						MainScreen.getUserStage().setScene(new Scene(new UsersViewPane(), 1024, 768));
+						MainScreen.getUserStage().show();
+					}
+					
 				}
 				
 			}
