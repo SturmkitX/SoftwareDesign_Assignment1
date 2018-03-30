@@ -60,7 +60,7 @@ public class LogInPane extends GridPane {
 		hBtn.setAlignment(Pos.BOTTOM_RIGHT);
 		hBtn.getChildren().add(button);
 		
-		button.setOnAction(getButtonEventHandler());
+		button.setOnAction(new ActionHandler());
 		add(hBtn, 1, 5);
 		
 		// add status text
@@ -74,34 +74,33 @@ public class LogInPane extends GridPane {
 		
 	}
 	
-	private EventHandler<ActionEvent> getButtonEventHandler() {
-		return new EventHandler<ActionEvent>() {
+	
+	private class ActionHandler implements EventHandler<ActionEvent> {
 
-			public void handle(ActionEvent event) {
-				String email = userField.getText();
-				String password = passField.getText();
+		public void handle(ActionEvent arg0) {
+			String email = userField.getText();
+			String password = passField.getText();
+			
+			User logUser = UserAccess.getUserByEmailAndPassword(email, password);
+			UserSession.setLoggedInUser(logUser);
+			if(logUser == null) {
+				status.setFill(Color.RED);
+				status.setText("Invalid user information!");
+			} else {
+				status.setFill(Color.GREEN);
+				status.setText("Welcome, " + logUser.getName());
+				MainScreen.setScene(new Scene(new TournamentPane(), 1024, 768));
 				
-				User logUser = UserAccess.getUserByEmailAndPassword(email, password);
-				UserSession.setLoggedInUser(logUser);
-				if(logUser == null) {
-					status.setFill(Color.RED);
-					status.setText("Invalid user information!");
-				} else {
-					status.setFill(Color.GREEN);
-					status.setText("Welcome, " + logUser.getName());
-					MainScreen.setScene(new Scene(new TournamentPane(), 1024, 768));
-					
-					if(logUser.getIsAdmin()) {
-						MainScreen.getUserStage().setTitle("User Manager");
-						MainScreen.getUserStage().setScene(new Scene(new UsersViewPane(), 1024, 768));
-						MainScreen.getUserStage().show();
-					}
-					
+				if(logUser.getIsAdmin()) {
+					MainScreen.getUserStage().setTitle("User Manager");
+					MainScreen.getUserStage().setScene(new Scene(new UsersViewPane(), 1024, 768));
+					MainScreen.getUserStage().show();
 				}
 				
 			}
 			
-		};
+		}
+		
 	}
 	
 }

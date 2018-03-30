@@ -1,14 +1,18 @@
 package scenes.layouts;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-import handlers.GameAddHandler;
-import handlers.MatchDetailHandler;
-import handlers.MatchGameHandler;
+import database.GameAccess;
+import database.MatchAccess;
+import database.UserAccess;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -20,6 +24,7 @@ import logic.GameLogic;
 import logic.MatchLogic;
 import models.Game;
 import models.Match;
+import models.User;
 import session.UserSession;
 
 public class MatchDetailPane extends GridPane {
@@ -42,7 +47,7 @@ public class MatchDetailPane extends GridPane {
 		
 		setPadding(new Insets(25, 25, 25, 25));
 		
-		MatchDetailHandler.getStage().setTitle("Match details");
+		TournamentMatchPane.getStage().setTitle("Match details");
 		
 		gameRow = 0;
 		
@@ -169,9 +174,105 @@ public class MatchDetailPane extends GridPane {
 		}
 		
 		// add handlers
-		addGameBtn.setOnAction(new GameAddHandler(match));
-		updateMatch.setOnAction(new MatchGameHandler(1, match, idField1, idField2, scoresP1, scoresP2));
-		deleteMatch.setOnAction(new MatchGameHandler(2, match, idField1, idField2, scoresP1, scoresP2));
+		addGameBtn.setOnAction(new GameAddHandler());
+		updateMatch.setOnAction(new MatchGameHandler(1));
+		deleteMatch.setOnAction(new MatchGameHandler(2));
+	}
+	
+	private class GameAddHandler implements EventHandler<ActionEvent> {
+
+		public void handle(ActionEvent arg0) {
+			Game g = new Game(0, 0, 0);
+			GameAccess.insertGame(g);
+			
+			match.getGames().add(g);
+			TournamentMatchPane.setScene(new Scene(new MatchDetailPane(match), 1024, 768));
+			
+		}
+		
+	}
+	
+	private class MatchGameHandler implements EventHandler<ActionEvent> {
+		
+		private int type;
+		
+		public MatchGameHandler(int type) {
+			this.type = type;
+		}
+
+		public void handle(ActionEvent arg0) {
+			switch(type) {
+			case 1 : updateFields(); break;
+			case 2 : deleteFields(); break;
+			default : ;
+			}
+			
+		}
+		
+		private void updateFields() {
+			Iterator<Node> it1 = scoresP1.iterator();
+			Iterator<Node> it2 = scoresP2.iterator();
+			
+			boolean isEditable1 = UserSession.getLoggedInUser().getIsAdmin() ||
+					UserSession.getLoggedInUser().getId() == match.getP1().getId();
+			boolean isEditable2 = UserSession.getLoggedInUser().getIsAdmin() ||
+					UserSession.getLoggedInUser().getId() == match.getP2().getId();
+					
+			int p1Id = 0;
+			int p2Id = 0;
+			if(UserSession.getLoggedInUser().getIsAdmin()) {
+				p1Id = Integer.parseInt(((TextField)idField1).getText());
+				p2Id = Integer.parseInt(((TextField)idField2).getText());
+			} else {
+				p1Id = Integer.parseInt(((Text)idField1).getText());
+				p2Id = Integer.parseInt(((Text)idField2).getText());
+			}
+			
+			User player1 = UserAccess.getUserById(p1Id);
+			User player2 = UserAccess.getUserById(p2Id);
+			
+			for(Game g : match.getGames()) {
+				Node node1 = it1.next();
+				Node node2 = it2.next();
+				
+				String p1String;
+				String p2String;
+				
+				if(isEditable1) {
+					p1String = ((TextField)node1).getText();
+				} else {
+					p1String = ((Text)node1).getText();
+				}
+				
+				if(isEditable2) {
+					p2String = ((TextField)node2).getText();
+				} else {
+					p2String = ((Text)node2).getText();
+				}
+				
+				
+				g.setP1Score(Integer.parseInt(p1String));
+				g.setP2Score(Integer.parseInt(p2String));
+				
+				GameAccess.updateGame(g);
+			}
+			
+			match.setP1(player1);
+			match.setP2(player2);
+			
+			MatchAccess.updateMatch(match);
+			
+			TournamentMatchPane.setScene(new Scene(new MatchDetailPane(match), 1024, 768));
+		}
+		
+		private void deleteFields() {
+			MatchAccess.deleteMatch(match);
+			
+			UserSession.setActiveMatch(null);
+			TournamentMatchPane.setScene(new Scene(new MatchDetailPane(match), 1024, 768));
+			
+		}
+		
 	}
 
 }

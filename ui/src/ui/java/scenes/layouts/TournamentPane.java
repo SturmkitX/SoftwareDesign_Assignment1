@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.TournamentAccess;
-import handlers.TournamentListHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import models.Match;
@@ -44,7 +44,7 @@ public class TournamentPane extends GridPane {
 		setUpTournamentView();
 		TournamentListHandler tlh = new TournamentListHandler();
 		
-		addTournamentBtn.setOnAction(getButtonEventHandler());
+		addTournamentBtn.setOnAction(new ActionHandler());
 		for(Text t : tournamentTexts) {
 			t.setOnMousePressed(tlh);
 		}
@@ -76,15 +76,25 @@ public class TournamentPane extends GridPane {
 		
 	}
 	
-	private EventHandler<ActionEvent> getButtonEventHandler() {
-		return new EventHandler<ActionEvent>() {
-
-			public void handle(ActionEvent arg0) {
-				TournamentAccess.insertTournament(new Tournament(0, "New Tournament", new ArrayList<Match>()));
-				MainScreen.setScene(new Scene(new TournamentPane(), 1024, 768));
-			}
+	private class TournamentListHandler implements EventHandler<MouseEvent> {
+		
+		public void handle(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			Text t = (Text) arg0.getSource();
+			Tournament tournament = TournamentAccess.getTournamentByName(t.getText());
 			
-		};
+			UserSession.setActiveTournament(tournament);
+			
+			MainScreen.setScene(new Scene(new TournamentMatchPane(), 1024, 768));
+		}
+	}
+	
+	private class ActionHandler implements EventHandler<ActionEvent> {
+		
+		public void handle(ActionEvent arg0) {
+			TournamentAccess.insertTournament(new Tournament(0, "New Tournament", new ArrayList<Match>()));
+			MainScreen.setScene(new Scene(new TournamentPane(), 1024, 768));
+		}
 	}
 	
 }

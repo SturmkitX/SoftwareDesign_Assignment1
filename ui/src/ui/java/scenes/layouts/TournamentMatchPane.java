@@ -3,20 +3,23 @@ package scenes.layouts;
 import java.util.ArrayList;
 import java.util.List;
 
-import handlers.MatchAddHandler;
-import handlers.MatchDetailHandler;
-import handlers.TournamentControlHandler;
+import database.TournamentAccess;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import models.Match;
 import models.Tournament;
 import session.UserSession;
@@ -30,6 +33,8 @@ public class TournamentMatchPane extends GridPane {
 	private List<VBox> matchTexts;
 	private Button quarterButton, semifinalButton, finalButton;
 	private Button updateTour, deleteTour;
+	
+	private static Stage stage;
 
 	public TournamentMatchPane() {
 		super();
@@ -130,9 +135,9 @@ public class TournamentMatchPane extends GridPane {
 		}
 		
 		// add button handlers
-		quarterButton.setOnAction(new MatchAddHandler(1));
-		semifinalButton.setOnAction(new MatchAddHandler(2));
-		finalButton.setOnAction(new MatchAddHandler(3));
+		quarterButton.setOnAction(new MatchHandler(1));
+		semifinalButton.setOnAction(new MatchHandler(2));
+		finalButton.setOnAction(new MatchHandler(3));
 	}
 
 	private void setUpControls() {
@@ -148,5 +153,90 @@ public class TournamentMatchPane extends GridPane {
 		updateTour.setOnAction(new TournamentControlHandler(1, nameField));
 		deleteTour.setOnAction(new TournamentControlHandler(2, null));
 	}
+	
+	private static void setStage(Stage arg0) {
+		stage = arg0;
+	}
+	
+	public static Stage getStage() {
+		return stage;
+	}
+	
+	public static void setScene(Scene scene) {
+		stage.setScene(scene);
+	}
+	
+	private class MatchHandler implements EventHandler<ActionEvent> {
+		
+		private int type;
+		
+		public MatchHandler(int type) {
+			this.type = type;
+		}
 
+		public void handle(ActionEvent arg0) {
+			Stage stage = new Stage();
+			setStage(stage);
+			
+			stage.setTitle("Add Match");
+			
+			stage.setScene(new Scene(new MatchAddPane(type)));
+			stage.show();
+			
+		}
+		
+	}
+
+	private class TournamentControlHandler implements EventHandler<ActionEvent> {
+
+		private final int type;
+		private Node nameField;
+		
+		public TournamentControlHandler(int type, Node nameField) {
+			this.type = type;
+			this.nameField = nameField;
+		}
+
+		public void handle(ActionEvent arg0) {
+			switch(type) {
+			case 1 : {
+				if(UserSession.getLoggedInUser().getIsAdmin()) {
+					TextField name = (TextField)nameField;
+					UserSession.getActiveTournament().setName(name.getText());
+				} else {
+					Text name = (Text)nameField;
+					UserSession.getActiveTournament().setName(name.getText());
+				}
+				
+				TournamentAccess.updateTournament(UserSession.getActiveTournament());
+				
+				// refresh tournament data
+				UserSession.refreshActiveTournament();
+				MainScreen.setScene(new Scene(new TournamentMatchPane(), 1024, 768));
+			}; break;
+			
+			default : {
+				TournamentAccess.deleteTournament(UserSession.getActiveTournament().getId());
+				UserSession.setActiveTournament(null);
+				MainScreen.setScene(new Scene(new TournamentPane(), 1024, 768));
+			}
+			}
+		}
+	}
+
+	private class MatchDetailHandler implements EventHandler<MouseEvent> {
+		private Match match;
+		
+		public MatchDetailHandler(Match match) {
+			this.match = match;
+		}
+
+		public void handle(MouseEvent arg0) {
+			UserSession.setActiveMatch(match);
+			
+			// setStage(new Stage());
+			stage.setScene(new Scene(new MatchDetailPane(match), 1024, 768));
+			stage.show();
+		}
+	}
 }

@@ -1,6 +1,8 @@
 package scenes.layouts;
 
-import handlers.UserEditHandler;
+import database.UserAccess;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -73,8 +75,43 @@ public class UserEditPane extends GridPane {
 		add(updateBtn, 0, 7);
 		add(deleteBtn, 1, 7);
 		
-		updateBtn.setOnAction(new UserEditHandler(1, idField, nameField, emailField, passField, adminField));
-		deleteBtn.setOnAction(new UserEditHandler(2, idField, null, null, null, null));
+		updateBtn.setOnAction(new UserEditHandler(1));
+		deleteBtn.setOnAction(new UserEditHandler(2));
+	}
+	
+	private class UserEditHandler implements EventHandler<ActionEvent> {
+
+		private int type;
+		
+		public UserEditHandler(int type) {
+			this.type = type;
+		}
+
+		public void handle(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			switch(type) {
+			case 1 : updateFields(); break;
+			default : deleteFields();
+			}
+			
+		}
+		
+		private void updateFields() {
+			int id = Integer.parseInt(idField.getText());
+			String name = nameField.getText();
+			String pass = passField.getText();
+			String email = emailField.getText();
+			boolean isAdmin = adminField.getValue().equals("Regular User") ? false : true;
+			
+			
+			UserAccess.updateUser(new User(id, email, pass, name, isAdmin));
+		}
+		
+		private void deleteFields() {
+			int id = Integer.parseInt(idField.getText());
+			UserAccess.deleteUser(id);
+		}
+		
 	}
 	
 	

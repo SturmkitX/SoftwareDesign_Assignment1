@@ -1,7 +1,6 @@
 package scenes.layouts;
 
 import database.UserAccess;
-import handlers.UserAddHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -66,28 +65,26 @@ public class UserAddPane extends GridPane {
 		
 		add(addUserBtn, 0, 7, 2, 1);
 		
-		addUserBtn.setOnAction(getButtonHandler());
+		addUserBtn.setOnAction(new ActionHandler());
 	}
 	
-	private EventHandler<ActionEvent> getButtonHandler() {
-		return new EventHandler<ActionEvent>() {
+	private class ActionHandler implements EventHandler<ActionEvent> {
 
-			public void handle(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				String name = nameField.getText();
-				String email = emailField.getText();
-				String pass = passField.getText();
-				boolean isAdmin = adminField.getValue().equals("Regular User") ? false : true;
-				
-				if(ValidityChecker.checkValidEmail(email)) {
-					User user = new User(0, email, pass, name, isAdmin);
-					UserAccess.insertUser(user);
-					UserAddHandler.getStage().close();
-					MainScreen.getUserStage().setScene(new Scene(new UsersViewPane(), 1024, 768));
-				}
-			}
+		public void handle(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			String name = nameField.getText();
+			String email = emailField.getText();
+			String pass = passField.getText();
+			boolean isAdmin = adminField.getValue().equals("Regular User") ? false : true;
 			
-		};
+			if(ValidityChecker.checkValidEmail(email)) {
+				User user = new User(0, email, pass, name, isAdmin);
+				UserAccess.insertUser(user);
+				UsersViewPane.getStage().close();
+				MainScreen.getUserStage().setScene(new Scene(new UsersViewPane(), 1024, 768));
+			}
+		}
+		
 	}
 	
 	

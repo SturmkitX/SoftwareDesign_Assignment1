@@ -3,22 +3,26 @@ package scenes.layouts;
 import java.util.List;
 
 import database.UserAccess;
-import handlers.UserAddHandler;
-import handlers.UserInfoHandler;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import models.User;
+import starter.MainScreen;
 
 public class UsersViewPane extends GridPane {
 	
 	private Button addUserBtn;
+	private static Stage stage;
 	
 	public UsersViewPane() {
 		super();
@@ -67,5 +71,47 @@ public class UsersViewPane extends GridPane {
 		add(addUserBtn, cols, rows);
 		
 		addUserBtn.setOnAction(new UserAddHandler());
+	}
+	
+	private static void setStage(Stage arg0) {
+		stage = arg0;
+	}
+	
+	public static Stage getStage() {
+		return stage;
+	}
+	
+	private class UserInfoHandler implements EventHandler<MouseEvent> {
+		
+		public void handle(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			VBox v = (VBox)arg0.getSource();
+			int id = 0;
+					
+			for(Node n : v.getChildren()) {
+				Text t = (Text)n;
+				if(t.getText().contains("ID: ")) {
+					id = Integer.parseInt(t.getText().substring(4));
+					break;
+				}
+			}
+			
+			User user = UserAccess.getUserById(id);
+			MainScreen.getUserStage().setScene(new Scene(new UserEditPane(user), 1024, 768));
+			
+		}
+	}
+	
+	private class UserAddHandler implements EventHandler<ActionEvent> {
+		
+		public void handle(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			
+			setStage(new Stage());
+			
+			stage.setScene(new Scene(new UserAddPane()));
+			stage.setTitle("Add User");
+			stage.show();
+		}
 	}
 }
