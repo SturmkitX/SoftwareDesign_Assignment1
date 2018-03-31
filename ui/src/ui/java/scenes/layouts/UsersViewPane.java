@@ -17,12 +17,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import models.User;
+import session.UserSession;
 import starter.MainScreen;
 
 public class UsersViewPane extends GridPane {
 	
 	private Button addUserBtn;
 	private static Stage stage;
+	private Button prevPage, nextPage;
 	
 	public UsersViewPane() {
 		super();
@@ -71,6 +73,22 @@ public class UsersViewPane extends GridPane {
 		add(addUserBtn, cols, rows);
 		
 		addUserBtn.setOnAction(new UserAddHandler());
+		
+		prevPage = new Button("Previous page");
+		nextPage = new Button("Next page");
+		
+		UserPageHandler uph = new UserPageHandler();
+		
+		prevPage.setOnAction(uph);
+		nextPage.setOnAction(uph);
+		
+		if(UserSession.getUserOffset() > 0) {
+			add(prevPage, 1, rows + 2);
+		}
+		
+		if(users.size() == UserSession.getUserLimit()) {
+			add(nextPage, 2, rows + 2);
+		}
 	}
 	
 	private static void setStage(Stage arg0) {
@@ -113,5 +131,20 @@ public class UsersViewPane extends GridPane {
 			stage.setTitle("Add User");
 			stage.show();
 		}
+	}
+	
+	private class UserPageHandler implements EventHandler<ActionEvent> {
+
+		public void handle(ActionEvent arg0) {
+			if(arg0.getSource() == prevPage) {
+				UserSession.decrementUserOffset();
+			} else if(arg0.getSource() == nextPage) {
+				UserSession.incrementUserOffset();
+			}
+			
+			MainScreen.getUserStage().setScene(new Scene(new UsersViewPane(), 1024, 768));
+			
+		}
+		
 	}
 }

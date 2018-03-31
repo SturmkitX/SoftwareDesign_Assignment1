@@ -33,6 +33,7 @@ public class TournamentMatchPane extends GridPane {
 	private List<VBox> matchTexts;
 	private Button quarterButton, semifinalButton, finalButton;
 	private Button updateTour, deleteTour;
+	private Button backBtn;
 	
 	private static Stage stage;
 
@@ -48,6 +49,8 @@ public class TournamentMatchPane extends GridPane {
 		setVgap(20);
 		
 		setPadding(new Insets(25, 25, 25, 25));
+		
+		setStage(new Stage());
 		
 		MainScreen.getStage().setTitle("Tournament details");
 		
@@ -152,6 +155,11 @@ public class TournamentMatchPane extends GridPane {
 		
 		updateTour.setOnAction(new TournamentControlHandler(1, nameField));
 		deleteTour.setOnAction(new TournamentControlHandler(2, null));
+		
+		backBtn = new Button("Back");
+		add(backBtn, 1, 19, 2, 1);
+		
+		backBtn.setOnAction(new BackButtonHandler());
 	}
 	
 	private static void setStage(Stage arg0) {
@@ -175,8 +183,7 @@ public class TournamentMatchPane extends GridPane {
 		}
 
 		public void handle(ActionEvent arg0) {
-			Stage stage = new Stage();
-			setStage(stage);
+			// setStage(new Stage());
 			
 			stage.setTitle("Add Match");
 			
@@ -238,5 +245,14 @@ public class TournamentMatchPane extends GridPane {
 			stage.setScene(new Scene(new MatchDetailPane(match), 1024, 768));
 			stage.show();
 		}
+	}
+	
+	private class BackButtonHandler implements EventHandler<ActionEvent> {
+
+		public void handle(ActionEvent arg0) {
+			MainScreen.setScene(new Scene(new TournamentPane(), 1024, 768));
+			
+		}
+		
 	}
 }

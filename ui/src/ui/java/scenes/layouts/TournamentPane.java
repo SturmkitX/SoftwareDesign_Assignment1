@@ -29,6 +29,7 @@ public class TournamentPane extends GridPane {
 	private Button addTournamentBtn;
 	private List<Text> tournamentTexts;
 	private int rows, cols;
+	private Button prevPage, nextPage;
 	
 	public TournamentPane() {
 		super();
@@ -74,6 +75,22 @@ public class TournamentPane extends GridPane {
 			add(addTournamentBtn, cols, rows);
 		}
 		
+		prevPage = new Button("Previous page");
+		nextPage = new Button("Next page");
+		
+		TournamentPageHandler tph = new TournamentPageHandler();
+		
+		prevPage.setOnAction(tph);
+		nextPage.setOnAction(tph);
+		
+		if(UserSession.getTournamentOffset() > 0) {
+			add(prevPage, 1, rows + 2);
+		}
+		
+		if(tournaments.size() == UserSession.getTournamentLimit()) {
+			add(nextPage, 2, rows + 2);
+		}
+		
 	}
 	
 	private class TournamentListHandler implements EventHandler<MouseEvent> {
@@ -95,6 +112,21 @@ public class TournamentPane extends GridPane {
 			TournamentAccess.insertTournament(new Tournament(0, "New Tournament", new ArrayList<Match>()));
 			MainScreen.setScene(new Scene(new TournamentPane(), 1024, 768));
 		}
+	}
+	
+	private class TournamentPageHandler implements EventHandler<ActionEvent> {
+
+		public void handle(ActionEvent arg0) {
+			if(arg0.getSource() == prevPage) {
+				UserSession.decrementTournamentOffset();
+			} else if(arg0.getSource() == nextPage) {
+				UserSession.incrementTournamentOffset();
+			}
+			
+			MainScreen.setScene(new Scene(new TournamentPane(), 1024, 768));
+			
+		}
+		
 	}
 	
 }

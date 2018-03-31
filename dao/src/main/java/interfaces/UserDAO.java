@@ -13,7 +13,7 @@ import models.User;
 public interface UserDAO {
 	public User findUserByEmailAndPassword(String email, String password);
 	public User findUserById(int id);
-	public List<User> findAllUsers();
+	public List<User> findAllUsers(int offset, int limit);
 	public void insertUser(User user);
 	public void updateUser(User user);
 	public void deleteUser(String email);

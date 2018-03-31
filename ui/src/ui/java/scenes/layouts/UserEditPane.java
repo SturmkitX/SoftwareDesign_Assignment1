@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -21,6 +22,7 @@ public class UserEditPane extends GridPane {
 	private TextField nameField, emailField, passField;
 	private Text idField;
 	private ComboBox<String> adminField;
+	private Button backBtn;
 	
 	public UserEditPane(User user) {
 		super();
@@ -77,6 +79,11 @@ public class UserEditPane extends GridPane {
 		
 		updateBtn.setOnAction(new UserEditHandler(1));
 		deleteBtn.setOnAction(new UserEditHandler(2));
+		
+		backBtn = new Button("Back");
+		add(backBtn, 0, 9, 2, 1);
+		
+		backBtn.setOnAction(new BackButtonHandler());
 	}
 	
 	private class UserEditHandler implements EventHandler<ActionEvent> {
@@ -110,6 +117,15 @@ public class UserEditPane extends GridPane {
 		private void deleteFields() {
 			int id = Integer.parseInt(idField.getText());
 			UserAccess.deleteUser(id);
+		}
+		
+	}
+	
+	private class BackButtonHandler implements EventHandler<ActionEvent> {
+
+		public void handle(ActionEvent arg0) {
+			MainScreen.getUserStage().setScene(new Scene(new UsersViewPane(), 1024, 768));
+			
 		}
 		
 	}

@@ -124,11 +124,13 @@ public class UserDAOImplem implements UserDAO {
 		}
 	}
 
-	public List<User> findAllUsers() {
+	public List<User> findAllUsers(int offset, int limit) {
 		try {
-			Statement stmt = conn.createStatement();
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users LIMIT ? OFFSET ?");
+			stmt.setInt(1, limit);
+			stmt.setInt(2, offset);
 			
-			ResultSet results = stmt.executeQuery("SELECT * FROM Users");
+			ResultSet results = stmt.executeQuery();
 			
 			List<User> users = new ArrayList<User>();
 			

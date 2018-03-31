@@ -5,6 +5,7 @@ import java.util.List;
 import implementations.mysql.UserDAOImplem;
 import interfaces.UserDAO;
 import models.User;
+import session.UserSession;
 
 public final class UserAccess {
 	
@@ -27,7 +28,7 @@ public final class UserAccess {
 	}
 	
 	public static List<User> getAllUsers() {
-		return dao.findAllUsers();
+		return dao.findAllUsers(UserSession.getUserOffset(), UserSession.getUserLimit());
 	}
 	
 	public static void updateUser(User user) {

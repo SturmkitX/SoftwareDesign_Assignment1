@@ -5,6 +5,7 @@ import java.util.List;
 import implementations.mysql.TournamentDAOImplem;
 import interfaces.TournamentDAO;
 import models.Tournament;
+import session.UserSession;
 
 public final class TournamentAccess {
 	
@@ -15,7 +16,7 @@ public final class TournamentAccess {
 	}
 	
 	public static List<Tournament> getAllTournaments() {
-		return dao.findAll();
+		return dao.findAll(UserSession.getTournamentOffset(), UserSession.getTournamentLimit());
 	}
 	
 	public static Tournament getTournamentByName(String name) {

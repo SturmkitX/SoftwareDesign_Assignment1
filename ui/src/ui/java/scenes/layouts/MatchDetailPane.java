@@ -177,13 +177,14 @@ public class MatchDetailPane extends GridPane {
 		addGameBtn.setOnAction(new GameAddHandler());
 		updateMatch.setOnAction(new MatchGameHandler(1));
 		deleteMatch.setOnAction(new MatchGameHandler(2));
+		
 	}
 	
 	private class GameAddHandler implements EventHandler<ActionEvent> {
 
 		public void handle(ActionEvent arg0) {
 			Game g = new Game(0, 0, 0);
-			GameAccess.insertGame(g);
+			// GameAccess.insertGame(g);
 			
 			match.getGames().add(g);
 			TournamentMatchPane.setScene(new Scene(new MatchDetailPane(match), 1024, 768));

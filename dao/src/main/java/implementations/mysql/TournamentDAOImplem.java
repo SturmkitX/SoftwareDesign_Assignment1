@@ -129,13 +129,15 @@ public class TournamentDAOImplem implements TournamentDAO {
 		
 	}
 
-	public List<Tournament> findAll() {
+	public List<Tournament> findAll(int offset, int limit) {
 		try {
-			Statement stmt = conn.createStatement();
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Tournaments LIMIT ? OFFSET ?");
 			PreparedStatement stmt2 = conn.prepareStatement("SELECT match_id FROM MatchTournament " + 
 					"WHERE tournament_id = ?");
 			
-			ResultSet results = stmt.executeQuery("SELECT * FROM Tournaments");
+			stmt.setInt(1, limit);
+			stmt.setInt(2, offset);
+			ResultSet results = stmt.executeQuery();
 			
 			MatchDAO matchDao = new MatchDAOImplem();
 			List<Tournament> tournaments = new ArrayList<Tournament>();
