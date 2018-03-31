@@ -117,6 +117,7 @@ public class UserEditPane extends GridPane {
 		private void deleteFields() {
 			int id = Integer.parseInt(idField.getText());
 			UserAccess.deleteUser(id);
+			MainScreen.getUserStage().setScene(new Scene(new UsersViewPane(), 1024, 768));
 		}
 		
 	}

@@ -36,6 +36,7 @@ public class MatchDetailPane extends GridPane {
 	private Button addGameBtn;
 	private Button updateMatch, deleteMatch;
 	private int gameRow;
+	private Text updateStatus;
 	
 	public MatchDetailPane(Match match) {
 		super();
@@ -178,13 +179,18 @@ public class MatchDetailPane extends GridPane {
 		updateMatch.setOnAction(new MatchGameHandler(1));
 		deleteMatch.setOnAction(new MatchGameHandler(2));
 		
+		// add update status
+		updateStatus = new Text();
+		updateStatus.setFill(Color.FIREBRICK);
+		add(updateStatus, 1, gameRow + 2, 2, 1);
+		
 	}
 	
 	private class GameAddHandler implements EventHandler<ActionEvent> {
 
 		public void handle(ActionEvent arg0) {
 			Game g = new Game(0, 0, 0);
-			// GameAccess.insertGame(g);
+			GameAccess.insertGame(g);
 			
 			match.getGames().add(g);
 			TournamentMatchPane.setScene(new Scene(new MatchDetailPane(match), 1024, 768));
@@ -252,8 +258,23 @@ public class MatchDetailPane extends GridPane {
 				}
 				
 				
-				g.setP1Score(Integer.parseInt(p1String));
-				g.setP2Score(Integer.parseInt(p2String));
+				int p1Int = 0;
+				int p2Int = 0;
+				try {
+					p1Int = Integer.parseInt(p1String);
+					p2Int = Integer.parseInt(p2String);
+				} catch(NumberFormatException e) {
+					updateStatus.setText("All fields must be positive integers");
+					return;
+				}
+				
+				if(p1Int < 0 || p2Int < 0) {
+					updateStatus.setText("All fields must be positive integers");
+					return;
+				}
+				
+				g.setP1Score(p1Int);
+				g.setP2Score(p2Int);
 				
 				GameAccess.updateGame(g);
 			}

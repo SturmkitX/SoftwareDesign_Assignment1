@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2018 at 09:31 AM
+-- Generation Time: Mar 31, 2018 at 04:36 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -41,14 +41,14 @@ INSERT INTO `GameMatch` (`game_id`, `match_id`) VALUES
 (1, 2),
 (2, 2),
 (3, 2),
-(8, 13),
 (35, 20),
 (36, 21),
 (37, 21),
 (38, 21),
 (39, 21),
 (40, 21),
-(41, 23);
+(41, 23),
+(45, 29);
 
 -- --------------------------------------------------------
 
@@ -77,7 +77,11 @@ INSERT INTO `Games` (`id`, `p1score`, `p2score`) VALUES
 (38, 11, 8),
 (39, 13, 11),
 (40, 0, 0),
-(41, 5, 0);
+(41, 7, 0),
+(42, 0, 0),
+(43, 0, 0),
+(44, 0, 0),
+(45, 7, 0);
 
 -- --------------------------------------------------------
 
@@ -104,7 +108,11 @@ INSERT INTO `Matches` (`id`, `player1_id`, `player2_id`, `stage`) VALUES
 (19, 5, 9, 1),
 (20, 5, 9, 1),
 (21, 5, 8, 1),
-(23, 1, 9, 1);
+(23, 1, 9, 1),
+(24, 1, 10, 1),
+(25, 8, 10, 1),
+(27, 7, 8, 1),
+(29, 7, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -125,7 +133,8 @@ INSERT INTO `MatchTournament` (`match_id`, `tournament_id`) VALUES
 (2, 2),
 (13, 2),
 (21, 5),
-(23, 2);
+(23, 2),
+(29, 13);
 
 -- --------------------------------------------------------
 
@@ -144,8 +153,8 @@ CREATE TABLE `Tournaments` (
 
 INSERT INTO `Tournaments` (`id`, `name`) VALUES
 (5, 'African Road to Glory'),
+(19, 'Bayonet Class'),
 (10, 'Cluj Napica'),
-(15, 'Dam of Doom'),
 (2, 'European Concrete'),
 (13, 'Gaalati'),
 (7, 'Greek Runners'),
@@ -186,7 +195,7 @@ INSERT INTO `Users` (`id`, `name`, `email`, `password`, `isadmin`) VALUES
 (8, 'Dan Bursuc', 'dwag@pj.ne', 'fwoapj', 0),
 (9, 'Paul Lica', 'dwaighi@caransebes.ro', 'dojwajg', 0),
 (10, 'Gica Hagi', 'jjpij@jijg.net', 'opjj', 0),
-(11, 'Nicu Paleru', 'npaleru@jfa.net', 'jopa', 0),
+(11, 'Nicu Paleru', 'npaleru@jfa.net', 'hopa', 0),
 (12, 'Ciorba', 'fwa@jaba.net', 'gwaa', 0);
 
 --
@@ -241,25 +250,25 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Games`
 --
 ALTER TABLE `Games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `Matches`
 --
 ALTER TABLE `Matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `Tournaments`
 --
 ALTER TABLE `Tournaments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

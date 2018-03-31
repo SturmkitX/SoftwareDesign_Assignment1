@@ -15,11 +15,11 @@ public class ConnDriver {
 		if (connection == null) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");		// may need .newInstance()
-//				connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net/sql11227258?" +
-//				"user=sql11227258&password=mBzWNckV5N");
+				connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11229932",
+				"sql11229932", "p7AqBeesmh");
 				
-				connection = DriverManager.getConnection("jdbc:mysql://localhost/pong?" +
-						"user=ponguser&password=ponguser");
+//				connection = DriverManager.getConnection("jdbc:mysql://localhost/pong?" +
+//						"user=ponguser&password=ponguser");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

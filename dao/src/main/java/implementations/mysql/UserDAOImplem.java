@@ -99,11 +99,13 @@ public class UserDAOImplem implements UserDAO {
 
 	public void updateUser(User user) {
 		try {
-			PreparedStatement stmt = conn.prepareStatement("UPDATE Users SET email = ?, password = ? " + 
-					"WHERE id = ?");
+			PreparedStatement stmt = conn.prepareStatement("UPDATE Users SET email = ?, password = ?, " + 
+					"name = ?, isadmin = ? WHERE id = ?");
 			stmt.setString(1, user.getEmail());
 			stmt.setString(2, user.getPassword());
-			stmt.setInt(3, user.getId());
+			stmt.setString(3, user.getName());
+			stmt.setBoolean(4, user.getIsAdmin());
+			stmt.setInt(5, user.getId());
 			
 			stmt.executeUpdate();
 		} catch (SQLException e) {

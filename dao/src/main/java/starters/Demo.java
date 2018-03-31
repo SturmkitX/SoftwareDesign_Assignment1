@@ -9,8 +9,8 @@ public class Demo {
 	
 	public static void main(String[] args) {
 		UserDAO ud = new UserDAOImplem();
-		User besina = ud.findUserByEmailAndPassword("test@testus.com", "sidetest");
-		System.out.println(besina);
+		User testUser = ud.findUserByEmailAndPassword("test@testus.com", "sidetest");
+		System.out.println(testUser);
 	}
 	
 }
