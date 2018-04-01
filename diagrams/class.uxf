@@ -39,7 +39,7 @@ UserDAO
     <coordinates>
       <x>410</x>
       <y>260</y>
-      <w>100</w>
+      <w>110</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
@@ -132,7 +132,7 @@ MatchDAO
     <coordinates>
       <x>430</x>
       <y>950</y>
-      <w>100</w>
+      <w>110</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
@@ -209,7 +209,7 @@ GameDAO
     <coordinates>
       <x>420</x>
       <y>610</y>
-      <w>100</w>
+      <w>110</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
@@ -285,7 +285,7 @@ TournamentDAO
     <coordinates>
       <x>420</x>
       <y>1300</y>
-      <w>100</w>
+      <w>110</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
@@ -425,79 +425,47 @@ implements</panel_attributes>
     <additional_attributes>10.0;10.0;190.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>Relation</id>
     <coordinates>
-      <x>770</x>
-      <y>100</y>
-      <w>170</w>
-      <h>160</h>
+      <x>220</x>
+      <y>130</y>
+      <w>130</w>
+      <h>1160</h>
     </coordinates>
-    <panel_attributes>GameGateway
---
-- id : int
-- p1Score : int
-- p2Score : int
---
-+ insert() : boolean
-+ update() : boolean
-+ delete() : boolean</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>110.0;1140.0;10.0;1140.0;10.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>Relation</id>
     <coordinates>
-      <x>770</x>
-      <y>280</y>
-      <w>170</w>
-      <h>160</h>
+      <x>220</x>
+      <y>900</y>
+      <w>140</w>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>MatchGateway
---
-- id : int
-- p1 : User
-- p2 : User
-- games : Game...
---
-+ insert() : boolean
-+ update() : boolean
-+ delete() : boolean</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>Relation</id>
     <coordinates>
-      <x>770</x>
-      <y>480</y>
-      <w>170</w>
-      <h>160</h>
+      <x>220</x>
+      <y>560</y>
+      <w>130</w>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>TournamentGateway
---
-- id : int
-- matches : Match...
---
-+ insert() : boolean
-+ update() : boolean
-+ delete() : boolean</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>Relation</id>
     <coordinates>
-      <x>770</x>
-      <y>660</y>
-      <w>170</w>
-      <h>160</h>
+      <x>220</x>
+      <y>220</y>
+      <w>120</w>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>UserGateway
---
-- email : String
-- password : String
-- isAdmin : boolean
---
-+ insert() : boolean
-+ update() : boolean
-+ delete() : boolean</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
   </element>
 </diagram>
