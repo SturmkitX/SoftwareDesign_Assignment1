@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="entities.Tournament" table="Tournaments" >
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class=" identity " />
+        </id>
+
+        <property name="name" type="java.lang.String">
+            <column name="name" />
+        </property>
+
+        <property name="fee" type="float">
+            <column name="fee" />
+        </property>
+
+        <property name="status" type="int">
+            <column name="status" />
+        </property>
+
+        <property name="startDate" type="java.sql.Date">
+            <column name="start_date" />
+        </property>
+
+        <set name="matches" table="Matches" fetch="select">
+            <key>
+                <column name="tournament_id" not-null="true"></column>
+            </key>
+            <one-to-many class="entities.Match"/>
+        </set>
+    </class>
+
+</hibernate-mapping>

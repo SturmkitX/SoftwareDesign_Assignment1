@@ -18,7 +18,7 @@ public class ConnDriver {
 //				connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11229932",
 //				"sql11229932", "p7AqBeesmh");
 
-                connection = DriverManager.getConnection("jdbc:mysql://localhost/pong?" +
+                connection = DriverManager.getConnection("jdbc:mysql://localhost/pong2?" +
                         "user=ponguser&password=ponguser");
             } catch (ClassNotFoundException e) {
                 // TODO Auto-generated catch block

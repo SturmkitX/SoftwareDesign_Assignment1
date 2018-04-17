@@ -5,47 +5,72 @@ public class User {
     private String email;
     private String password;
     private String name;
-    private final boolean isAdmin;
+    private boolean admin;
     private float balance;
 
-    public User(int id, String email, String password, String name, boolean isAdmin, float balance) {
+    public User() {
+
+    }
+
+    public User(int id, String email, String password, String name, boolean admin, float balance) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.isAdmin = isAdmin;
+        this.admin = admin;
         this.name = name;
         this.balance = balance;
+    }
+
+    public String toString() {
+        return String.format("ID: %s\nE-mail: %s\nPass: %s\nAdmin: %b\nBalance: %f\n", id, email, password, admin, balance);
     }
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    public boolean getIsAdmin() {
-        return isAdmin;
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getName() {
         return name;
     }
 
-    public String toString() {
-        return String.format("ID: %s\nE-mail: %s\nPass: %s\nAdmin: %b\n", id, email, password, isAdmin);
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public float getBalance() {
         return balance;
+    }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
     }
 }

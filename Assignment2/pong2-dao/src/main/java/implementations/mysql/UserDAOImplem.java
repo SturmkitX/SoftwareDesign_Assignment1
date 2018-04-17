@@ -69,7 +69,7 @@ public class UserDAOImplem implements UserDAO {
         stmt.setString(1, user.getEmail());
         stmt.setString(2, user.getPassword());
         stmt.setString(3, user.getName());
-        stmt.setBoolean(4, user.getIsAdmin());
+        stmt.setBoolean(4, user.isAdmin());
         stmt.setFloat(5, user.getBalance());
 
         stmt.executeUpdate();
@@ -86,7 +86,7 @@ public class UserDAOImplem implements UserDAO {
         stmt.setString(1, user.getEmail());
         stmt.setString(2, user.getPassword());
         stmt.setString(3, user.getName());
-        stmt.setBoolean(4, user.getIsAdmin());
+        stmt.setBoolean(4, user.isAdmin());
         stmt.setFloat(5, user.getBalance());
         stmt.setInt(6, user.getId());
 
