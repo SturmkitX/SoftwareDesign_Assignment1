@@ -1,14 +1,15 @@
 package interfaces;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import entities.Tournament;
 
 public interface TournamentDAO {
-    public Tournament findTournament(int id);
-    public List<Tournament> findAll(int offset, int limit);
-    public Tournament findTournamentByName(String name);
-    public void insertTournament(Tournament tournament);
-    public void updateTournament(Tournament tournament);
-    public void deleteTournament(int id);
+    Tournament findTournament(int id) throws SQLException;
+    List<Tournament> findAll(int offset, int limit) throws SQLException;
+    Tournament findTournamentByName(String name) throws SQLException;
+    void insertTournament(Tournament tournament) throws SQLException;
+    void updateTournament(Tournament tournament) throws SQLException;
+    void deleteTournament(int id) throws SQLException;
 }

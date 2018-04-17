@@ -2,7 +2,7 @@ package starters;
 
 import implementations.mysql.UserDAOImplem;
 import interfaces.UserDAO;
-import models.User;
+import entities.User;
 
 public class Demo {
 

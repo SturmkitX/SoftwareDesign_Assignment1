@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import entities.User;
@@ -11,13 +12,13 @@ import entities.User;
  */
 
 public interface UserDAO {
-    public User findUserByEmailAndPassword(String email, String password);
-    public User findUserById(int id);
-    public List<User> findAllUsers(int offset, int limit);
-    public void insertUser(User user);
-    public void updateUser(User user);
-    public void deleteUser(String email);
-    public void deleteUser(int id);
+    public User findUserByEmailAndPassword(String email, String password) throws SQLException;
+    public User findUserById(int id) throws SQLException;
+    public List<User> findAllUsers(int offset, int limit) throws SQLException;
+    public void insertUser(User user) throws SQLException;
+    public void updateUser(User user) throws SQLException;
+    public void deleteUser(String email) throws SQLException;
+    public void deleteUser(int id) throws SQLException;
 
 
 }

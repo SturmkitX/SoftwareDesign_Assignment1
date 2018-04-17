@@ -6,13 +6,15 @@ public class User {
     private String password;
     private String name;
     private final boolean isAdmin;
+    private float balance;
 
-    public User(int id, String email, String password, String name, boolean isAdmin) {
+    public User(int id, String email, String password, String name, boolean isAdmin, float balance) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
         this.name = name;
+        this.balance = balance;
     }
 
     public int getId() {
@@ -41,5 +43,9 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public float getBalance() {
+        return balance;
     }
 }
