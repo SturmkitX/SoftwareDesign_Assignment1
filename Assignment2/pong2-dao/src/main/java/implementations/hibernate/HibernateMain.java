@@ -5,6 +5,7 @@ import java.util.Set;
 
 import entities.Game;
 import entities.Match;
+import entities.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,8 +21,13 @@ public class HibernateMain {
         Set<Game> gameSet = new HashSet<>();
         gameSet.add(g1); gameSet.add(g2);
 
+        User u1 = new User(5, "dwao", "fjawj", "fiwah", false, 40, null, null);
+        User u2 = new User(10, "fjwai", "f9awhh", "y8qyhg", false, 200, null, null);
+
         match.setGames(gameSet);
-        cart.setTotal(10*1 + 20*2);
+        match.setStage(0);
+        match.setP1(u1);
+        match.setP2(u2);
 
         SessionFactory sessionFactory = null;
         Session session = null;
@@ -35,13 +41,15 @@ public class HibernateMain {
             tx = session.beginTransaction();
 
             //Save the Model objects
-            session.save(cart);
-            session.save(item1);
-            session.save(item2);
+            session.save(match);
+            session.save(g1);
+            session.save(g2);
+            session.save(u1);
+            session.save(u2);
 
             //Commit transaction
             tx.commit();
-            System.out.println("Cart ID="+cart.getId());
+            System.out.println("Match ID=" + match.getId());
 
         }catch(Exception e){
             System.out.println("Exception occured. "+e.getMessage());

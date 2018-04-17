@@ -23,5 +23,19 @@
         <property name="balance" type="float">
             <column name="balance" />
         </property>
+
+        <set name="matchesP1" table="Matches" fetch="select">
+            <key>
+                <column name="player1_id" not-null="true"></column>
+            </key>
+            <one-to-many class="entities.Match"/>
+        </set>
+
+        <set name="matchesP2" table="Matches" fetch="select">
+            <key>
+                <column name="player2_id" not-null="true"></column>
+            </key>
+            <one-to-many class="entities.Match"/>
+        </set>
     </class>
 </hibernate-mapping>

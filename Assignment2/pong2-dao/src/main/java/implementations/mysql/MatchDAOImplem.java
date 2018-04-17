@@ -38,7 +38,7 @@ public class MatchDAOImplem implements MatchDAO {
 
         results.close();
 
-        return new Match(id, u1, u2, stage, null);
+        return new Match(id, u1, u2, stage, null, null);
     }
 
     public void insertMatch(Match match, int tournament_id) throws SQLException {

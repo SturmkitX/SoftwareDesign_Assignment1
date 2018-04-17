@@ -42,7 +42,7 @@ public class TournamentDAOImplem implements TournamentDAO {
         stmt.setString(1, tournament.getName());
         stmt.setFloat(2, tournament.getFee());
         stmt.setInt(3, tournament.getStatus());
-        stmt.setDate(4, tournament.getDate());
+        stmt.setDate(4, tournament.getStartDate());
 
         stmt.executeUpdate();
 
@@ -59,7 +59,7 @@ public class TournamentDAOImplem implements TournamentDAO {
         stmt.setString(1, tournament.getName());
         stmt.setFloat(2, tournament.getFee());
         stmt.setInt(3, tournament.getStatus());
-        stmt.setDate(4, tournament.getDate());
+        stmt.setDate(4, tournament.getStartDate());
         stmt.setInt(5, tournament.getId());
 
         stmt.executeUpdate();

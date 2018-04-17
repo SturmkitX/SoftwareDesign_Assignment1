@@ -37,7 +37,7 @@ public class UserDAOImplem implements UserDAO {
         float balance = results.getFloat("balance");
 
         results.close();
-        return new User(id, email, password, name, isAdmin, balance);
+        return new User(id, email, password, name, isAdmin, balance, null, null);
     }
 
     public User findUserById(int id) throws SQLException {
@@ -60,7 +60,7 @@ public class UserDAOImplem implements UserDAO {
         float balance = results.getFloat("balance");
 
         results.close();
-        return new User(id, email, password, name, isAdmin, balance);
+        return new User(id, email, password, name, isAdmin, balance, null, null);
     }
 
     public void insertUser(User user) throws SQLException {
@@ -117,7 +117,7 @@ public class UserDAOImplem implements UserDAO {
             boolean isAdmin = results.getBoolean("isadmin");
             float balance = results.getFloat("balance");
 
-            users.add(new User(id, email, pass, name,  isAdmin, balance));
+            users.add(new User(id, email, pass, name,  isAdmin, balance, null, null));
         }
 
         results.close();

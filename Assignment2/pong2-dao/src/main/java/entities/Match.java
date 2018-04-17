@@ -9,17 +9,27 @@ public class Match {
     private User p2;
     private int stage;
     private Set<Game> games;
+    private Tournament tournament;
+
+    public Tournament getTournament() {
+        return tournament;
+    }
+
+    public void setTournament(Tournament tournament) {
+        this.tournament = tournament;
+    }
 
     public Match() {
 
     }
 
-    public Match(int id, User p1, User p2, int stage, Set<Game> games) {
+    public Match(int id, User p1, User p2, int stage, Set<Game> games, Tournament tournament) {
         this.id = id;
         this.p1 = p1;
         this.p2 = p2;
         this.stage = stage;
         this.games = games;
+        this.tournament = tournament;
     }
 
     public int getId() {
