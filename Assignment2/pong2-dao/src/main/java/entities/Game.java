@@ -6,15 +6,26 @@ public class Game {
     private int id;
     private int p1Score;
     private int p2Score;
+    private Match match;
+
 
     public Game() {
 
     }
 
-    public Game(int id, int p1Score, int p2Score) {
+    public Game(int id, int p1Score, int p2Score, Match match) {
         this.id = id;
         this.p1Score = p1Score;
         this.p2Score = p2Score;
+        this.match = match;
+    }
+
+    public Match getMatch() {
+        return match;
+    }
+
+    public void setMatch(Match match) {
+        this.match = match;
     }
 
     public int getId() {

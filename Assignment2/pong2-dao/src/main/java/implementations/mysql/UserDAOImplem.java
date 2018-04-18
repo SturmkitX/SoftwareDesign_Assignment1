@@ -6,7 +6,9 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import drivers.ConnDriver;
 import interfaces.UserDAO;
@@ -100,14 +102,12 @@ public class UserDAOImplem implements UserDAO {
         stmt.executeUpdate();
     }
 
-    public List<User> findAllUsers(int offset, int limit) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users LIMIT ? OFFSET ?");
-        stmt.setInt(1, limit);
-        stmt.setInt(2, offset);
+    public Set<User> findAll() throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users");
 
         ResultSet results = stmt.executeQuery();
 
-        List<User> users = new ArrayList<>();
+        Set<User> users = new HashSet<>();
 
         while(results.next()) {
             String name = results.getString("name");

@@ -16,5 +16,9 @@
         <property name="p2Score" type="int">
             <column name="p2score" />
         </property>
+
+        <many-to-one name="match" class="entities.Match">
+            <column name="match_id" not-null="true"></column>
+        </many-to-one>
     </class>
 </hibernate-mapping>

@@ -10,18 +10,28 @@ public class Tournament {
     private int status;     // to be replaced with an ENUM
     private Set<Match> matches;
     private Date startDate;
+    private Set<User> users;
 
     public Tournament() {
 
     }
 
-    public Tournament(int id, String name, Set<Match> matches, float fee, int status, Date startDate) {
+    public Tournament(int id, String name, float fee, int status, Set<Match> matches, Date startDate, Set<User> users) {
         this.id = id;
         this.name = name;
-        this.matches = matches;
         this.fee = fee;
         this.status = status;
+        this.matches = matches;
         this.startDate = startDate;
+        this.users = users;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     public int getId() {

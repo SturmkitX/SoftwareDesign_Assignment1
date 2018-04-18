@@ -11,13 +11,34 @@ public class User {
     private float balance;
     private Set<Match> matchesP1;
     private Set<Match> matchesP2;
+    private Set<Tournament> tournaments;
 
     public User() {
 
     }
 
+    public User(int id, String email, String password, String name, boolean admin, float balance, Set<Match> matchesP1, Set<Match> matchesP2, Set<Tournament> tournaments) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.admin = admin;
+        this.balance = balance;
+        this.matchesP1 = matchesP1;
+        this.matchesP2 = matchesP2;
+        this.tournaments = tournaments;
+    }
+
     public Set<Match> getMatchesP1() {
         return matchesP1;
+    }
+
+    public Set<Tournament> getTournaments() {
+        return tournaments;
+    }
+
+    public void setTournaments(Set<Tournament> tournaments) {
+        this.tournaments = tournaments;
     }
 
     public void setMatchesP1(Set<Match> matchesP1) {
@@ -29,17 +50,6 @@ public class User {
     }
 
     public void setMatchesP2(Set<Match> matchesP2) {
-        this.matchesP2 = matchesP2;
-    }
-
-    public User(int id, String email, String password, String name, boolean admin, float balance, Set<Match> matchesP1, Set<Match> matchesP2) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.admin = admin;
-        this.name = name;
-        this.balance = balance;
-        this.matchesP1 = matchesP1;
         this.matchesP2 = matchesP2;
     }
 

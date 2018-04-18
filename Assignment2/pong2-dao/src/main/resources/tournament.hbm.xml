@@ -7,7 +7,7 @@
         <id name="id" type="int">
             <column name="id" />
             <!-- <generator class=" identity " /> -->
-            <generator class="increment"></generator>
+            <generator class="increment"/ >
         </id>
 
         <property name="name" type="java.lang.String">
@@ -28,9 +28,14 @@
 
         <set name="matches" table="Matches" fetch="select">
             <key>
-                <column name="tournament_id" not-null="true"></column>
+                <column name="tournament_id" not-null="true" />
             </key>
             <one-to-many class="entities.Match"/>
+        </set>
+
+        <set name="users" table="UserTournament" fetch="select" cascade="all">
+            <key column="id_tournament" />
+            <many-to-many class="entities.User" column="id_user" />
         </set>
     </class>
 

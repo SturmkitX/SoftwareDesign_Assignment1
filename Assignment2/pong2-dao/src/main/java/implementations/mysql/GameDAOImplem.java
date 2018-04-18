@@ -34,7 +34,7 @@ public class GameDAOImplem implements GameDAO {
         int p2Score = results.getInt("p2score");
 
         results.close();
-        return new Game(id, p1Score, p2Score);
+        return new Game(id, p1Score, p2Score, null);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class GameDAOImplem implements GameDAO {
             int game_id = results.getInt("id");
             int p1Score = results.getInt("p1score");
             int p2Score = results.getInt("p2score");
-            games.add(new Game(game_id, p1Score, p2Score));
+            games.add(new Game(game_id, p1Score, p2Score, null));
 
         }
 
