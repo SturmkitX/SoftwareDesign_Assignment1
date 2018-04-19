@@ -1,7 +1,7 @@
 package implementations.hibernate;
 
-import entities.User;
-import interfaces.UserDAO;
+import entities.Tournament;
+import interfaces.TournamentDAO;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,89 +10,79 @@ import org.hibernate.Transaction;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UserHibernate implements UserDAO {
+public class TournamentHibernate implements TournamentDAO {
     @Override
-    public User findUserByEmailAndPassword(String email, String password) {
+    public Tournament findTournament(int id) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+
+        Tournament t = (Tournament) session.get(Tournament.class, new Integer(id));
+
+        return t;
+    }
+
+    @Override
+    public Set<Tournament> findAll() {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
 
+        Query query = session.createQuery("from Tournaments");
+
         Transaction tx = session.beginTransaction();
-        Query query = session.createQuery("from Users where email = :email and password = :password");
-        query.setString("email", email);
-        query.setString("password", password);
 
-        User u = (User) query.uniqueResult();
-
-//        tx.rollback();
-        session.close();
-//        sessionFactory.close();
+        Set<Tournament> u = new HashSet<>(query.list());
 
         return u;
     }
 
     @Override
-    public User findUserById(int id) {
+    public Tournament findTournamentByName(String name) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
 
-        User u = (User) session.get(User.class, new Integer(id));
+        Query query = session.createQuery("from Tournaments where name = :name");
+        query.setString("name", name);
 
-        session.close();
+        Transaction tx = session.beginTransaction();
 
-        return u;
+        Tournament t = (Tournament) query.uniqueResult();
+
+        return t;
     }
 
     @Override
-    public Set<User> findAll() {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
-
-        Query query = session.createQuery("from Users");
-
-        Set<User> u = new HashSet<>(query.list());
-
-        session.close();
-
-        return u;
-    }
-
-    @Override
-    public void insertUser(User user) {
+    public void insertTournament(Tournament tournament) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
 
-        session.save(user);
+        session.save(tournament);
 
         tx.commit();
-
-        session.close();
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateTournament(Tournament tournament) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
 
-        session.update(user);
+        session.update(tournament);
 
         tx.commit();
 
-        session.close();
     }
 
     @Override
-    public void deleteUser(User user) {
+    public void deleteTournament(Tournament tournament) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
 
-        session.delete(user);
+        session.delete(tournament);
 
         tx.commit();
 
-        session.close();
     }
-
 }

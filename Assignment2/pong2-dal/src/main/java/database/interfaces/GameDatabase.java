@@ -1,8 +1,8 @@
-package interfaces;
+package database.interfaces;
 
 import entities.Game;
 
-public interface GameDAO {
+public interface GameDatabase {
     Game findGame(int id);
     void insertGame(Game game);
     void updateGame(Game game);

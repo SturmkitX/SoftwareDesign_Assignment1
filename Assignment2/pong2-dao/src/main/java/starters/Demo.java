@@ -1,18 +1,16 @@
 package starters;
 
-import implementations.mysql.UserDAOImplem;
-import interfaces.UserDAO;
-import entities.User;
-
-import java.sql.SQLException;
+import entities.Tournament;
+import implementations.hibernate.HibernateUtil;
+import implementations.hibernate.TournamentHibernate;
 
 public class Demo {
 
+    public static void main(String[] args) {
+        Tournament t = new TournamentHibernate().findTournament(1);
+        System.out.println(t.getMatches().size());
 
-    public static void main(String[] args) throws SQLException {
-        UserDAO ud = new UserDAOImplem();
-        User testUser = ud.findUserByEmailAndPassword("test@testus.com", "sidetest");
-        System.out.println(testUser);
+        HibernateUtil.getSessionFactory().close();
     }
 
 }

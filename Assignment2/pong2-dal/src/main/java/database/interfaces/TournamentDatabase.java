@@ -1,11 +1,10 @@
-package interfaces;
-
-import java.util.List;
-import java.util.Set;
+package database.interfaces;
 
 import entities.Tournament;
 
-public interface TournamentDAO {
+import java.util.Set;
+
+public interface TournamentDatabase {
     Tournament findTournament(int id);
     Set<Tournament> findAll();
     Tournament findTournamentByName(String name);

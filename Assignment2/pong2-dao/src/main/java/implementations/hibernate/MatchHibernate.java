@@ -1,31 +1,31 @@
 package implementations.hibernate;
 
-import entities.Game;
-import interfaces.GameDAO;
+import entities.Match;
+import interfaces.MatchDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class GameHibernate implements GameDAO {
+public class MatchHibernate implements MatchDAO {
     @Override
-    public Game findGame(int id) {
+    public Match findMatch(int id) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
 
-        Game g = (Game) session.get(Game.class, new Integer(id));
+        Match m = (Match) session.get(Match.class, new Integer(id));
 
         session.close();
 
-        return g;
+        return m;
     }
 
     @Override
-    public void insertGame(Game game) {
+    public void insertMatch(Match match) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
 
-        session.save(game);
+        session.save(match);
 
         tx.commit();
 
@@ -33,12 +33,12 @@ public class GameHibernate implements GameDAO {
     }
 
     @Override
-    public void updateGame(Game game) {
+    public void updateMatch(Match match) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
 
-        session.update(game);
+        session.update(match);
 
         tx.commit();
 
@@ -46,12 +46,12 @@ public class GameHibernate implements GameDAO {
     }
 
     @Override
-    public void deleteGame(Game game) {
+    public void deleteMatch(Match match) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
 
-        session.delete(game);
+        session.delete(match);
 
         tx.commit();
 
