@@ -3,17 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="823b6b4d-fcbc-4b42-9d4c-54b34f68657a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pong2-dal/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-dal/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pong2-dal/src/main/java/ro/utcluj/bogdan/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/GameHibernate.java" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/GameHibernate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/Factory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/HibernateFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/HibernateFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/UserHibernate.java" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/UserHibernate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pong2-dao/src/main/java/interfaces/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-dao/src/main/java/interfaces/GameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pong2-dao/src/main/java/interfaces/MatchDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-dao/src/main/java/interfaces/MatchDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pong2-dao/src/main/java/interfaces/TournamentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-dao/src/main/java/interfaces/TournamentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pong2-dao/src/main/java/starters/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-dao/src/main/java/starters/Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pong2-dao/src/main/resources/tournament.hbm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-dao/src/main/resources/tournament.hbm.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pong2-dao/target/classes/tournament.hbm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-dao/target/classes/tournament.hbm.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pong2-dao/target/classes/user.hbm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-dao/target/classes/user.hbm.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pong2-ui/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pong2-ui/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pong2-ui/src/main/java/ro/utcluj/bogdan/App.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/pong2-dal/target/" />
@@ -28,78 +22,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MatchDatabaseHibernate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/hibernate/MatchDatabaseHibernate.java">
+      <file leaf-file-name="Factory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/Factory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+            <state relative-caret-position="119">
+              <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#350#351#0" expanded="true" />
-                <element signature="e#375#376#0" expanded="true" />
-                <element signature="e#448#449#0" expanded="true" />
-                <element signature="e#466#467#0" expanded="true" />
-                <element signature="e#544#545#0" expanded="true" />
-                <element signature="e#562#563#0" expanded="true" />
-                <element signature="e#640#641#0" expanded="true" />
-                <element signature="e#658#659#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MatchDatabase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/interfaces/MatchDatabase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TournamentDatabase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/interfaces/TournamentDatabase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserDatabase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/interfaces/UserDatabase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TournamentDatabaseHibernate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/hibernate/TournamentDatabaseHibernate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#423#424#0" expanded="true" />
-                <element signature="e#448#449#0" expanded="true" />
-                <element signature="e#522#523#0" expanded="true" />
-                <element signature="e#547#548#0" expanded="true" />
-                <element signature="e#631#632#0" expanded="true" />
-                <element signature="e#656#657#0" expanded="true" />
-                <element signature="e#757#758#0" expanded="true" />
-                <element signature="e#775#776#0" expanded="true" />
-                <element signature="e#878#879#0" expanded="true" />
-                <element signature="e#896#897#0" expanded="true" />
-                <element signature="e#999#1000#0" expanded="true" />
-                <element signature="e#1017#1018#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,79 +37,104 @@
       <file leaf-file-name="FactoryProducer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/FactoryProducer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+            <state relative-caret-position="136">
+              <caret line="8" column="54" lean-forward="true" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Factory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/Factory.java">
+      <file leaf-file-name="SignInController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pong2-ui/src/main/java/controllers/SignInController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="189">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1259#1260#0" expanded="true" />
+                <element signature="e#1289#1290#0" expanded="true" />
+                <element signature="e#1450#1451#0" expanded="true" />
+                <element signature="e#1503#1504#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DAOFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/DAOFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#293#294#0" expanded="true" />
-                <element signature="e#320#321#0" expanded="true" />
-                <element signature="e#381#382#0" expanded="true" />
-                <element signature="e#408#409#0" expanded="true" />
-                <element signature="e#467#468#0" expanded="true" />
-                <element signature="e#494#495#0" expanded="true" />
-                <element signature="e#565#566#0" expanded="true" />
-                <element signature="e#592#593#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HibernateFactory.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HibernateFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/HibernateFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+            <state relative-caret-position="314">
+              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#502#503#0" expanded="true" />
-                <element signature="e#552#553#0" expanded="true" />
-                <element signature="e#613#614#0" expanded="true" />
-                <element signature="e#664#665#0" expanded="true" />
-                <element signature="e#723#724#0" expanded="true" />
-                <element signature="e#773#774#0" expanded="true" />
-                <element signature="e#844#845#0" expanded="true" />
-                <element signature="e#900#901#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameDatabaseHibernate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/hibernate/GameDatabaseHibernate.java">
+      <file leaf-file-name="UserHibernate.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/UserHibernate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+            <state relative-caret-position="272">
+              <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#363#364#0" expanded="true" />
-                <element signature="e#388#389#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StartFXML.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pong2-ui/src/main/java/starters/StartFXML.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signin.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pong2-ui/src/main/java/starters/signin.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pong2-ui/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="561">
+              <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RuntimeUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/util/RuntimeUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserSession.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/util/UserSession.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="28" column="64" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#294#295#0" expanded="true" />
+                <element signature="e#323#324#0" expanded="true" />
+                <element signature="e#372#373#0" expanded="true" />
+                <element signature="e#415#416#0" expanded="true" />
                 <element signature="e#457#458#0" expanded="true" />
-                <element signature="e#493#494#0" expanded="true" />
-                <element signature="e#548#549#0" expanded="true" />
-                <element signature="e#566#567#0" expanded="true" />
-                <element signature="e#639#640#0" expanded="true" />
-                <element signature="e#657#658#0" expanded="true" />
+                <element signature="e#487#488#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -196,15 +150,18 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>dao</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/pong2-dal/pom.xml" />
-        <option value="$PROJECT_DIR$/pong2-ui/pom.xml" />
         <option value="$PROJECT_DIR$/pong2-dao/src/main/java/drivers/ConnDriver.java" />
         <option value="$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/xmls/user.hbm.xml" />
         <option value="$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/xmls/hibernate.cfg.xml" />
@@ -229,7 +186,6 @@
         <option value="$PROJECT_DIR$/pong2-dao/src/main/java/starters/Demo.java" />
         <option value="$PROJECT_DIR$/pong2-dao/src/main/resources/tournament.hbm.xml" />
         <option value="$PROJECT_DIR$/pong2-dao/src/main/resources/user.hbm.xml" />
-        <option value="$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/UserHibernate.java" />
         <option value="$PROJECT_DIR$/pong2-dao/src/main/resources/hibernate.cfg.xml" />
         <option value="$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/TournamentHibernate.java" />
         <option value="$PROJECT_DIR$/pong2-dal/src/main/java/database/interfaces/UserDatabase.java" />
@@ -243,9 +199,19 @@
         <option value="$PROJECT_DIR$/pong2-dal/src/main/java/database/hibernate/GameDatabaseHibernate.java" />
         <option value="$PROJECT_DIR$/pong2-dal/src/main/java/database/hibernate/TournamentDatabaseHibernate.java" />
         <option value="$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/FactoryProducer.java" />
-        <option value="$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/HibernateFactory.java" />
         <option value="$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/DAOFactory.java" />
+        <option value="$PROJECT_DIR$/pong2-dal/src/main/java/dtos/UserDTO.java" />
+        <option value="$PROJECT_DIR$/pong2-ui/src/main/java/starters/signin.fxml" />
+        <option value="$PROJECT_DIR$/pong2-ui/src/main/java/util/Util.java" />
         <option value="$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/Factory.java" />
+        <option value="$PROJECT_DIR$/pong2-dal/src/main/java/util/UserSession.java" />
+        <option value="$PROJECT_DIR$/pong2-dal/src/main/java/util/Util.java" />
+        <option value="$PROJECT_DIR$/pong2-ui/pom.xml" />
+        <option value="$PROJECT_DIR$/pong2-ui/src/main/java/controllers/SignInController.java" />
+        <option value="$PROJECT_DIR$/pong2-ui/src/main/java/starters/StartFXML.java" />
+        <option value="$PROJECT_DIR$/pong2-dal/src/main/java/util/RuntimeUtil.java" />
+        <option value="$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/HibernateFactory.java" />
+        <option value="$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/UserHibernate.java" />
       </list>
     </option>
   </component>
@@ -262,9 +228,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -324,41 +287,30 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="hibernate" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Assignment2" type="b2602c69:ProjectViewProjectNode" />
               <item name="Assignment2" type="462c0819:PsiDirectoryNode" />
-              <item name="pong2-dal" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
+              <item name="pong2-ui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Assignment2" type="b2602c69:ProjectViewProjectNode" />
               <item name="Assignment2" type="462c0819:PsiDirectoryNode" />
-              <item name="pong2-dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment2" type="462c0819:PsiDirectoryNode" />
-              <item name="pong2-dao" type="462c0819:PsiDirectoryNode" />
+              <item name="pong2-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Assignment2" type="b2602c69:ProjectViewProjectNode" />
               <item name="Assignment2" type="462c0819:PsiDirectoryNode" />
-              <item name="pong2-dao" type="462c0819:PsiDirectoryNode" />
+              <item name="pong2-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Assignment2" type="b2602c69:ProjectViewProjectNode" />
               <item name="Assignment2" type="462c0819:PsiDirectoryNode" />
-              <item name="pong2-dao" type="462c0819:PsiDirectoryNode" />
+              <item name="pong2-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -366,56 +318,28 @@
             <path>
               <item name="Assignment2" type="b2602c69:ProjectViewProjectNode" />
               <item name="Assignment2" type="462c0819:PsiDirectoryNode" />
-              <item name="pong2-dao" type="462c0819:PsiDirectoryNode" />
+              <item name="pong2-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="implementations" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Assignment2" type="b2602c69:ProjectViewProjectNode" />
               <item name="Assignment2" type="462c0819:PsiDirectoryNode" />
-              <item name="pong2-dao" type="462c0819:PsiDirectoryNode" />
+              <item name="pong2-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="implementations" type="462c0819:PsiDirectoryNode" />
-              <item name="hibernate" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment2" type="462c0819:PsiDirectoryNode" />
-              <item name="pong2-dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="implementations" type="462c0819:PsiDirectoryNode" />
-              <item name="mysql" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment2" type="462c0819:PsiDirectoryNode" />
-              <item name="pong2-dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="starters" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -426,14 +350,16 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pong2-ui/src/main/java/starters" />
+      <recent name="$PROJECT_DIR$/pong2-ui/src/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/pong2-dao/xmls" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/pong2-dao/src/main/resources" />
       <recent name="$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/xmls" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/pong2-dao/xmls" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -448,7 +374,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Demo">
+  <component name="RunManager" selected="Application.StartFXML">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ro.utcluj.bogdan.App" />
       <module name="pong2dao" />
@@ -466,7 +392,7 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="starters.*" />
+          <option name="PATTERN" value="controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -478,6 +404,17 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="implementations.hibernate.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="StartFXML" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="starters.StartFXML" />
+      <module name="pong2ui" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -527,9 +464,11 @@
       <item itemvalue="Application.App" />
       <item itemvalue="Application.Demo" />
       <item itemvalue="Application.HibernateMain" />
+      <item itemvalue="Application.StartFXML" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StartFXML" />
         <item itemvalue="Application.Demo" />
         <item itemvalue="Application.HibernateMain" />
         <item itemvalue="Application.App" />
@@ -562,11 +501,11 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5005208" side_tool="true" weight="0.32936078" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947917" visible="true" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947917" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32936078" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -578,7 +517,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -590,78 +529,25 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/implementations/mysql/MatchDAOImplem.java">
+    <entry file="file://$PROJECT_DIR$/pong2-ui/src/main/java/controllers/SignInController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="54" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
+        <state relative-caret-position="340">
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1259#1260#0" expanded="true" />
+            <element signature="e#1289#1290#0" expanded="true" />
+            <element signature="e#1450#1451#0" expanded="true" />
+            <element signature="e#1503#1504#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/entities/Match.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#277#278#0" expanded="true" />
-            <element signature="e#310#311#0" expanded="true" />
-            <element signature="e#366#367#0" expanded="true" />
-            <element signature="e#410#411#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/HibernateMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/ro/utcluj/bogdan/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="38" lean-forward="true" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-dal/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-ui/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/ro/utcluj/bogdan/App.java" />
-    <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/starters.java" />
     <entry file="file://$PROJECT_DIR$/pong2-dao/xmls/user.hbm.xml" />
     <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/drivers/ConnDriver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -679,9 +565,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
           <caret line="43" column="47" lean-forward="true" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -699,32 +582,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/entities/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-          <folding>
-            <element signature="e#794#795#0" expanded="true" />
-            <element signature="e#826#827#0" expanded="true" />
-            <element signature="e#873#874#0" expanded="true" />
-            <element signature="e#907#908#0" expanded="true" />
-            <element signature="e#970#971#0" expanded="true" />
-            <element signature="e#1016#1017#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/entities/Tournament.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
           <caret line="18" column="120" selection-start-line="18" selection-start-column="120" selection-end-line="18" selection-end-column="120" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#655#656#0" expanded="true" />
-            <element signature="e#683#684#0" expanded="true" />
-            <element signature="e#728#729#0" expanded="true" />
-            <element signature="e#762#763#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -732,33 +593,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="25" column="95" selection-start-line="25" selection-start-column="95" selection-end-line="25" selection-end-column="95" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#277#278#0" expanded="true" />
-            <element signature="e#310#311#0" expanded="true" />
-            <element signature="e#366#367#0" expanded="true" />
-            <element signature="e#410#411#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/HibernateMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/HibernateMain.java" />
     <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/implementations/mysql/GameDAOImplem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="884">
           <caret line="52" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -773,9 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -793,23 +632,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/UserHibernate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/implementations/mysql/MatchDAOImplem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -838,9 +664,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
           <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -855,9 +678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -865,9 +685,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="13" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -875,9 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1428">
           <caret line="84" column="1" selection-start-line="84" selection-start-column="1" selection-end-line="84" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -885,19 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#528#529#0" expanded="true" />
-            <element signature="e#553#554#0" expanded="true" />
-            <element signature="e#619#620#0" expanded="true" />
-            <element signature="e#655#656#0" expanded="true" />
-            <element signature="e#710#711#0" expanded="true" />
-            <element signature="e#728#729#0" expanded="true" />
-            <element signature="e#801#802#0" expanded="true" />
-            <element signature="e#819#820#0" expanded="true" />
-            <element signature="e#892#893#0" expanded="true" />
-            <element signature="e#910#911#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -912,52 +713,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="39" lean-forward="true" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/interfaces/GameDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/hibernate/GameDatabaseHibernate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#363#364#0" expanded="true" />
-            <element signature="e#388#389#0" expanded="true" />
-            <element signature="e#457#458#0" expanded="true" />
-            <element signature="e#493#494#0" expanded="true" />
-            <element signature="e#548#549#0" expanded="true" />
-            <element signature="e#566#567#0" expanded="true" />
-            <element signature="e#639#640#0" expanded="true" />
-            <element signature="e#657#658#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/hibernate/MatchDatabaseHibernate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
+        <state relative-caret-position="306">
           <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#350#351#0" expanded="true" />
-            <element signature="e#375#376#0" expanded="true" />
-            <element signature="e#448#449#0" expanded="true" />
-            <element signature="e#466#467#0" expanded="true" />
-            <element signature="e#544#545#0" expanded="true" />
-            <element signature="e#562#563#0" expanded="true" />
-            <element signature="e#640#641#0" expanded="true" />
-            <element signature="e#658#659#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -970,49 +732,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/interfaces/TournamentDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="170">
           <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/interfaces/UserDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/hibernate/TournamentDatabaseHibernate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
+        <state relative-caret-position="408">
           <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#423#424#0" expanded="true" />
-            <element signature="e#448#449#0" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#547#548#0" expanded="true" />
-            <element signature="e#631#632#0" expanded="true" />
-            <element signature="e#656#657#0" expanded="true" />
-            <element signature="e#757#758#0" expanded="true" />
-            <element signature="e#775#776#0" expanded="true" />
-            <element signature="e#878#879#0" expanded="true" />
-            <element signature="e#896#897#0" expanded="true" />
-            <element signature="e#999#1000#0" expanded="true" />
-            <element signature="e#1017#1018#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/entities/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1190">
+          <caret line="106" column="5" selection-start-line="5" selection-start-column="4" selection-end-line="106" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/dtos/UserDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/hibernate/GameDatabaseHibernate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/interfaces/GameDatabase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/DAOFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="68">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1028,37 +797,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/Factory.java">
+    <entry file="file://$PROJECT_DIR$/pong2-dal/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="595">
+          <caret line="35" column="21" selection-start-line="30" selection-start-column="8" selection-end-line="35" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-ui/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/FactoryProducer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="54" lean-forward="true" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/util/UserSession.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="28" column="64" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#323#324#0" expanded="true" />
+            <element signature="e#372#373#0" expanded="true" />
+            <element signature="e#415#416#0" expanded="true" />
+            <element signature="e#457#458#0" expanded="true" />
+            <element signature="e#487#488#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-ui/src/main/java/starters/signin.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-ui/src/main/java/starters/StartFXML.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/FactoryProducer.java">
+    <entry file="file://$PROJECT_DIR$/pong2-ui/src/main/java/controllers/SignInController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1259#1260#0" expanded="true" />
+            <element signature="e#1289#1290#0" expanded="true" />
+            <element signature="e#1450#1451#0" expanded="true" />
+            <element signature="e#1503#1504#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/util/RuntimeUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/Factory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pong2-dal/src/main/java/database/factory/HibernateFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+        <state relative-caret-position="314">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#502#503#0" expanded="true" />
-            <element signature="e#552#553#0" expanded="true" />
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#664#665#0" expanded="true" />
-            <element signature="e#723#724#0" expanded="true" />
-            <element signature="e#773#774#0" expanded="true" />
-            <element signature="e#844#845#0" expanded="true" />
-            <element signature="e#900#901#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong2-dao/src/main/java/implementations/hibernate/UserHibernate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

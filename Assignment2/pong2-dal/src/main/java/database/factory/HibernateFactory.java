@@ -10,23 +10,41 @@ import database.interfaces.TournamentDatabase;
 import database.interfaces.UserDatabase;
 
 class HibernateFactory implements Factory {
+
+    private static GameDatabase gdb = null;
+    private static MatchDatabase mdb = null;
+    private static UserDatabase udb = null;
+    private static TournamentDatabase tdb = null;
+
     @Override
     public GameDatabase getGameDatabase() {
-        return new GameDatabaseHibernate();
+        if(gdb == null) {
+            gdb = new GameDatabaseHibernate();
+        }
+        return gdb;
     }
 
     @Override
     public MatchDatabase getMatchDatabase() {
-        return new MatchDatabaseHibernate();
+        if(mdb == null) {
+            mdb = new MatchDatabaseHibernate();
+        }
+        return mdb;
     }
 
     @Override
     public UserDatabase getUserDatabase() {
-        return new UserDatabaseHibernate();
+        if(udb == null) {
+            udb = new UserDatabaseHibernate();
+        }
+        return udb;
     }
 
     @Override
     public TournamentDatabase getTournamentDatabase() {
-        return new TournamentDatabaseHibernate();
+        if(tdb == null) {
+            tdb = new TournamentDatabaseHibernate();
+        }
+        return tdb;
     }
 }

@@ -5,7 +5,7 @@ import database.interfaces.MatchDatabase;
 import database.interfaces.TournamentDatabase;
 import database.interfaces.UserDatabase;
 
-interface Factory {
+public interface Factory {
     GameDatabase getGameDatabase();
     MatchDatabase getMatchDatabase();
     UserDatabase getUserDatabase();

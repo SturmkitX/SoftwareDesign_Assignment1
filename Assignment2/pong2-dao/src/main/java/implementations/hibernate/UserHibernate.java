@@ -17,15 +17,13 @@ public class UserHibernate implements UserDAO {
         Session session = sessionFactory.getCurrentSession();
 
         Transaction tx = session.beginTransaction();
-        Query query = session.createQuery("from Users where email = :email and password = :password");
+        Query query = session.createQuery("from User where email = :email and password = :password");
         query.setString("email", email);
         query.setString("password", password);
 
         User u = (User) query.uniqueResult();
 
-//        tx.rollback();
-        session.close();
-//        sessionFactory.close();
+        tx.commit();
 
         return u;
     }
@@ -34,10 +32,11 @@ public class UserHibernate implements UserDAO {
     public User findUserById(int id) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
 
         User u = (User) session.get(User.class, new Integer(id));
 
-        session.close();
+        tx.commit();
 
         return u;
     }
@@ -46,12 +45,13 @@ public class UserHibernate implements UserDAO {
     public Set<User> findAll() {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
 
-        Query query = session.createQuery("from Users");
+        Query query = session.createQuery("from User");
 
         Set<User> u = new HashSet<>(query.list());
 
-        session.close();
+        tx.commit();
 
         return u;
     }
@@ -66,7 +66,6 @@ public class UserHibernate implements UserDAO {
 
         tx.commit();
 
-        session.close();
     }
 
     @Override
@@ -79,7 +78,6 @@ public class UserHibernate implements UserDAO {
 
         tx.commit();
 
-        session.close();
     }
 
     @Override
@@ -92,7 +90,6 @@ public class UserHibernate implements UserDAO {
 
         tx.commit();
 
-        session.close();
     }
 
 }
