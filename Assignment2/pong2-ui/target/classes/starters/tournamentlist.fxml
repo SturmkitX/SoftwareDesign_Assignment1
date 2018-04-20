@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TournamentController">
+   <children>
+      <TableView fx:id="tableField" layoutX="153.0" layoutY="100.0" prefHeight="400.0" prefWidth="349.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nameCol" prefWidth="231.0" text="Name" />
+            <TableColumn fx:id="feeCol" prefWidth="82.0" text="Fee" />
+            <TableColumn fx:id="statusCol" minWidth="0.0" prefWidth="138.0" text="Status" />
+            <TableColumn fx:id="dateCol" prefWidth="161.0" text="Start Date" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

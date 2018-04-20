@@ -26,14 +26,14 @@
             <column name="start_date" />
         </property>
 
-        <set name="matches" table="Matches" fetch="select">
+        <set name="matches" table="Matches" lazy="false" fetch="select">
             <key>
                 <column name="tournament_id" not-null="true" />
             </key>
             <one-to-many class="entities.Match"/>
         </set>
 
-        <set name="users" table="UserTournament" fetch="select" cascade="all">
+        <set name="users" table="UserTournament" lazy="false" fetch="select" cascade="all">
             <key column="id_tournament" />
             <many-to-many class="entities.User" column="id_user" />
         </set>

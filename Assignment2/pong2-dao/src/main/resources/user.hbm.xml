@@ -24,21 +24,21 @@
             <column name="balance" />
         </property>
 
-        <set name="matchesP1" table="Matches" fetch="select">
+        <set name="matchesP1" table="Matches" lazy="false" fetch="select">
             <key>
                 <column name="player1_id" not-null="true" />
             </key>
             <one-to-many class="entities.Match"/>
         </set>
 
-        <set name="matchesP2" table="Matches" fetch="select">
+        <set name="matchesP2" table="Matches" lazy="false" fetch="select">
             <key>
                 <column name="player2_id" not-null="true" />
             </key>
             <one-to-many class="entities.Match"/>
         </set>
 
-        <set name="tournaments" table="UserTournament" fetch="select" cascade="all">
+        <set name="tournaments" table="UserTournament" lazy="false" fetch="select" cascade="all">
             <key column="id_user" />
             <many-to-many class="entities.Tournament" column="id_tournament" />
         </set>

@@ -25,7 +25,7 @@
             <column name="tournament_id" not-null="true"></column>
         </many-to-one>
 
-        <set name="games" table="Games" fetch="select">
+        <set name="games" table="Games" lazy="false" fetch="select">
             <key>
                 <column name="match_id" not-null="true"></column>
             </key>

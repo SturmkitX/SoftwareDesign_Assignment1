@@ -5,13 +5,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import util.RuntimeUtil;
+import util.UserSession;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,6 +42,12 @@ public class SignInController implements Initializable {
 
         if(user != null) {
             status.setValue("Welcome, " + user.getName());
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("../starters/tournamentlist.fxml"));
+                UserSession.getStage().setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             status.setValue("Wrong email or password!");
         }

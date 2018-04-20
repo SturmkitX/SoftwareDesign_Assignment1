@@ -19,6 +19,8 @@ public class TournamentHibernate implements TournamentDAO {
 
         Tournament t = (Tournament) session.get(Tournament.class, new Integer(id));
 
+        tx.commit();
+
         return t;
     }
 
@@ -26,12 +28,13 @@ public class TournamentHibernate implements TournamentDAO {
     public Set<Tournament> findAll() {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
-
-        Query query = session.createQuery("from Tournaments");
-
         Transaction tx = session.beginTransaction();
 
+        Query query = session.createQuery("from Tournament");
+
         Set<Tournament> u = new HashSet<>(query.list());
+
+        tx.commit();
 
         return u;
     }
@@ -40,13 +43,14 @@ public class TournamentHibernate implements TournamentDAO {
     public Tournament findTournamentByName(String name) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
-
-        Query query = session.createQuery("from Tournaments where name = :name");
-        query.setString("name", name);
-
         Transaction tx = session.beginTransaction();
 
+        Query query = session.createQuery("from Tournament where name = :name");
+        query.setString("name", name);
+
         Tournament t = (Tournament) query.uniqueResult();
+
+        tx.commit();
 
         return t;
     }
