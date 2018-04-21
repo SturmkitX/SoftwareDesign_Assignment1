@@ -1,9 +1,11 @@
 package dtos;
 
+import entities.Match;
 import entities.Tournament;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 import util.UserSession;
 
 import java.util.ArrayList;
@@ -15,18 +17,23 @@ public class TournamentDTO {
     private StringProperty name;
     private FloatProperty fee;
     private StringProperty status;     // to be replaced with an ENUM
-    private ListProperty matches;
+    private ListProperty<MatchDTO> matches;
     private StringProperty startDate;
     private ListProperty users;
+    private Button enroll;
+
+
 
     public TournamentDTO() {
         this.id = new SimpleIntegerProperty();
+
         this.name = new SimpleStringProperty();
         this.fee = new SimpleFloatProperty();
         this.status = new SimpleStringProperty();
-        this.matches = new SimpleListProperty();
+        this.matches = new SimpleListProperty<>();
         this.startDate = new SimpleStringProperty();
         this.users = new SimpleListProperty();
+        this.enroll = new Button("Enroll");
     }
 
     public TournamentDTO(Tournament t) {
@@ -35,9 +42,27 @@ public class TournamentDTO {
         this.fee = new SimpleFloatProperty(t.getFee());
         this.users = new SimpleListProperty(FXCollections.observableArrayList(new ArrayList<>(t.getUsers())));
         this.status = new SimpleStringProperty(getStatusString(t.getStatus()));
-        this.matches = new SimpleListProperty(FXCollections.observableArrayList(new ArrayList<>(t.getMatches())));
+        this.matches = new SimpleListProperty<>(getMatchesDTOs(t.getMatches()));
         this.startDate = new SimpleStringProperty(t.getStartDate().toString());
+        this.enroll = new Button("Enroll");
 
+    }
+
+    public Button getEnroll() {
+        return enroll;
+    }
+
+    public void setEnroll(Button enroll) {
+        this.enroll = enroll;
+    }
+
+    private ObservableList<MatchDTO> getMatchesDTOs(Set<Match> matches) {
+        ObservableList<MatchDTO> result = FXCollections.observableArrayList(new ArrayList<MatchDTO>());
+        for(Match m : matches) {
+            result.add(new MatchDTO(m));
+        }
+
+        return result;
     }
 
     private String getStatusString(int status) {
@@ -112,7 +137,7 @@ public class TournamentDTO {
         this.status.set(status);
     }
 
-    public void setMatches(Object matches) {
+    public void setMatches(ObservableList<MatchDTO> matches) {
         this.matches.set(matches);
     }
 

@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TournamentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TournamentController">
    <children>
-      <TableView fx:id="tableField" layoutX="153.0" layoutY="100.0" prefHeight="400.0" prefWidth="349.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <TableView fx:id="tableField" layoutY="180.0" prefHeight="246.0" prefWidth="688.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
         <columns>
           <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="nameCol" prefWidth="231.0" text="Name" />
-            <TableColumn fx:id="feeCol" prefWidth="82.0" text="Fee" />
-            <TableColumn fx:id="statusCol" minWidth="0.0" prefWidth="138.0" text="Status" />
-            <TableColumn fx:id="dateCol" prefWidth="161.0" text="Start Date" />
+          <TableColumn fx:id="nameCol" prefWidth="201.0" text="Name" />
+            <TableColumn fx:id="feeCol" prefWidth="112.0" text="Fee" />
+            <TableColumn fx:id="statusCol" minWidth="0.0" prefWidth="92.0" text="Status" />
+            <TableColumn fx:id="dateCol" prefWidth="98.0" text="Start Date" />
+            <TableColumn fx:id="actionColumn" prefWidth="106.0" text="Action" />
         </columns>
       </TableView>
+      <TableView fx:id="matchField" layoutY="380.0" prefHeight="292.0" prefWidth="688.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="matchID" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="matchP1" prefWidth="129.0" text="Player 1" />
+            <TableColumn fx:id="matchP2" prefWidth="191.0" text="Player 2" />
+            <TableColumn fx:id="matchStage" prefWidth="135.0" text="Stage" />
+        </columns>
+      </TableView>
+      <Label layoutX="14.0" layoutY="36.0" text="Username:" />
+      <Label layoutX="14.0" layoutY="76.0" text="Balance:" />
+      <Text fx:id="usernameField" layoutX="114.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="balanceField" layoutX="100.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>
