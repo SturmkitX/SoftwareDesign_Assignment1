@@ -1,35 +1,28 @@
 package dtos;
 
+import entities.Game;
 import entities.Match;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
+import java.util.Set;
 
 public class MatchDTO {
+    private Match source;
     private IntegerProperty id;
     private StringProperty p1;
     private StringProperty p2;
     private StringProperty stage;
-    private ListProperty games;
-    private StringProperty tournament;
-
-    public MatchDTO() {
-        this.id = new SimpleIntegerProperty();
-        this.p1 = new SimpleStringProperty();
-        this.p2 = new SimpleStringProperty();
-        this.stage = new SimpleStringProperty();
-        this.games = new SimpleListProperty();
-        this.tournament = new SimpleStringProperty();
-    }
+    private ListProperty<GameDTO> games;
 
     public MatchDTO(Match m) {
+        this.source = m;
         this.id = new SimpleIntegerProperty(m.getId());
         this.p1 = new SimpleStringProperty(m.getP1().getName());
-        this.p2 = new SimpleStringProperty(m.getP2().getName());
+        this.p2 = new SimpleStringProperty(m.getP2() == null ? "" : m.getP2().getName());
         this.stage = new SimpleStringProperty(getStageString(m.getStage()));
-        this.games = new SimpleListProperty(FXCollections.observableArrayList(new ArrayList<>(m.getGames())));
-        this.tournament = new SimpleStringProperty(m.getTournament().getName());
+        this.games = new SimpleListProperty<>(getGameList(m.getGames()));
     }
 
     private String getStageString(int stage) {
@@ -42,6 +35,23 @@ public class MatchDTO {
         }
 
         return result;
+    }
+
+    private ObservableList<GameDTO> getGameList(Set<Game> games) {
+        ObservableList<GameDTO> result = FXCollections.observableArrayList();
+        for(Game g : games) {
+            result.add(new GameDTO(g));
+        }
+
+        return result;
+    }
+
+    public Match getSource() {
+        return source;
+    }
+
+    public void setSource(Match source) {
+        this.source = source;
     }
 
     public int getId() {
@@ -92,27 +102,15 @@ public class MatchDTO {
         this.stage.set(stage);
     }
 
-    public Object getGames() {
+    public ObservableList<GameDTO> getGames() {
         return games.get();
     }
 
-    public ListProperty gamesProperty() {
+    public ListProperty<GameDTO> gamesProperty() {
         return games;
     }
 
-    public void setGames(Object games) {
+    public void setGames(ObservableList<GameDTO> games) {
         this.games.set(games);
-    }
-
-    public String getTournament() {
-        return tournament.get();
-    }
-
-    public StringProperty tournamentProperty() {
-        return tournament;
-    }
-
-    public void setTournament(String tournament) {
-        this.tournament.set(tournament);
     }
 }

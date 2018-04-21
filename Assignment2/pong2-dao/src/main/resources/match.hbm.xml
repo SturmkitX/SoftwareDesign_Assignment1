@@ -18,7 +18,7 @@
         </many-to-one>
 
         <many-to-one name="p2" lazy="false" class="entities.User">
-            <column name="player2_id" not-null="true"></column>
+            <column name="player2_id" not-null="false"></column>
         </many-to-one>
 
         <many-to-one name="tournament" lazy="false" class="entities.Tournament">

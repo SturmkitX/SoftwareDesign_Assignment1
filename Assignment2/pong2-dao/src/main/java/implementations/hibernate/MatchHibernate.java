@@ -14,8 +14,6 @@ public class MatchHibernate implements MatchDAO {
 
         Match m = (Match) session.get(Match.class, new Integer(id));
 
-        session.close();
-
         return m;
     }
 
@@ -28,8 +26,6 @@ public class MatchHibernate implements MatchDAO {
         session.save(match);
 
         tx.commit();
-
-        session.close();
     }
 
     @Override
@@ -41,8 +37,6 @@ public class MatchHibernate implements MatchDAO {
         session.update(match);
 
         tx.commit();
-
-        session.close();
     }
 
     @Override
@@ -54,7 +48,5 @@ public class MatchHibernate implements MatchDAO {
         session.delete(match);
 
         tx.commit();
-
-        session.close();
     }
 }

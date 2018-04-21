@@ -3,6 +3,8 @@ package controllers;
 import dtos.MatchDTO;
 import dtos.TournamentDTO;
 import dtos.UserDTO;
+import entities.Game;
+import entities.Match;
 import entities.Tournament;
 import entities.User;
 import javafx.beans.property.ListProperty;
@@ -11,6 +13,7 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,11 +21,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import org.w3c.dom.events.Event;
 import util.UserSession;
 
+import javax.swing.*;
 import java.net.URL;
+import java.sql.Date;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -74,6 +82,15 @@ public class TournamentController implements Initializable {
     @FXML // fx:id="actionColumn"
     private TableColumn<TournamentDTO, Button> actionColumn; // Value injected by FXMLLoader
 
+    @FXML // fx:id="addTourName"
+    private TextField addTourName; // Value injected by FXMLLoader
+
+    @FXML // fx:id="addTourFee"
+    private TextField addTourFee; // Value injected by FXMLLoader
+
+    @FXML // fx:id="addTourButton"
+    private Button addTourButton; // Value injected by FXMLLoader
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Set<Tournament> tours = UserSession.getFactory().getTournamentDatabase().findAll();
@@ -99,10 +116,24 @@ public class TournamentController implements Initializable {
 
         actionColumn.setCellValueFactory(new PropertyValueFactory<TournamentDTO, Button>("enroll"));
 
+        addTourName.setVisible(UserSession.getLogged().isAdmin());
+        addTourFee.setVisible(UserSession.getLogged().isAdmin());
+        addTourButton.setVisible(UserSession.getLogged().isAdmin());
+        addTourButton.setOnAction(new AddTournamentHandler());
+
         for(TournamentDTO t : tournaments.get()) {
-            t.getEnroll().setVisible(Float.parseFloat(currentUser.getBalance()) >= t.getFee());
+            t.getEnroll().setVisible(Float.parseFloat(currentUser.getBalance()) >= t.getFee() && !t.getSource().getUsers().contains(UserSession.getLogged()));
             t.getEnroll().setOnAction(new EnrollmentHandler(t.getFee()));
         }
+
+        tournaments.addListener(new ChangeListener<ObservableList<TournamentDTO>>() {
+            @Override
+            public void changed(ObservableValue<? extends ObservableList<TournamentDTO>> observable, ObservableList<TournamentDTO> oldValue, ObservableList<TournamentDTO> newValue) {
+                for(TournamentDTO t : newValue) {
+                    t.getEnroll().setVisible(UserSession.getLogged().getBalance() >= t.getFee() && !t.getSource().getUsers().contains(UserSession.getLogged()));
+                }
+            }
+        });
 
         fd.addListener(new ChangeListener<TournamentDTO>() {
             @Override
@@ -125,7 +156,7 @@ public class TournamentController implements Initializable {
     private class EnrollmentHandler implements EventHandler<ActionEvent> {
 
         private float fee;
-        public EnrollmentHandler(float fee) {
+        EnrollmentHandler(float fee) {
             this.fee = fee;
         }
 
@@ -133,9 +164,43 @@ public class TournamentController implements Initializable {
         public void handle(ActionEvent event) {
             float newBalance = Float.parseFloat(currentUser.getBalance()) - fee;
             currentUser.setBalance("" + newBalance);
+            currentUser.getSource().setBalance(newBalance);
 
             // update database
-            User newUser = currentUser.toUser();
+            User newUser = currentUser.getSource();
+            Tournament tour = fd.get().getSource();
+//            newUser.getTournaments().add(tour);
+            tour.getUsers().add(newUser);
+
+            // select a proper match position for the user
+            boolean found = false;
+            for(Match m : tour.getMatches()) {
+                if(m.getP2() == null) {
+                    m.setP2(newUser);
+                    found = true;
+                }
+            }
+            if(found == false) {
+                Match newMatch = new Match(0, newUser, null, 0, new HashSet<Game>(), tour);
+                UserSession.getFactory().getMatchDatabase().insertMatch(newMatch);
+                tour.getMatches().add(newMatch);
+            }
+
+            // UserSession.getFactory().getUserDatabase().updateUser(newUser);
+            UserSession.getFactory().getTournamentDatabase().updateTournament(tour);
+
+            matchField.setItems(fd.get().getMatches());
+        }
+    }
+
+    private class AddTournamentHandler implements EventHandler<ActionEvent> {
+
+        @Override
+        public void handle(ActionEvent event) {
+            Tournament tour = new Tournament(0, addTourName.getText(), Float.parseFloat(addTourFee.getText()),
+                    0, new HashSet<Match>(), new Date(System.currentTimeMillis()), new HashSet<User>());
+            UserSession.getFactory().getTournamentDatabase().insertTournament(tour);
+            tournaments.add(new TournamentDTO(tour));
         }
     }
 }
