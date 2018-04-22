@@ -22,7 +22,7 @@ public class StartFXML extends Application {
     }
 
     public static void main(String[] args) {
-        UserSession.setFactory("HIBERNATE");
+        UserSession.setFactory("DAO");
         launch(args);
     }
 }

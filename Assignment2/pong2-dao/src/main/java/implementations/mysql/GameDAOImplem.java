@@ -5,92 +5,105 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import drivers.ConnDriver;
+import entities.Match;
 import interfaces.GameDAO;
 import entities.Game;
+import interfaces.MatchDAO;
 
 
 public class GameDAOImplem implements GameDAO {
 
     private Connection conn = ConnDriver.getInstance();
 
-    public Game findGame(int id) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Games WHERE id = ?");
-        stmt.setInt(1, id);
+    @Override
+    public Game findGame(int id) {
+        Game result = null;
+        MatchDAO matchDAO = new MatchDAOImplem();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Games WHERE id = ?");
+            stmt.setInt(1, id);
 
-        ResultSet results = stmt.executeQuery();
-        // System.out.println(results);
+            ResultSet rs = stmt.executeQuery();
+            if(!rs.next()) {
+                stmt.close();
+                return null;
+            }
 
-        if(!results.isBeforeFirst()) {
+            int p1Score = rs.getInt("p1score");
+            int p2Score = rs.getInt("p2score");
+            int matchId = rs.getInt("match_id");
+
+            Match match = matchDAO.findMatch(matchId);
+
+            result = new Game(id, p1Score, p2Score, match);
+
+            rs.close();
             stmt.close();
-            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        results.next();
-        int p1Score = results.getInt("p1score");
-        int p2Score = results.getInt("p2score");
-
-        results.close();
-        return new Game(id, p1Score, p2Score, null);
+        return result;
     }
 
     @Override
-    public List<Game> findGameByMatchId(int id) throws SQLException {
-        List<Game> games = new ArrayList<>();
+    public void insertGame(Game game) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Games (p1score, p2score, match_id) " +
+                    "VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, game.getP1Score());
+            stmt.setInt(2, game.getP2Score());
+            stmt.setInt(3, game.getMatch().getId());
 
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Games WHERE match_id = ?");
-        stmt.setInt(1, id);
+            stmt.executeUpdate();
 
-        ResultSet results = stmt.executeQuery();
+            // update generated key
+            ResultSet keys = stmt.getGeneratedKeys();
+            if(keys.next()) {
+                game.setId(keys.getInt(1));
+            }
 
-        while(results.next()) {
-            int game_id = results.getInt("id");
-            int p1Score = results.getInt("p1score");
-            int p2Score = results.getInt("p2score");
-            games.add(new Game(game_id, p1Score, p2Score, null));
-
+            keys.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        results.close();
-        stmt.close();
-
-        return games;
     }
 
-    public void insertGame(Game game, int match_id) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Games (p1score, p2score, match_id) " +
-                "VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-        stmt.setInt(1, game.getP1Score());
-        stmt.setInt(2, game.getP2Score());
-        stmt.setInt(3, match_id);
+    @Override
+    public void updateGame(Game game) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Games SET p1score = ?, p2score = ? " +
+                    "WHERE id = ?");
+            stmt.setInt(1, game.getP1Score());
+            stmt.setInt(2, game.getP2Score());
+            stmt.setInt(3, game.getId());
 
-        stmt.executeUpdate();
+            stmt.executeUpdate();
 
-        // update generated key
-        ResultSet keys = stmt.getGeneratedKeys();
-        if(keys.next()) {
-            game.setId(keys.getInt(1));
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
     }
 
-    public void updateGame(Game game) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("UPDATE Games SET p1score = ?, p2score = ? " +
-                "WHERE id = ?");
-        stmt.setInt(1, game.getP1Score());
-        stmt.setInt(2, game.getP2Score());
-        stmt.setInt(3, game.getId());
+    @Override
+    public void deleteGame(Game game) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Games WHERE id = ?");
+            stmt.setInt(1, game.getId());
 
-        stmt.executeUpdate();
-    }
+            stmt.executeUpdate();
 
-    public void deleteGame(int id) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM Games WHERE id = ?");
-        stmt.setInt(1, id);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        stmt.executeUpdate();
     }
 
 }

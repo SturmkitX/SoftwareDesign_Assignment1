@@ -36,7 +36,6 @@ import java.util.regex.Pattern;
 public class UsersController implements Initializable {
 
     private ListProperty<UserDTO> userDTOS = new SimpleListProperty<>();
-    private ObjectProperty<UserDTO> fd = new SimpleObjectProperty<>();
 
     @FXML // fx:id="userTable"
     private TableView<UserDTO> userTable; // Value injected by FXMLLoader
@@ -162,6 +161,7 @@ public class UsersController implements Initializable {
                         adminAddField.getSelectionModel().getSelectedItem(), Float.parseFloat(balanceAddField.getText()),
                         m1, m2, t);
                 UserSession.getFactory().getUserDatabase().insertUser(user);
+                userDTOS.add(new UserDTO(user));
             }
             else {
                 // update user
@@ -172,6 +172,8 @@ public class UsersController implements Initializable {
                         adminAddField.getSelectionModel().getSelectedItem(), Float.parseFloat(balanceAddField.getText()),
                         m1, m2, t);
                 UserSession.getFactory().getUserDatabase().updateUser(user);
+                userDTOS.remove(selected);
+                userDTOS.add(new UserDTO(user));
             }
 
         }

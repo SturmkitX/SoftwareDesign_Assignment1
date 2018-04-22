@@ -7,7 +7,7 @@ public class Tournament {
     private int id;
     private String name;
     private float fee;
-    private int status;     // to be replaced with an ENUM
+    private int status;
     private Set<Match> matches;
     private Date startDate;
     private Set<User> users;
