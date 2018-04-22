@@ -1,7 +1,9 @@
 package database.dao;
 
 import database.interfaces.TournamentDatabase;
+import entities.Match;
 import entities.Tournament;
+import entities.User;
 import implementations.mysql.TournamentDAOImplem;
 import interfaces.TournamentDAO;
 
@@ -13,17 +15,46 @@ public class TournamentDatabaseDAO implements TournamentDatabase {
 
     @Override
     public Tournament findTournament(int id) {
-        return dao.findTournament(id);
+        Tournament t = dao.findTournament(id);
+        for(Match m : t.getMatches()) {
+            m.setTournament(t);
+        }
+
+        for(User u : t.getUsers()) {
+            u.getTournaments().add(t);
+        }
+
+        return t;
     }
 
     @Override
     public Set<Tournament> findAll() {
-        return dao.findAll();
+        Set<Tournament> res = dao.findAll();
+        for(Tournament t : res) {
+            for(Match m : t.getMatches()) {
+                m.setTournament(t);
+            }
+
+            for(User u : t.getUsers()) {
+                u.getTournaments().add(t);
+            }
+        }
+
+        return res;
     }
 
     @Override
     public Tournament findTournamentByName(String name) {
-        return dao.findTournamentByName(name);
+        Tournament t = dao.findTournamentByName(name);
+        for(Match m : t.getMatches()) {
+            m.setTournament(t);
+        }
+
+        for(User u : t.getUsers()) {
+            u.getTournaments().add(t);
+        }
+
+        return t;
     }
 
     @Override

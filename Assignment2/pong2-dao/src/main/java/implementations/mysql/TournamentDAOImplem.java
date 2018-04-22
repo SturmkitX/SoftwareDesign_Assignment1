@@ -40,11 +40,11 @@ public class TournamentDAOImplem implements TournamentDAO {
 
             rs.close();
             stmt.close();
-            
+
             // resolve sets
             Set<Match> m = new HashSet<>();
             Set<User> u = new HashSet<>();
-            
+
             stmt = conn.prepareStatement("SELECT id FROM Matches WHERE tournament_id = ?");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
@@ -53,19 +53,18 @@ public class TournamentDAOImplem implements TournamentDAO {
             }
             rs.close();
             stmt.close();
-            
+
             stmt = conn.prepareStatement("SELECT id_user FROM UserTournament WHERE id_tournament = ?");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
             while(rs.next()) {
-                u.add(userDAO.findUserById(rs.getInt("id_user")));
+                u.add(userDAO.findUserById(rs.getInt("id")));
             }
+
             rs.close();
             stmt.close();
 
             result = new Tournament(id, name, fee, status, m, date, u);
-
-            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -110,6 +109,7 @@ public class TournamentDAOImplem implements TournamentDAO {
                 while(rs2.next()) {
                     u.add(userDAO.findUserById(rs2.getInt("id_user")));
                 }
+
                 rs2.close();
                 stmt2.close();
 
@@ -164,6 +164,19 @@ public class TournamentDAOImplem implements TournamentDAO {
             stmt.executeUpdate();
 
             stmt.close();
+
+            stmt = conn.prepareStatement("DELETE * FROM UserTournament WHERE id_tournament = ?");
+            stmt.setInt(1, tournament.getId());
+            stmt.executeUpdate();
+            stmt.close();
+
+            stmt = conn.prepareStatement("INSERT INTO UserTournament (id_user, id_tournament) VALUES (?, ?)");
+            stmt.setInt(2, tournament.getId());
+            for(User u : tournament.getUsers()) {
+                stmt.setInt(1, u.getId());
+                stmt.executeUpdate();
+            }
+            stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -176,6 +189,11 @@ public class TournamentDAOImplem implements TournamentDAO {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Tournaments WHERE id = ?");
             stmt.setInt(1, tournament.getId());
             stmt.executeUpdate();
+
+            stmt = conn.prepareStatement("DELETE * FROM UserTournament WHERE id_tournament = ?");
+            stmt.setInt(1, tournament.getId());
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -205,6 +223,9 @@ public class TournamentDAOImplem implements TournamentDAO {
             int status = rs.getInt("status");
             Date date = rs.getDate("start_date");
 
+            rs.close();
+            stmt.close();
+
             // resolve sets
             Set<Match> m = new HashSet<>();
             Set<User> u = new HashSet<>();
@@ -224,6 +245,7 @@ public class TournamentDAOImplem implements TournamentDAO {
             while(rs.next()) {
                 u.add(userDAO.findUserById(rs.getInt("id_user")));
             }
+
             rs.close();
             stmt.close();
 

@@ -12,11 +12,9 @@ import com.mysql.jdbc.Statement;
 import drivers.ConnDriver;
 import entities.Game;
 import entities.Match;
-import entities.Tournament;
 import entities.User;
 import interfaces.GameDAO;
 import interfaces.MatchDAO;
-import interfaces.TournamentDAO;
 import interfaces.UserDAO;
 
 public class MatchDAOImplem implements MatchDAO {
@@ -26,7 +24,6 @@ public class MatchDAOImplem implements MatchDAO {
     public Match findMatch(int id) {
         Match result = null;
         GameDAO gameDAO = new GameDAOImplem();
-        TournamentDAO tournamentDAO = new TournamentDAOImplem();
         UserDAO userDAO = new UserDAOImplem();
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Matches WHERE id = ?");
@@ -40,7 +37,6 @@ public class MatchDAOImplem implements MatchDAO {
             }
 
             int stage = rs.getInt("stage");
-            int tournamentId = rs.getInt("tournament_id");
             int p1Id = rs.getInt("player1_id");
             int p2Id = rs.getInt("player2_id");
 
@@ -48,25 +44,21 @@ public class MatchDAOImplem implements MatchDAO {
             stmt.close();
 
             // resolve sets
+            User p1 = userDAO.findUserById(p1Id);
+            User p2 = userDAO.findUserById(p2Id);
             Set<Game> g = new HashSet<>();
-            Tournament t;
-            User u1, u2;
-
             stmt = conn.prepareStatement("SELECT id FROM Games WHERE match_id = ?");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
-
             while(rs.next()) {
                 g.add(gameDAO.findGame(rs.getInt("id")));
             }
+
             rs.close();
             stmt.close();
 
-            t = tournamentDAO.findTournament(tournamentId);
-            u1 = userDAO.findUserById(p1Id);
-            u2 = userDAO.findUserById(p2Id);
-
-            result = new Match(id, u1, u2, stage, g, t);
+            
+            result = new Match(id, p1, p2, stage, g, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }

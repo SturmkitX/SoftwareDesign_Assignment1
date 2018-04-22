@@ -11,8 +11,6 @@ import java.util.Set;
 import drivers.ConnDriver;
 import entities.Match;
 import entities.Tournament;
-import interfaces.MatchDAO;
-import interfaces.TournamentDAO;
 import interfaces.UserDAO;
 import entities.User;
 
@@ -22,8 +20,6 @@ public class UserDAOImplem implements UserDAO {
 
     public User findUserByEmailAndPassword(String email, String password) {
         User result = null;
-        MatchDAO matchDAO = new MatchDAOImplem();
-        TournamentDAO tournamentDAO = new TournamentDAOImplem();
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users WHERE email = ? AND password = ?");
             stmt.setString(1, email);
@@ -43,40 +39,7 @@ public class UserDAOImplem implements UserDAO {
             rs.close();
             stmt.close();
 
-            // resolve the sets
-            Set<Match> m1 = new HashSet<>();
-            Set<Match> m2 = new HashSet<>();
-            Set<Tournament> t = new HashSet<>();
-            
-            stmt = conn.prepareStatement("SELECT id FROM Matches WHERE player1_id = ?");
-            stmt.setInt(1, id);
-            rs = stmt.executeQuery();
-            while(rs.next()) {
-                m1.add(matchDAO.findMatch(rs.getInt("id")));
-            }
-            rs.close();
-            stmt.close();
-
-            stmt = conn.prepareStatement("SELECT id FROM Matches WHERE player2_id = ?");
-            stmt.setInt(1, id);
-            rs = stmt.executeQuery();
-            while(rs.next()) {
-                m2.add(matchDAO.findMatch(rs.getInt("id")));
-            }
-            rs.close();
-            stmt.close();
-
-            stmt = conn.prepareStatement("SELECT id_tournament FROM UserTournament WHERE id_user = ?");
-            stmt.setInt(1, id);
-            rs = stmt.executeQuery();
-            while(rs.next()) {
-                t.add(tournamentDAO.findTournament(rs.getInt("id_tournament")));
-            }
-            rs.close();
-            stmt.close();
-
-
-            result = new User(id, email, password, name, admin, balance, m1, m2, t);
+            result = new User(id, email, password, name, admin, balance, new HashSet<Match>(), new HashSet<Match>(), new HashSet<Tournament>());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -86,8 +49,6 @@ public class UserDAOImplem implements UserDAO {
 
     public User findUserById(int id) {
         User result = null;
-        MatchDAO matchDAO = new MatchDAOImplem();
-        TournamentDAO tournamentDAO = new TournamentDAOImplem();
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users WHERE id = ?");
             stmt.setInt(1, id);
@@ -107,39 +68,7 @@ public class UserDAOImplem implements UserDAO {
             rs.close();
             stmt.close();
 
-            // resolve the sets
-            Set<Match> m1 = new HashSet<>();
-            Set<Match> m2 = new HashSet<>();
-            Set<Tournament> t = new HashSet<>();
-
-            stmt = conn.prepareStatement("SELECT id FROM Matches WHERE player1_id = ?");
-            stmt.setInt(1, id);
-            rs = stmt.executeQuery();
-            while(rs.next()) {
-                m1.add(matchDAO.findMatch(rs.getInt("id")));
-            }
-            rs.close();
-            stmt.close();
-
-            stmt = conn.prepareStatement("SELECT id FROM Matches WHERE player2_id = ?");
-            stmt.setInt(1, id);
-            rs = stmt.executeQuery();
-            while(rs.next()) {
-                m2.add(matchDAO.findMatch(rs.getInt("id")));
-            }
-            rs.close();
-            stmt.close();
-
-            stmt = conn.prepareStatement("SELECT id_tournament FROM UserTournament WHERE id_user = ?");
-            stmt.setInt(1, id);
-            rs = stmt.executeQuery();
-            while(rs.next()) {
-                t.add(tournamentDAO.findTournament(rs.getInt("id_tournament")));
-            }
-            rs.close();
-            stmt.close();
-
-            result = new User(id, email, password, name, admin, balance, m1, m2, t);
+            result = new User(id, email, password, name, admin, balance, new HashSet<Match>(), new HashSet<Match>(), new HashSet<Tournament>());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -185,6 +114,19 @@ public class UserDAOImplem implements UserDAO {
 
             stmt.executeUpdate();
             stmt.close();
+
+            stmt = conn.prepareStatement("DELETE * FROM UserTournament WHERE id_user = ?");
+            stmt.setInt(1, user.getId());
+            stmt.executeUpdate();
+            stmt.close();
+
+            stmt = conn.prepareStatement("INSERT INTO UserTournament (id_user, id_tournament) VALUES (?, ?)");
+            stmt.setInt(1, user.getId());
+            for(Tournament t : user.getTournaments()) {
+                stmt.setInt(2, t.getId());
+                stmt.executeUpdate();
+            }
+            stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -199,6 +141,11 @@ public class UserDAOImplem implements UserDAO {
 
             stmt.executeUpdate();
             stmt.close();
+
+            stmt = conn.prepareStatement("DELETE * FROM UserTournament WHERE id_user = ?");
+            stmt.setInt(1, user.getId());
+            stmt.executeUpdate();
+            stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -207,8 +154,6 @@ public class UserDAOImplem implements UserDAO {
 
     public Set<User> findAll() {
         Set<User> result = null;
-        MatchDAO matchDAO = new MatchDAOImplem();
-        TournamentDAO tournamentDAO = new TournamentDAOImplem();
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users");
             ResultSet rs = stmt.executeQuery();
@@ -223,39 +168,7 @@ public class UserDAOImplem implements UserDAO {
                 boolean isAdmin = rs.getBoolean("isadmin");
                 float balance = rs.getFloat("balance");
 
-                // resolve the sets
-                Set<Match> m1 = new HashSet<>();
-                Set<Match> m2 = new HashSet<>();
-                Set<Tournament> t = new HashSet<>();
-
-                PreparedStatement stmt2 = conn.prepareStatement("SELECT id FROM Matches WHERE player1_id = ?");
-                stmt2.setInt(1, id);
-                ResultSet rs2 = stmt.executeQuery();
-                while(rs2.next()) {
-                    m1.add(matchDAO.findMatch(rs2.getInt("id")));
-                }
-                rs2.close();
-                stmt2.close();
-
-                stmt2 = conn.prepareStatement("SELECT id FROM Matches WHERE player2_id = ?");
-                stmt2.setInt(1, id);
-                rs2 = stmt2.executeQuery();
-                while(rs2.next()) {
-                    m2.add(matchDAO.findMatch(rs2.getInt("id")));
-                }
-                rs2.close();
-                stmt2.close();
-
-                stmt2 = conn.prepareStatement("SELECT id_tournament FROM UserTournament WHERE id_user = ?");
-                stmt2.setInt(1, id);
-                rs2 = stmt2.executeQuery();
-                while(rs2.next()) {
-                    t.add(tournamentDAO.findTournament(rs2.getInt("id_tournament")));
-                }
-                rs2.close();
-                stmt2.close();
-
-                result.add(new User(id, email, pass, name,  isAdmin, balance, m1, m2, t));
+                result.add(new User(id, email, pass, name,  isAdmin, balance, new HashSet<Match>(), new HashSet<Match>(), new HashSet<Tournament>()));
             }
 
             rs.close();

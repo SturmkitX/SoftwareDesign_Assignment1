@@ -7,10 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import drivers.ConnDriver;
-import entities.Match;
 import interfaces.GameDAO;
 import entities.Game;
-import interfaces.MatchDAO;
 
 
 public class GameDAOImplem implements GameDAO {
@@ -20,7 +18,6 @@ public class GameDAOImplem implements GameDAO {
     @Override
     public Game findGame(int id) {
         Game result = null;
-        MatchDAO matchDAO = new MatchDAOImplem();
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Games WHERE id = ?");
             stmt.setInt(1, id);
@@ -33,11 +30,8 @@ public class GameDAOImplem implements GameDAO {
 
             int p1Score = rs.getInt("p1score");
             int p2Score = rs.getInt("p2score");
-            int matchId = rs.getInt("match_id");
 
-            Match match = matchDAO.findMatch(matchId);
-
-            result = new Game(id, p1Score, p2Score, match);
+            result = new Game(id, p1Score, p2Score, null);
 
             rs.close();
             stmt.close();
