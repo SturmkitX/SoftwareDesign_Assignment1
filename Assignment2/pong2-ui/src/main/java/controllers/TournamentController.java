@@ -17,7 +17,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,6 +31,7 @@ import org.w3c.dom.events.Event;
 import util.UserSession;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.HashSet;
@@ -91,6 +95,9 @@ public class TournamentController implements Initializable {
     @FXML // fx:id="addTourButton"
     private Button addTourButton; // Value injected by FXMLLoader
 
+    @FXML // fx:id="usersView"
+    private Button usersView; // Value injected by FXMLLoader
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Set<Tournament> tours = UserSession.getFactory().getTournamentDatabase().findAll();
@@ -120,6 +127,9 @@ public class TournamentController implements Initializable {
         addTourFee.setVisible(UserSession.getLogged().isAdmin());
         addTourButton.setVisible(UserSession.getLogged().isAdmin());
         addTourButton.setOnAction(new AddTournamentHandler());
+
+        usersView.setVisible(UserSession.getLogged().isAdmin());
+        usersView.setOnAction(new UserViewFireHandler());
 
         for(TournamentDTO t : tournaments.get()) {
             t.getEnroll().setVisible(Float.parseFloat(currentUser.getBalance()) >= t.getFee() && !t.getSource().getUsers().contains(UserSession.getLogged()));
@@ -201,6 +211,21 @@ public class TournamentController implements Initializable {
                     0, new HashSet<Match>(), new Date(System.currentTimeMillis()), new HashSet<User>());
             UserSession.getFactory().getTournamentDatabase().insertTournament(tour);
             tournaments.add(new TournamentDTO(tour));
+        }
+    }
+
+    private class UserViewFireHandler implements EventHandler<ActionEvent> {
+
+        @Override
+        public void handle(ActionEvent event) {
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("../starters/userview.fxml"));
+                UserSession.getStage().setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }

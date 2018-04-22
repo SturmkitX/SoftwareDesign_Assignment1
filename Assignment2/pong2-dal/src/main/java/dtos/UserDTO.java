@@ -2,6 +2,8 @@ package dtos;
 ;
 import entities.User;
 import javafx.beans.property.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 
 public class UserDTO {
     private User source;
@@ -9,8 +11,9 @@ public class UserDTO {
     private StringProperty email;
     private StringProperty password;
     private StringProperty name;
-    private BooleanProperty admin;
+    private ComboBox<Boolean> admin;
     private StringProperty balance;
+
 
     public UserDTO(User user) {
         this.source = user;
@@ -18,8 +21,11 @@ public class UserDTO {
         this.email = new SimpleStringProperty(user.getEmail());
         this.password = new SimpleStringProperty(user.getPassword());
         this.name = new SimpleStringProperty(user.getName());
-        this.admin = new SimpleBooleanProperty(user.isAdmin());
+        this.admin = new ComboBox<>();
         this.balance = new SimpleStringProperty("" + user.getBalance());
+
+        this.admin.getItems().addAll(false, true);
+        this.admin.selectionModelProperty().get().select(user.isAdmin());
     }
 
     public int getId() {
@@ -70,16 +76,12 @@ public class UserDTO {
         this.name.set(name);
     }
 
-    public boolean isAdmin() {
-        return admin.get();
-    }
-
-    public BooleanProperty adminProperty() {
+    public ComboBox<Boolean> getAdmin() {
         return admin;
     }
 
-    public void setAdmin(boolean admin) {
-        this.admin.set(admin);
+    public void setAdmin(ComboBox<Boolean> admin) {
+        this.admin = admin;
     }
 
     public String getBalance() {

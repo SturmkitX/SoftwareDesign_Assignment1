@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UsersController">
+   <children>
+      <TableView fx:id="userTable" editable="true" layoutY="91.0" prefHeight="304.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="91.0">
+        <columns>
+          <TableColumn fx:id="idCol" editable="true" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nameCol" prefWidth="111.0" text="Name" />
+            <TableColumn fx:id="emailCol" prefWidth="107.0" text="E-mail" />
+            <TableColumn fx:id="passCol" prefWidth="89.0" text="Password" />
+            <TableColumn fx:id="adminCol" prefWidth="99.0" text="Admin" />
+            <TableColumn fx:id="balanceCol" prefWidth="141.0" text="Balance" />
+        </columns>
+      </TableView>
+      <Label layoutX="14.0" layoutY="23.0" text="Username" />
+      <Label layoutX="14.0" layoutY="58.0" text="Balance" />
+      <Text fx:id="usernameField" layoutX="113.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="balanceField" layoutX="113.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <TextField fx:id="nameAddField" layoutX="14.0" layoutY="494.0" promptText="Name" />
+      <TextField fx:id="emailAddField" layoutX="195.0" layoutY="437.0" promptText="E-Mail" />
+      <TextField fx:id="passAddField" layoutX="395.0" layoutY="437.0" promptText="Password" />
+      <ComboBox fx:id="adminAddField" layoutX="406.0" layoutY="494.0" prefWidth="150.0" promptText="Admin" />
+      <TextField fx:id="balanceAddField" layoutX="195.0" layoutY="494.0" promptText="Balance" />
+      <Button fx:id="userAddField" layoutX="258.0" layoutY="545.0" mnemonicParsing="false" text="Add / Update User" />
+      <TextField fx:id="idAddField" layoutX="14.0" layoutY="437.0" promptText="ID" />
+      <Text layoutX="210.0" layoutY="596.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leave the ID field blank to insert user" wrappingWidth="245.12109375" />
+      <Text fx:id="emailStatus" fill="#d01a1a" layoutX="318.0" layoutY="626.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Button fx:id="tournamentView" layoutX="449.0" layoutY="31.0" mnemonicParsing="false" text="View Tournaments" />
+   </children>
+</AnchorPane>

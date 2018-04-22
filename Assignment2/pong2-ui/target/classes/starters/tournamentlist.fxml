@@ -35,5 +35,6 @@
       <TextField fx:id="addTourName" layoutX="43.0" layoutY="748.0" promptText="Tournament Name" />
       <TextField fx:id="addTourFee" layoutX="241.0" layoutY="748.0" promptText="Fee" />
       <Button fx:id="addTourButton" layoutX="513.0" layoutY="748.0" mnemonicParsing="false" text="Create" />
+      <Button fx:id="usersView" layoutX="544.0" layoutY="31.0" mnemonicParsing="false" text="Show Users" />
    </children>
 </AnchorPane>
