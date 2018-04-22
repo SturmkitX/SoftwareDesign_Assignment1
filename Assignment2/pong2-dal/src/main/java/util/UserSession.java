@@ -5,13 +5,26 @@ import entities.User;
 import database.factory.FactoryProducer;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class UserSession {
 
     private static User logged = null;
     private static Factory factory = null;
+    private static String factoryString = null;
 
     public static Stage getStage() {
         return stage;
+    }
+
+    public static String getFactoryString() {
+        return factoryString;
+    }
+
+    public static void setFactoryString(String factoryString) {
+        UserSession.factoryString = factoryString;
     }
 
     public static void setStage(Stage stage) {
@@ -37,6 +50,15 @@ public class UserSession {
     }
 
     public static void setFactory(String factory) {
+        try {
+            FileWriter writer = new FileWriter("connectionType");
+            writer.write(factory);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        UserSession.factoryString = factory;
         UserSession.factory = FactoryProducer.getFactory(factory);
     }
 

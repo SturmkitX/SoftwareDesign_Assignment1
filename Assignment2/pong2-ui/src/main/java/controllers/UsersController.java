@@ -91,6 +91,9 @@ public class UsersController implements Initializable {
     @FXML // fx:id="tournamentView"
     private Button tournamentView; // Value injected by FXMLLoader
 
+    @FXML // fx:id="connectionMode"
+    private ComboBox<String> connectionMode; // Value injected by FXMLLoader
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernameField.setText(UserSession.getLogged().getName());
@@ -124,6 +127,16 @@ public class UsersController implements Initializable {
 
         userAddField.setOnAction(new UserAddHandler());
         tournamentView.setOnAction(new TournamentViewHandler());
+
+        connectionMode.getItems().addAll("Hibernate", "DAO");
+        connectionMode.getSelectionModel().select(UserSession.getFactoryString());
+        connectionMode.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                System.out.println("Changed Connection to " + connectionMode.getSelectionModel().getSelectedItem());
+                UserSession.setFactory(connectionMode.getSelectionModel().getSelectedItem());
+            }
+        });
 
     }
 

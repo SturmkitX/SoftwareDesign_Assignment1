@@ -57,7 +57,7 @@ public class MatchDAOImplem implements MatchDAO {
             rs.close();
             stmt.close();
 
-            
+
             result = new Match(id, p1, p2, stage, g, null);
         } catch (SQLException e) {
             e.printStackTrace();

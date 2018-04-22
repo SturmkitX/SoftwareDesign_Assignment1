@@ -21,10 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import org.w3c.dom.events.Event;
@@ -98,6 +95,9 @@ public class TournamentController implements Initializable {
     @FXML // fx:id="usersView"
     private Button usersView; // Value injected by FXMLLoader
 
+    @FXML // fx:id="connectionMode"
+    private ComboBox<String> connectionMode; // Value injected by FXMLLoader
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Set<Tournament> tours = UserSession.getFactory().getTournamentDatabase().findAll();
@@ -158,6 +158,16 @@ public class TournamentController implements Initializable {
                 for(TournamentDTO t : tournaments.get()) {
                     t.getEnroll().setVisible(Float.parseFloat(currentUser.getBalance()) >= t.getFee());
                 }
+            }
+        });
+
+        connectionMode.getItems().addAll("Hibernate", "DAO");
+        connectionMode.getSelectionModel().select(UserSession.getFactoryString());
+        connectionMode.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                System.out.println("Changed Connection to " + connectionMode.getSelectionModel().getSelectedItem());
+                UserSession.setFactory(connectionMode.getSelectionModel().getSelectedItem());
             }
         });
 

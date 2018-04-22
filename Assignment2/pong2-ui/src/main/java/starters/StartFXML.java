@@ -7,6 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import util.UserSession;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 
 public class StartFXML extends Application {
     @Override
@@ -22,7 +26,18 @@ public class StartFXML extends Application {
     }
 
     public static void main(String[] args) {
-        UserSession.setFactory("DAO");
+        Scanner scanner = null;
+        String connection;
+        try {
+            scanner = new Scanner(new File("connectionType"));
+            connection = scanner.next();
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            connection = "Hibernate";
+        }
+
+        UserSession.setFactory(connection);
         launch(args);
     }
 }
