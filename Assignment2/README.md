@@ -6,7 +6,7 @@ Username : ponguser
 Password : ponguser
 Ensure the user has at least SELECT, INSERT, UPDATE and DELETE rights on the imported schema.
 
-Running the application : run MainScreen.
+Running the application : run StartFXML.
 
 Java 8 required.
 

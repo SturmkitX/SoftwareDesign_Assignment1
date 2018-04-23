@@ -100,6 +100,7 @@ public class TournamentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        UserSession.getStage().setTitle("Tournaments");
         Set<Tournament> tours = UserSession.getFactory().getTournamentDatabase().findAll();
         tournaments.set(TournamentDTO.getTournamentLists(tours));
         tableField.setItems(tournaments);

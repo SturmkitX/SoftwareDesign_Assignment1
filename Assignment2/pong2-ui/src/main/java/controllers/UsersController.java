@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import util.RuntimeUtil;
 import util.UserSession;
 
 import java.io.IOException;
@@ -96,6 +97,7 @@ public class UsersController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        UserSession.getStage().setTitle("Users");
         usernameField.setText(UserSession.getLogged().getName());
         balanceField.setText("" + UserSession.getLogged().getBalance());
 
@@ -159,7 +161,7 @@ public class UsersController implements Initializable {
             User user;
 
             // check if email is valid
-            boolean correctEmail = Pattern.compile("\\S+@\\S+\\.\\S+").matcher(emailAddField.getText()).find();
+            boolean correctEmail = RuntimeUtil.validateEmail(emailAddField.getText());
             if(!correctEmail) {
                 emailStatus.setText("Incorrect e-mail format!");
                 return;
