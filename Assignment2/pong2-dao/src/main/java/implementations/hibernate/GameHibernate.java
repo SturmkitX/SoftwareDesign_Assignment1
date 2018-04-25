@@ -14,8 +14,6 @@ public class GameHibernate implements GameDAO {
 
         Game g = (Game) session.get(Game.class, new Integer(id));
 
-        session.close();
-
         return g;
     }
 
@@ -28,8 +26,6 @@ public class GameHibernate implements GameDAO {
         session.save(game);
 
         tx.commit();
-
-        session.close();
     }
 
     @Override
@@ -41,8 +37,6 @@ public class GameHibernate implements GameDAO {
         session.update(game);
 
         tx.commit();
-
-        session.close();
     }
 
     @Override
@@ -54,7 +48,5 @@ public class GameHibernate implements GameDAO {
         session.delete(game);
 
         tx.commit();
-
-        session.close();
     }
 }

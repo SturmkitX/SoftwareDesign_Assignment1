@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.w3c.dom.events.Event;
 import util.UserSession;
 
@@ -169,6 +170,26 @@ public class TournamentController implements Initializable {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 System.out.println("Changed Connection to " + connectionMode.getSelectionModel().getSelectedItem());
                 UserSession.setFactory(connectionMode.getSelectionModel().getSelectedItem());
+            }
+        });
+
+        matchField.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<MatchDTO>() {
+            @Override
+            public void changed(ObservableValue<? extends MatchDTO> observable, MatchDTO oldValue, MatchDTO newValue) {
+                if(newValue.getSource().getP1() == null || newValue.getSource().getP2() == null) {
+                    return;
+                }
+                UserSession.setActiveMatch(newValue.getSource());
+                Stage stage = new Stage();
+                stage.setTitle("Match details");
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("../starters/gameview.fxml"));
+                    stage.setScene(new Scene(root));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                stage.show();
             }
         });
 

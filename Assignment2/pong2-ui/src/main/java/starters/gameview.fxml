@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameController">
+   <children>
+      <TableView fx:id="gameField" prefHeight="268.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="statusCol1" prefWidth="117.0" text="Status #1" />
+          <TableColumn fx:id="scoreCol1" prefWidth="117.0" text="Player 1 score" />
+            <TableColumn fx:id="scoreCol2" prefWidth="130.0" text="Player 2 score" />
+            <TableColumn fx:id="statusCol2" prefWidth="125.0" text="Status #2" />
+        </columns>
+      </TableView>
+      <TextField fx:id="scoreField1" layoutX="24.0" layoutY="308.0" />
+      <TextField fx:id="scoreField2" layoutX="234.0" layoutY="308.0" />
+      <Button fx:id="scoreButton" layoutX="467.0" layoutY="308.0" mnemonicParsing="false" onAction="#updateScores" text="Update" />
+   </children>
+</AnchorPane>

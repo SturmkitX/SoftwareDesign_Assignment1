@@ -1,11 +1,11 @@
 package util;
 
 import database.factory.Factory;
+import entities.Match;
 import entities.User;
 import database.factory.FactoryProducer;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -14,6 +14,7 @@ public class UserSession {
     private static User logged = null;
     private static Factory factory = null;
     private static String factoryString = null;
+    private static Match activeMatch = null;
 
     public static Stage getStage() {
         return stage;
@@ -47,6 +48,14 @@ public class UserSession {
 
     public static Factory getFactory() {
         return factory;
+    }
+
+    public static Match getActiveMatch() {
+        return activeMatch;
+    }
+
+    public static void setActiveMatch(Match activeMatch) {
+        UserSession.activeMatch = activeMatch;
     }
 
     public static void setFactory(String factory) {
