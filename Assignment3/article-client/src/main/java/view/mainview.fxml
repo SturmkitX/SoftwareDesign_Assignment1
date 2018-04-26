@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+   <children>
+      <TextField fx:id="ipField" layoutX="14.0" layoutY="20.0" promptText="Address" />
+      <TextField fx:id="portField" layoutX="14.0" layoutY="55.0" promptText="Port" />
+      <Button fx:id="connectButton" layoutX="69.0" layoutY="89.0" mnemonicParsing="false" text="Connect" />
+      <Text fx:id="connectionStatus" layoutX="260.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TextField fx:id="emailField" layoutX="395.0" layoutY="20.0" promptText="E-Mail" />
+      <TextField fx:id="passField" layoutX="395.0" layoutY="55.0" promptText="Password" />
+      <Button fx:id="logInButton" layoutX="450.0" layoutY="89.0" mnemonicParsing="false" text="Log In" />
+      <ListView fx:id="articleView" layoutX="5.0" layoutY="137.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+   </children>
+</AnchorPane>
