@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89f81d7b-2556-4221-9b8b-1fd08a111c35" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/article-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/article-client/src/main/java/view/mainview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/article-client/src/main/java/view/mainview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -20,15 +20,16 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="ClientHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+            <state relative-caret-position="578">
+              <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
               <folding>
-                <element signature="e#148#149#0" expanded="true" />
-                <element signature="e#183#184#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1140#1141#0" expanded="true" />
+                <element signature="e#1176#1177#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -37,40 +38,68 @@
       <file leaf-file-name="Article.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/article-api/src/main/java/article/Article.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+            <state relative-caret-position="187">
+              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="16" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#443#444#0" expanded="true" />
-                <element signature="e#471#472#0" expanded="true" />
-                <element signature="e#513#514#0" expanded="true" />
-                <element signature="e#547#548#0" expanded="true" />
-                <element signature="e#589#590#0" expanded="true" />
-                <element signature="e#627#628#0" expanded="true" />
-                <element signature="e#689#690#0" expanded="true" />
-                <element signature="e#743#744#0" expanded="true" />
-                <element signature="e#774#775#0" expanded="true" />
-                <element signature="e#803#804#0" expanded="true" />
-                <element signature="e#845#846#0" expanded="true" />
-                <element signature="e#881#882#0" expanded="true" />
-                <element signature="e#916#917#0" expanded="true" />
-                <element signature="e#943#944#0" expanded="true" />
-                <element signature="e#987#988#0" expanded="true" />
-                <element signature="e#1019#1020#0" expanded="true" />
-                <element signature="e#1060#1061#0" expanded="true" />
-                <element signature="e#1090#1091#0" expanded="true" />
-                <element signature="e#1143#1144#0" expanded="true" />
-                <element signature="e#1181#1182#0" expanded="true" />
+                <element signature="e#475#476#0" expanded="true" />
+                <element signature="e#500#501#0" expanded="true" />
+                <element signature="e#533#534#0" expanded="true" />
+                <element signature="e#561#562#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ArticleDTO.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/article-client/src/main/java/model/ArticleDTO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="629">
+              <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1008#1009#0" expanded="true" />
+                <element signature="e#1037#1038#0" expanded="true" />
+                <element signature="e#1063#1064#0" expanded="true" />
+                <element signature="e#1094#1095#0" expanded="true" />
+                <element signature="e#1137#1138#0" expanded="true" />
+                <element signature="e#1162#1163#0" expanded="true" />
+                <element signature="e#1194#1195#0" expanded="true" />
+                <element signature="e#1228#1229#0" expanded="true" />
+                <element signature="e#1273#1274#0" expanded="true" />
+                <element signature="e#1301#1302#0" expanded="true" />
+                <element signature="e#1343#1344#0" expanded="true" />
+                <element signature="e#1387#1388#0" expanded="true" />
+                <element signature="e#1442#1443#0" expanded="true" />
+                <element signature="e#1480#1481#0" expanded="true" />
+                <element signature="e#1513#1514#0" expanded="true" />
+                <element signature="e#1548#1549#0" expanded="true" />
+                <element signature="e#1594#1595#0" expanded="true" />
+                <element signature="e#1623#1624#0" expanded="true" />
+                <element signature="e#1668#1669#0" expanded="true" />
+                <element signature="e#1701#1702#0" expanded="true" />
+                <element signature="e#1749#1750#0" expanded="true" />
+                <element signature="e#1776#1777#0" expanded="true" />
+                <element signature="e#1827#1828#0" expanded="true" />
+                <element signature="e#1863#1864#0" expanded="true" />
+                <element signature="e#1917#1918#0" expanded="true" />
+                <element signature="e#1947#1948#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/article-api/src/main/java/user/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+            <state relative-caret-position="204">
+              <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+              <folding>
+                <element signature="e#268#269#0" expanded="true" />
+                <element signature="e#296#297#0" expanded="true" />
+                <element signature="e#546#547#0" expanded="true" />
+                <element signature="e#586#587#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -78,8 +107,8 @@
       <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="311">
+              <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -90,10 +119,38 @@
       <file leaf-file-name="ServerStarter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/article-server/src/main/java/starter/ServerStarter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+            <state relative-caret-position="272">
+              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/article-client/src/main/java/client/ClientUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
+              <folding>
+                <element signature="e#207#208#0" expanded="true" />
+                <element signature="e#239#240#0" expanded="true" />
+                <element signature="e#329#330#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/article-client/src/main/java/view/MainView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#229#230#0" expanded="true" />
+                <element signature="e#253#254#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -102,16 +159,14 @@
       <file leaf-file-name="ServerUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ServerUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+            <state relative-caret-position="153">
+              <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#329#330#0" expanded="true" />
                 <element signature="e#359#360#0" expanded="true" />
                 <element signature="e#418#419#0" expanded="true" />
                 <element signature="e#463#464#0" expanded="true" />
-                <element signature="e#518#519#0" expanded="true" />
-                <element signature="e#552#553#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,7 +176,7 @@
         <entry file="file://$PROJECT_DIR$/article-api/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -145,12 +200,16 @@
         <option value="$PROJECT_DIR$/article-server/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/article-server/src/main/java/server/Server.java" />
-        <option value="$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java" />
         <option value="$PROJECT_DIR$/article-api/pom.xml" />
         <option value="$PROJECT_DIR$/article-server/src/main/java/server/ServerUtils.java" />
         <option value="$PROJECT_DIR$/article-server/src/main/java/starter/ServerStarter.java" />
-        <option value="$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java" />
+        <option value="$PROJECT_DIR$/article-api/src/main/java/user/User.java" />
         <option value="$PROJECT_DIR$/article-api/src/main/java/article/Article.java" />
+        <option value="$PROJECT_DIR$/article-client/src/main/java/view/MainView.java" />
+        <option value="$PROJECT_DIR$/article-client/src/main/java/client/ClientUtils.java" />
+        <option value="$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java" />
+        <option value="$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java" />
+        <option value="$PROJECT_DIR$/article-client/src/main/java/model/ArticleDTO.java" />
       </list>
     </option>
   </component>
@@ -167,8 +226,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -205,6 +262,15 @@
             <path>
               <item name="Assignment3" type="b2602c69:ProjectViewProjectNode" />
               <item name="Assignment3" type="462c0819:PsiDirectoryNode" />
+              <item name="article-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="article" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Assignment3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment3" type="462c0819:PsiDirectoryNode" />
               <item name="article-client" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -227,6 +293,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Assignment3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment3" type="462c0819:PsiDirectoryNode" />
+              <item name="article-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Assignment3" type="b2602c69:ProjectViewProjectNode" />
@@ -240,6 +315,24 @@
             <path>
               <item name="Assignment3" type="b2602c69:ProjectViewProjectNode" />
               <item name="Assignment3" type="462c0819:PsiDirectoryNode" />
+              <item name="article-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Assignment3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment3" type="462c0819:PsiDirectoryNode" />
+              <item name="article-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Assignment3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment3" type="462c0819:PsiDirectoryNode" />
               <item name="article-server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -263,12 +356,37 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Assignment3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment3" type="462c0819:PsiDirectoryNode" />
+              <item name="article-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Assignment3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment3" type="462c0819:PsiDirectoryNode" />
+              <item name="article-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="starter" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -282,7 +400,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MainView">
+    <configuration name="MainView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="view.MainView" />
+      <module name="articleclient" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="ServerStarter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="starter.ServerStarter" />
+      <module name="articleserver" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="starter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -324,6 +464,16 @@
       <properties />
       <listeners />
     </configuration>
+    <list>
+      <item itemvalue="Application.MainView" />
+      <item itemvalue="Application.ServerStarter" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainView" />
+        <item itemvalue="Application.ServerStarter" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -344,14 +494,14 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32936078" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32900432" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -374,6 +524,161 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1140#1141#0" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-api/src/main/java/user/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding>
+            <element signature="e#268#269#0" expanded="true" />
+            <element signature="e#296#297#0" expanded="true" />
+            <element signature="e#546#547#0" expanded="true" />
+            <element signature="e#586#587#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-server/src/main/java/starter/ServerStarter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ServerUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#329#330#0" expanded="true" />
+            <element signature="e#359#360#0" expanded="true" />
+            <element signature="e#418#419#0" expanded="true" />
+            <element signature="e#463#464#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-api/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-api/src/main/java/article/Article.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#475#476#0" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+            <element signature="e#533#534#0" expanded="true" />
+            <element signature="e#561#562#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-api/src/main/java/user/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding>
+            <element signature="e#268#269#0" expanded="true" />
+            <element signature="e#296#297#0" expanded="true" />
+            <element signature="e#546#547#0" expanded="true" />
+            <element signature="e#586#587#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-server/src/main/java/starter/ServerStarter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ServerUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#329#330#0" expanded="true" />
+            <element signature="e#359#360#0" expanded="true" />
+            <element signature="e#418#419#0" expanded="true" />
+            <element signature="e#463#464#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-api/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-api/src/main/java/article/Article.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#475#476#0" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+            <element signature="e#533#534#0" expanded="true" />
+            <element signature="e#561#562#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -398,100 +703,220 @@
     <entry file="file://$PROJECT_DIR$/article-api/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/article-server/src/main/java/starter/ServerStarter.java">
+    <entry file="file://$PROJECT_DIR$/article-api/src/main/java/user/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+        <state relative-caret-position="204">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#268#269#0" expanded="true" />
+            <element signature="e#296#297#0" expanded="true" />
+            <element signature="e#546#547#0" expanded="true" />
+            <element signature="e#586#587#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ServerUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+        <state relative-caret-position="153">
+          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#329#330#0" expanded="true" />
             <element signature="e#359#360#0" expanded="true" />
             <element signature="e#418#419#0" expanded="true" />
             <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#518#519#0" expanded="true" />
-            <element signature="e#552#553#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-server/src/main/java/starter/ServerStarter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/view/MainView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#229#230#0" expanded="true" />
+            <element signature="e#253#254#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        <state relative-caret-position="578">
+          <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
           <folding>
-            <element signature="e#148#149#0" expanded="true" />
-            <element signature="e#183#184#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1140#1141#0" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/client/ClientUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
+          <folding>
+            <element signature="e#207#208#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
+            <element signature="e#329#330#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/article-api/src/main/java/article/Article.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+        <state relative-caret-position="187">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="16" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#443#444#0" expanded="true" />
-            <element signature="e#471#472#0" expanded="true" />
-            <element signature="e#513#514#0" expanded="true" />
-            <element signature="e#547#548#0" expanded="true" />
-            <element signature="e#589#590#0" expanded="true" />
-            <element signature="e#627#628#0" expanded="true" />
-            <element signature="e#689#690#0" expanded="true" />
-            <element signature="e#743#744#0" expanded="true" />
-            <element signature="e#774#775#0" expanded="true" />
-            <element signature="e#803#804#0" expanded="true" />
-            <element signature="e#845#846#0" expanded="true" />
-            <element signature="e#881#882#0" expanded="true" />
-            <element signature="e#916#917#0" expanded="true" />
-            <element signature="e#943#944#0" expanded="true" />
-            <element signature="e#987#988#0" expanded="true" />
-            <element signature="e#1019#1020#0" expanded="true" />
-            <element signature="e#1060#1061#0" expanded="true" />
-            <element signature="e#1090#1091#0" expanded="true" />
-            <element signature="e#1143#1144#0" expanded="true" />
-            <element signature="e#1181#1182#0" expanded="true" />
+            <element signature="e#475#476#0" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+            <element signature="e#533#534#0" expanded="true" />
+            <element signature="e#561#562#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/article-api/src/main/java/user/User.java">
+    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/model/ArticleDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        <state relative-caret-position="629">
+          <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1037#1038#0" expanded="true" />
+            <element signature="e#1063#1064#0" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
+            <element signature="e#1137#1138#0" expanded="true" />
+            <element signature="e#1162#1163#0" expanded="true" />
+            <element signature="e#1194#1195#0" expanded="true" />
+            <element signature="e#1228#1229#0" expanded="true" />
+            <element signature="e#1273#1274#0" expanded="true" />
+            <element signature="e#1301#1302#0" expanded="true" />
+            <element signature="e#1343#1344#0" expanded="true" />
+            <element signature="e#1387#1388#0" expanded="true" />
+            <element signature="e#1442#1443#0" expanded="true" />
+            <element signature="e#1480#1481#0" expanded="true" />
+            <element signature="e#1513#1514#0" expanded="true" />
+            <element signature="e#1548#1549#0" expanded="true" />
+            <element signature="e#1594#1595#0" expanded="true" />
+            <element signature="e#1623#1624#0" expanded="true" />
+            <element signature="e#1668#1669#0" expanded="true" />
+            <element signature="e#1701#1702#0" expanded="true" />
+            <element signature="e#1749#1750#0" expanded="true" />
+            <element signature="e#1776#1777#0" expanded="true" />
+            <element signature="e#1827#1828#0" expanded="true" />
+            <element signature="e#1863#1864#0" expanded="true" />
+            <element signature="e#1917#1918#0" expanded="true" />
+            <element signature="e#1947#1948#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>articleclient</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.5</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
