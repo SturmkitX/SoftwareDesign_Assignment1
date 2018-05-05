@@ -1,5 +1,8 @@
 package server;
 
+import article.ArticleJson;
+import article.ArticleUtils;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -27,21 +30,30 @@ public class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-        StringBuilder sb = new StringBuilder();
+        FileOutputStream fileOut = null;
         try {
+            fileOut = new FileOutputStream("server-json/" + client.getInetAddress().getHostAddress());
             while(active) {
                 int size = in.read(buffer);
-                sb.append(buffer);
+                fileOut.write(buffer);
                 if(size < BUFFER_SIZE) {
-                    processData(sb.toString());
+                    processData("server-json/" + client.getInetAddress().getHostAddress());
+                    fileOut.getChannel().truncate(0);
                 }
             }
+            fileOut.close();
         } catch(IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void processData(String data) {
-        System.out.println(data);
+    private void processData(String path) throws IOException {
+        InputStream in = new FileInputStream(path);
+        byte[] data = new byte[in.available()];
+        in.read(data);
+        in.close();
+        ArticleJson a = ArticleUtils.deserializeArticle(data);
+
+        // data should now be inserted into the database table
     }
 }

@@ -1,31 +1,30 @@
 package article;
 
-import javafx.scene.Node;
 import user.User;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Article {
+public class ArticleJson {
 
-    private int id;
+    private String id;  // user id + upload timestamp
     private String title;
     private String articleAbstract;
     private User author;
-    private List<Node> body;
-    private List<Article> related;
+    private List<ArticleBodyData> body;
+    private List<Integer> related;
 
-    public Article() {
+    public ArticleJson() {
         this.body = new LinkedList<>();
         this.related = new ArrayList<>();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -45,27 +44,27 @@ public class Article {
         this.articleAbstract = articleAbstract;
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
     public void setAuthor(User author) {
         this.author = author;
     }
 
-    public List<Node> getBody() {
-        return body;
+    public void setRelated(List<Integer> related) {
+        this.related = related;
     }
 
-    public void setBody(List<Node> body) {
-        this.body = body;
+    public User getAuthor() {
+        return author;
     }
 
-    public List<Article> getRelated() {
+    public List<Integer> getRelated() {
         return related;
     }
 
-    public void setRelated(List<Article> related) {
-        this.related = related;
+    public List<ArticleBodyData> getBody() {
+        return body;
+    }
+
+    public void setBody(List<ArticleBodyData> body) {
+        this.body = body;
     }
 }
