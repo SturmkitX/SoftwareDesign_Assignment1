@@ -40,4 +40,29 @@ public class UserDAO {
 
         return result;
     }
+
+    public static User findUser(int id) {
+        User result = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users WHERE id = ?");
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if(!rs.next()) {
+                return null;
+            }
+
+            result = new User();
+            result.setId(id);
+            result.setEmail(rs.getString("email"));
+            result.setPassword(rs.getString("password"));
+            result.setName(rs.getString("name"));
+            result.setRole(rs.getInt("role"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }

@@ -1,10 +1,12 @@
 package server;
 
-import article.ArticleJson;
-import article.ArticleUtils;
+import article.Article;
+import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import database.ArticleDAO;
 import database.UserDAO;
 import requests.Request;
 import user.User;
@@ -40,35 +42,16 @@ public class ClientHandler implements Runnable {
 
     }
 
-//    @Override
-//    public void run() {
-//        FileOutputStream fileOut = null;
-//        try {
-//            fileOut = new FileOutputStream("server-json/" + client.getInetAddress().getHostAddress());
-//            while(active) {
-//                int size = in.read(buffer);
-//                fileOut.write(buffer);
-//                if(size < BUFFER_SIZE) {
-//                    processData("server-json/" + client.getInetAddress().getHostAddress());
-//                    fileOut.getChannel().truncate(0);
-//                }
-//            }
-//            fileOut.close();
-//        } catch(IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     @Override
     public void run() {
 
         try {
             while(active) {
                 Request req = mapper.readValue(in, Request.class);
-                req.setContent(mapper.convertValue(req.getContent(), User.class));
                 System.out.println(req.getContent().getClass());
                 switch(req.getRequest()) {
-                    case "LOG_IN_USER" : processLogIn((User)req.getContent()); break;
+                    case "LOG_IN_USER" : processLogIn(req.getContent()); break;
+                    case "SUBMIT_ARTICLE_USER" : processSaveArticle(req.getContent()); break;
                 }
             }
         } catch(IOException e) {
@@ -79,17 +62,8 @@ public class ClientHandler implements Runnable {
 
     }
 
-    private void processData(String path) throws IOException {
-        InputStream in = new FileInputStream(path);
-        byte[] data = new byte[in.available()];
-        in.read(data);
-        in.close();
-        ArticleJson a = ArticleUtils.deserializeArticle(data);
-
-        // data should now be inserted into the database table
-    }
-
-    private void processLogIn(User toCheck) {
+    private void processLogIn(Object data) {
+        User toCheck = mapper.convertValue(data, User.class);
         User result = UserDAO.findUserAuthentication(toCheck.getEmail(), toCheck.getPassword());
         Request req = new Request();
         req.setRequest("LOG_IN_RESPONSE");
@@ -102,5 +76,31 @@ public class ClientHandler implements Runnable {
             e.printStackTrace();
         }
 
+    }
+
+    private void processSaveArticle(Object data) {
+        Article a = mapper.convertValue(data, Article.class);
+        try {
+            File file = new File("server-json/" + a.getId());
+            OutputStream out = new FileOutputStream(file);
+            mapper.writeValue(out, a);
+            out.close();
+
+            ArticleDAO.insertArticle(a, file.getAbsolutePath());
+
+
+            Request req = new Request();
+            req.setRequest("SUBMIT_ARTICLE_RESPONSE");
+            req.setContent(new String("OK"));
+            mapper.writeValue(this.out, req);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (JsonGenerationException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

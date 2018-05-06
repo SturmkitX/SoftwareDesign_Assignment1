@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ArticleJson {
+public class Article {
 
     private String id;  // user id + upload timestamp
     private String title;
     private String articleAbstract;
     private User author;
     private List<ArticleBodyData> body;
-    private List<Integer> related;
+    private List<String> related;
 
-    public ArticleJson() {
+    public Article() {
         this.body = new LinkedList<>();
         this.related = new ArrayList<>();
     }
@@ -48,7 +48,7 @@ public class ArticleJson {
         this.author = author;
     }
 
-    public void setRelated(List<Integer> related) {
+    public void setRelated(List<String> related) {
         this.related = related;
     }
 
@@ -56,7 +56,7 @@ public class ArticleJson {
         return author;
     }
 
-    public List<Integer> getRelated() {
+    public List<String> getRelated() {
         return related;
     }
 
@@ -66,5 +66,10 @@ public class ArticleJson {
 
     public void setBody(List<ArticleBodyData> body) {
         this.body = body;
+    }
+
+    public boolean equals(Object o) {
+        Article a = (Article)o;
+        return (id.equals(a.getId()));
     }
 }

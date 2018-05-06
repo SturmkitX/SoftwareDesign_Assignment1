@@ -12,6 +12,14 @@ public class User {
 
     }
 
+    public User(User u) {
+        this.id = u.getId();
+        this.email = u.getEmail();
+        this.password = u.getPassword();
+        this.name = u.getName();
+        this.role = u.getRole();
+    }
+
     public int getId() {
         return id;
     }

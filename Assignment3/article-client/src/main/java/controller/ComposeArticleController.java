@@ -1,8 +1,7 @@
 package controller;
 
 import article.ArticleBodyData;
-import article.ArticleJson;
-import article.ArticleUtils;
+import article.Article;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +18,6 @@ import user.User;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.ResourceBundle;
 
@@ -27,6 +25,7 @@ public class ComposeArticleController implements Initializable {
 
     private Socket socket;
     private User user;
+    ObjectMapper mapper;
 
     @FXML // fx:id="titleField"
     private TextArea titleField; // Value injected by FXMLLoader
@@ -60,21 +59,25 @@ public class ComposeArticleController implements Initializable {
 
     @FXML
     void submitArticle(ActionEvent event) {
-        byte[] data = null;
         try {
-            ArticleJson a = computeArticle();
-            data = ArticleUtils.serializeArticle(a);
+            Article a = computeArticle();
+
+            Request req = new Request();
+            req.setRequest("SUBMIT_ARTICLE_USER");
+            req.setContent(a);
+            mapper.writeValue(socket.getOutputStream(), req);
+            mapper.writeValue(System.out, a);
+
+            req = mapper.readValue(socket.getInputStream(), Request.class);
+            String status = (String)req.getContent();
+
+            if(status.equals("OK")) {
+                System.out.println("Article successfully submitted");
+            } else {
+                System.out.println("Could not submit article");
+            }
         } catch(IOException e) {
             e.printStackTrace();
-        }
-
-        if(data != null) {
-            try {
-                OutputStream out = socket.getOutputStream();
-                out.write(data);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
     }
@@ -93,18 +96,11 @@ public class ComposeArticleController implements Initializable {
             user.setPassword("sidetest");
             req.setContent(user);
 
-            System.out.println(socket.isConnected());
-            System.out.println(socket.isClosed() + "\n");
-
-            ObjectMapper mapper = new ObjectMapper();
+            mapper = new ObjectMapper();
             mapper.configure(JsonParser.Feature.AUTO_CLOSE_SOURCE, false);
             mapper.configure(JsonGenerator.Feature.AUTO_CLOSE_TARGET, false);
 
             mapper.writeValue(socket.getOutputStream(), req);
-            System.out.println(mapper.writeValueAsString(req));
-
-            System.out.println(socket.isConnected());
-            System.out.println(socket.isClosed() + "\n");
 
             req = mapper.readValue(socket.getInputStream(), Request.class);
             user = mapper.convertValue(req.getContent(), User.class);
@@ -113,6 +109,7 @@ public class ComposeArticleController implements Initializable {
             } else {
                 System.out.println("Welcome, " + user.getName());
             }
+            System.out.println("Log In ID: " + user.getId());
 
 
         } catch (IOException e) {
@@ -120,12 +117,16 @@ public class ComposeArticleController implements Initializable {
         }
     }
 
-    private ArticleJson computeArticle() throws IOException {
+    private Article computeArticle() throws IOException {
         String[] phrases = bodyField.getText().split("\n");
-        ArticleJson result = new ArticleJson();
+        Article result = new Article();
 
         // the lists are already set
-        result.setAuthor(user);
+        User presUser = new User();
+        presUser.setId(user.getId());
+        presUser.setName(user.getName());
+
+        result.setAuthor(presUser);
         result.setId(String.format("%d-%d", user.getId(), System.currentTimeMillis()));
         result.setTitle(titleField.getText());
         result.setArticleAbstract(abstractField.getText());
