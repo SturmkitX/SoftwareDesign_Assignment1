@@ -3,6 +3,9 @@ package controller;
 import article.ArticleBodyData;
 import article.ArticleJson;
 import article.ArticleUtils;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,14 +13,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import requests.Request;
 import user.User;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.ResourceBundle;
 
@@ -81,11 +83,41 @@ public class ComposeArticleController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             socket = new Socket("localhost", 5678);
+            System.out.println(socket.isConnected());
+            System.out.println(socket.isClosed() + "\n");
+            Request req = new Request();
+            req.setRequest("LOG_IN_USER");
+
+            user = new User();
+            user.setEmail("test@testus.com");
+            user.setPassword("sidetest");
+            req.setContent(user);
+
+            System.out.println(socket.isConnected());
+            System.out.println(socket.isClosed() + "\n");
+
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(JsonParser.Feature.AUTO_CLOSE_SOURCE, false);
+            mapper.configure(JsonGenerator.Feature.AUTO_CLOSE_TARGET, false);
+
+            mapper.writeValue(socket.getOutputStream(), req);
+            System.out.println(mapper.writeValueAsString(req));
+
+            System.out.println(socket.isConnected());
+            System.out.println(socket.isClosed() + "\n");
+
+            req = mapper.readValue(socket.getInputStream(), Request.class);
+            user = mapper.convertValue(req.getContent(), User.class);
+            if(user == null) {
+                System.out.println("Invalid credentials");
+            } else {
+                System.out.println("Welcome, " + user.getName());
+            }
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        user = new User();
-        user.setId(1);
     }
 
     private ArticleJson computeArticle() throws IOException {
@@ -93,7 +125,7 @@ public class ComposeArticleController implements Initializable {
         ArticleJson result = new ArticleJson();
 
         // the lists are already set
-        result.setAuthor(user.getId());
+        result.setAuthor(user);
         result.setId(String.format("%d-%d", user.getId(), System.currentTimeMillis()));
         result.setTitle(titleField.getText());
         result.setArticleAbstract(abstractField.getText());
