@@ -2,8 +2,7 @@ package controller;
 
 import article.ArticleBodyData;
 import article.Article;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
+import client.ClientUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +24,10 @@ public class ComposeArticleController implements Initializable {
 
     private Socket socket;
     private User user;
-    ObjectMapper mapper;
+    private ObjectMapper mapper;
+    private ObjectInput in;
+    private ObjectOutput out;
+
 
     @FXML // fx:id="titleField"
     private TextArea titleField; // Value injected by FXMLLoader
@@ -65,18 +67,18 @@ public class ComposeArticleController implements Initializable {
             Request req = new Request();
             req.setRequest("SUBMIT_ARTICLE_USER");
             req.setContent(a);
-            mapper.writeValue(socket.getOutputStream(), req);
-            mapper.writeValue(System.out, a);
 
-            req = mapper.readValue(socket.getInputStream(), Request.class);
+            out.writeObject(mapper.writeValueAsString(req));
+
+            req = mapper.readValue((String)in.readObject(), Request.class);
             String status = (String)req.getContent();
 
-            if(status.equals("OK")) {
+            if(status.equals("OK") && req.getRequest().equals("SUBMIT_ARTICLE_RESPONSE")) {
                 System.out.println("Article successfully submitted");
             } else {
                 System.out.println("Could not submit article");
             }
-        } catch(IOException e) {
+        } catch(IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -86,8 +88,11 @@ public class ComposeArticleController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             socket = new Socket("localhost", 5678);
-            System.out.println(socket.isConnected());
-            System.out.println(socket.isClosed() + "\n");
+            ClientUtils.setServerCon(socket);
+            out = ClientUtils.getSocketOut();
+            in = ClientUtils.getSocketIn();
+            mapper = new ObjectMapper();
+
             Request req = new Request();
             req.setRequest("LOG_IN_USER");
 
@@ -96,13 +101,9 @@ public class ComposeArticleController implements Initializable {
             user.setPassword("sidetest");
             req.setContent(user);
 
-            mapper = new ObjectMapper();
-            mapper.configure(JsonParser.Feature.AUTO_CLOSE_SOURCE, false);
-            mapper.configure(JsonGenerator.Feature.AUTO_CLOSE_TARGET, false);
+            out.writeObject(mapper.writeValueAsString(req));
 
-            mapper.writeValue(socket.getOutputStream(), req);
-
-            req = mapper.readValue(socket.getInputStream(), Request.class);
+            req = mapper.readValue((String)in.readObject(), Request.class);
             user = mapper.convertValue(req.getContent(), User.class);
             if(user == null) {
                 System.out.println("Invalid credentials");
@@ -112,7 +113,7 @@ public class ComposeArticleController implements Initializable {
             System.out.println("Log In ID: " + user.getId());
 
 
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

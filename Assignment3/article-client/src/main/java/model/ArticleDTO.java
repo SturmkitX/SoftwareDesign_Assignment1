@@ -44,7 +44,7 @@ public class ArticleDTO {
         ObservableList<Node> result = FXCollections.observableArrayList();
         for(ArticleBodyData abd : nodes) {
             Node n = null;
-            if(abd.isText() == true) {
+            if(abd.isText()) {
                 n = new Text(abd.getContent());
             } else {
                 n = new ImageView(new Image(new ByteArrayInputStream(Base64.getDecoder().decode(abd.getContent()))));
@@ -123,8 +123,4 @@ public class ArticleDTO {
         return related;
     }
 
-    public boolean equals(Object o) {
-        ArticleDTO a = (ArticleDTO) o;
-        return (id.get().equals(a.getId()));
-    }
 }

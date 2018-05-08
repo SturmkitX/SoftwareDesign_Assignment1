@@ -43,6 +43,25 @@ public class ArticleDAO {
         return result;
     }
 
+    public static String getArticleBodyPath(String id) {
+        String result = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT body FROM Articles WHERE id = ?");
+            stmt.setString(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if(!rs.next()) {
+                return null;
+            }
+
+            result = rs.getString("body");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     public static void insertArticle(Article a, String bodyPath) {
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Articles (id, title, abstract, author_id, body) " +

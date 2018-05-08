@@ -15,7 +15,7 @@ public class MainView extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 //        Parent root = FXMLLoader.load(getClass().getResource("mainview.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("compose_article.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("articles_all_demo.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Article viewer");
         stage.setScene(scene);
