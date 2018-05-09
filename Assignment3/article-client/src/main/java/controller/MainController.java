@@ -1,13 +1,20 @@
 package controller;
 
 import client.ClientUtils;
+import client.SocketThread;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import model.ArticleDTO;
+import requests.Request;
+import user.User;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -16,32 +23,53 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    @FXML // fx:id="ipField"
-    private TextField ipField; // Value injected by FXMLLoader
+    private IntegerProperty loggedIdProperty;
+    private ObjectMapper mapper;
 
-    @FXML // fx:id="portField"
-    private TextField portField; // Value injected by FXMLLoader
+    @FXML
+    private TextField ipField;
 
-    @FXML // fx:id="connectButton"
-    private Button connectButton; // Value injected by FXMLLoader
+    @FXML
+    private TextField portField;
 
-    @FXML // fx:id="connectionStatus"
-    private Text connectionStatus; // Value injected by FXMLLoader
+    @FXML
+    private Button connectButton;
 
-    @FXML // fx:id="emailField"
-    private TextField emailField; // Value injected by FXMLLoader
+    @FXML
+    private Text connectionStatus;
 
-    @FXML // fx:id="passField"
-    private TextField passField; // Value injected by FXMLLoader
+    @FXML
+    private TextField emailField;
 
-    @FXML // fx:id="logInButton"
-    private Button logInButton; // Value injected by FXMLLoader
+    @FXML
+    private TextField passField;
 
-    @FXML // fx:id="articleView"
-    private ListView<?> articleView; // Value injected by FXMLLoader
+    @FXML
+    private Button logInButton;
 
-    @FXML // fx:id="loggedUserName"
+    @FXML
     private Text loggedUserName;
+
+    @FXML
+    private Button signOutBtn;
+
+    @FXML
+    private TableView<ArticleDTO> articleView;
+
+    @FXML
+    private TableColumn<ArticleDTO, String> titleCol;
+
+    @FXML
+    private TableColumn<ArticleDTO, String> abstractCol;
+
+    @FXML
+    private Button adminPanelBtn;
+
+    @FXML
+    private Button disconnectBtn;
+
+    @FXML
+    private Button writeArticleBtn;
 
     @FXML
     void connectServer(ActionEvent event) {
@@ -59,11 +87,46 @@ public class MainController implements Initializable {
         if(socket != null) {
             ClientUtils.setServerCon(socket);
             System.out.println("Successfully connected to server");
+
+            new Thread(new SocketThread()).start();
         }
+    }
+
+    @FXML
+    void logInUser(ActionEvent event) {
+        String email = emailField.getText();
+        String pass = passField.getText();
+
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(pass);
+
+        Request req = new Request();
+        req.setRequest("LOG_IN_USER");
+        req.setContent(user);
+
+        try {
+            ClientUtils.getSocketOut().writeObject(mapper.writeValueAsString(req));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        mapper = new ObjectMapper();
 
+        loggedIdProperty = new SimpleIntegerProperty();
+        loggedIdProperty.bind(ClientUtils.userIdProperty());
+
+        loggedIdProperty.addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if(newValue.intValue() > 0) {
+                    System.out.println("Welcome, " + ClientUtils.getCurrentUser().getName());
+                }
+            }
+        });
     }
 }

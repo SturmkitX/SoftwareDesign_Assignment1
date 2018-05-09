@@ -72,4 +72,5 @@ public class Article {
         Article a = (Article)o;
         return (id.equals(a.getId()));
     }
+
 }

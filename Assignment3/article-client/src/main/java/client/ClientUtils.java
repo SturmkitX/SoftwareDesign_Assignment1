@@ -1,7 +1,11 @@
 package client;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.ArticleDTO;
+import user.User;
 
 import java.io.*;
 import java.net.Socket;
@@ -9,10 +13,13 @@ import java.net.Socket;
 public class ClientUtils {
 
     private static Socket serverCon = null;
-    private static ObservableList<ArticleDTO> articles = null;
+    private static ObservableList<ArticleDTO> articles = FXCollections.observableArrayList();
     private static ArticleDTO currentArticle = null;
     private static ObjectOutput socketOut = null;
     private static ObjectInput socketIn = null;
+
+    private static IntegerProperty userId = new SimpleIntegerProperty(0);
+    private static User currentUser = null;
 
     private ClientUtils() {
 
@@ -59,5 +66,25 @@ public class ClientUtils {
 
     public static ObjectInput getSocketIn() {
         return socketIn;
+    }
+
+    public static int getUserId() {
+        return userId.get();
+    }
+
+    public static IntegerProperty userIdProperty() {
+        return userId;
+    }
+
+    public static void setUserId(int userId) {
+        ClientUtils.userId.set(userId);
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        ClientUtils.currentUser = currentUser;
     }
 }
