@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ComposeArticleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ComposeArticleController">
    <children>
       <TextArea fx:id="titleField" layoutX="14.0" layoutY="21.0" prefHeight="36.0" prefWidth="569.0" promptText="Title" />
       <TextArea fx:id="abstractField" layoutX="14.0" layoutY="76.0" prefHeight="86.0" prefWidth="569.0" promptText="Abstract" />
       <TextArea fx:id="bodyField" layoutX="14.0" layoutY="172.0" prefHeight="178.0" prefWidth="569.0" promptText="Body" />
       <Button fx:id="submitBtn" layoutX="342.0" layoutY="389.0" mnemonicParsing="false" onAction="#submitArticle" text="Submit" />
       <Button fx:id="addImageBtn" layoutX="173.0" layoutY="389.0" mnemonicParsing="false" onAction="#insertImage" text="Add image" />
+      <TableView fx:id="relatedTable" layoutX="136.0" layoutY="456.0" prefHeight="268.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="titleCol" prefWidth="157.0" text="Title" />
+          <TableColumn fx:id="abstractCol" prefWidth="365.0" text="Abstract" />
+            <TableColumn fx:id="checkedCol" prefWidth="77.0" text="Checked" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

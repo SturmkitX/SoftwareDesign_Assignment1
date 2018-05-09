@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.162-ea" fx:controller="controller.ArticleDetailController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ArticleDetailController">
    <content>
-      <VBox fx:id="contentArea" prefHeight="393.0" prefWidth="579.0">
-         <children>
-            <Label fx:id="auxLabel" />
-         </children>
-      </VBox>
+      <VBox fx:id="contentArea" prefHeight="396.0" prefWidth="715.0" />
    </content>
 </ScrollPane>

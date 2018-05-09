@@ -3,15 +3,20 @@ package controller;
 import article.Article;
 import client.ClientUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.event.EventHandler;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import model.ArticleDTO;
 import requests.Request;
 
@@ -31,8 +36,6 @@ public class ArticleDetailController implements Initializable {
     @FXML // fx:id="contentArea"
     private VBox contentArea; // Value injected by FXMLLoader
 
-    @FXML // fx:id="auxLabel"
-    private Label auxLabel; // Value injected by FXMLLoader
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -69,8 +72,45 @@ public class ArticleDetailController implements Initializable {
         Article a = mapper.convertValue(req.getContent(), Article.class);
         article.computeObservableBody(a.getBody());
 
+        // set the related articles table
+        TableView<ArticleDTO> relatedTable = new TableView<>();
+        TableColumn<ArticleDTO, String> relatedTitleCol = new TableColumn<>();
+        TableColumn<ArticleDTO, String> relatedAbstractCol = new TableColumn<>();
+
+        relatedTitleCol.setText("Title");
+        relatedAbstractCol.setText("Abstract");
+
+        article.computeObservableRelated(a.getRelated());
+
+
+        relatedTable.getColumns().addAll(relatedTitleCol, relatedAbstractCol);
+        relatedTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        relatedAbstractCol.setCellValueFactory(new PropertyValueFactory<>("articleAbstract"));
+        relatedTable.setItems(article.getRelated());
+
+        System.out.println(article.getRelated().size());
+
 
         contentArea.getChildren().addAll(title, articleAbstract, author);
         contentArea.getChildren().addAll(article.getBody());
+        contentArea.getChildren().add(relatedTable);
+
+        relatedTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ArticleDTO>() {
+            @Override
+            public void changed(ObservableValue<? extends ArticleDTO> observable, ArticleDTO oldValue, ArticleDTO newValue) {
+                ClientUtils.setCurrentArticle(newValue);
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("../view/article_detailed.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+
+                    stage.setTitle("Article details");
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

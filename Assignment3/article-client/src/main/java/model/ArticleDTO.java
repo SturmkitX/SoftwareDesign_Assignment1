@@ -7,6 +7,7 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -24,6 +25,7 @@ public class ArticleDTO {
     private StringProperty author;
     private ListProperty<Node> body;
     private ListProperty<ArticleDTO> related;
+    private CheckBox checked;
 
     public ArticleDTO(Article src) {
         this.source = src;
@@ -31,8 +33,9 @@ public class ArticleDTO {
         this.title = new SimpleStringProperty(src.getTitle());
         this.articleAbstract = new SimpleStringProperty(src.getArticleAbstract());
         this.author = new SimpleStringProperty(src.getAuthor().getName());
-        this.related = new SimpleListProperty<>(computeObservableRelated(src.getRelated()));
+        this.checked = new CheckBox();
 
+        this.related = null;
         this.body = null;   // creating an image is a heavy task, so we will create it at the last moment
     }
 
@@ -55,7 +58,13 @@ public class ArticleDTO {
         this.body = new SimpleListProperty<>(result);
     }
 
-    private ObservableList<ArticleDTO> computeObservableRelated(List<String> articles) {
+    public void computeObservableRelated(List<String> articles) {
+        if(related != null) {
+            return;
+        }
+
+        this.related = new SimpleListProperty<>();
+
         ObservableList<ArticleDTO> result = FXCollections.observableArrayList();
         ObservableList<ArticleDTO> interm = ClientUtils.getArticles();
 
@@ -68,7 +77,7 @@ public class ArticleDTO {
             }
         }
 
-        return result;
+        this.related.set(result);
     }
 
     public Article getSource() {
@@ -123,4 +132,7 @@ public class ArticleDTO {
         return related;
     }
 
+    public CheckBox getChecked() {
+        return checked;
+    }
 }

@@ -4,21 +4,27 @@ import article.ArticleBodyData;
 import article.Article;
 import client.ClientUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.ArticleDTO;
 import requests.Request;
 import user.User;
 
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class ComposeArticleController implements Initializable {
 
@@ -43,6 +49,18 @@ public class ComposeArticleController implements Initializable {
 
     @FXML // fx:id="addImageBtn"
     private Button addImageBtn; // Value injected by FXMLLoader
+
+    @FXML
+    private TableView<ArticleDTO> relatedTable;
+
+    @FXML
+    private TableColumn<ArticleDTO, String> titleCol;
+
+    @FXML
+    private TableColumn<ArticleDTO, String> abstractCol;
+
+    @FXML
+    private TableColumn<ArticleDTO, CheckBox> checkedCol;
 
     @FXML
     void insertImage(ActionEvent event) {
@@ -116,6 +134,30 @@ public class ComposeArticleController implements Initializable {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+        // get the list of articles
+        Request req = new Request();
+        req.setRequest("GET_ARTICLES_METADATA");
+        req.setContent("");
+        try {
+            System.out.println(out);
+            System.out.println(mapper);
+            out.writeObject(mapper.writeValueAsString(req));
+            req = mapper.readValue((String)in.readObject(), Request.class);
+            List a = mapper.convertValue(req.getContent(), ArrayList.class);
+            ObservableList<ArticleDTO> res = FXCollections.observableArrayList();
+            for(Object o : a) {
+                res.add(new ArticleDTO(mapper.convertValue(o, Article.class)));
+            }
+            ClientUtils.setArticles(res);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        relatedTable.setItems(ClientUtils.getArticles());
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        abstractCol.setCellValueFactory(new PropertyValueFactory<>("articleAbstract"));
+        checkedCol.setCellValueFactory(new PropertyValueFactory<>("checked"));
     }
 
     private Article computeArticle() throws IOException {
@@ -148,6 +190,9 @@ public class ComposeArticleController implements Initializable {
             }
             result.getBody().add(abd);
         }
+
+        List<String> related = relatedTable.getItems().stream().filter(a -> a.getChecked().isSelected()).map(a -> a.getId()).collect(Collectors.toList());
+        result.setRelated(related);
 
         return result;
     }
