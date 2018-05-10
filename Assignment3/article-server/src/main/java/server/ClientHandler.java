@@ -45,6 +45,7 @@ public class ClientHandler implements Runnable {
                     case "SUBMIT_ARTICLE_USER" : processSaveArticle(req.getContent()); break;
                     case "GET_ARTICLES_METADATA" : processMetadata(); break;                            // get a lightweight list of articles
                     case "GET_ARTICLE_COMPLETE" : processCompleteArticle(req.getContent()); break;      // get full data for an article
+                    case "CLIENT_DISCONNECT" : processDisconnect(); break;
                 }
             }
         } catch(IOException | ClassNotFoundException e) {
@@ -116,6 +117,21 @@ public class ClientHandler implements Runnable {
             req.setContent(a);
 
             out.writeObject(mapper.writeValueAsString(req));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void processDisconnect() {
+        Request req = new Request();
+        req.setRequest("CLIENT_DISCONNECT_RESPONSE");
+        try {
+            out.writeObject(mapper.writeValueAsString(req));
+
+            out.close();
+            in.close();
+            client.close();
+            active = false;
         } catch (IOException e) {
             e.printStackTrace();
         }

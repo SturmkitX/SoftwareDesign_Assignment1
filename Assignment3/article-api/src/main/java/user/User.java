@@ -6,7 +6,7 @@ public class User {
     private String email;
     private String password;
     private String name;
-    private int role;
+    private int role;   // 0 = regular user, 1 = writer, 2 = admin
 
     public User() {
 

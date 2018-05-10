@@ -4,8 +4,6 @@ import article.ArticleBodyData;
 import article.Article;
 import client.ClientUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,9 +16,7 @@ import requests.Request;
 import user.User;
 
 import java.io.*;
-import java.net.Socket;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -28,11 +24,7 @@ import java.util.stream.Collectors;
 
 public class ComposeArticleController implements Initializable {
 
-    private Socket socket;
-    private User user;
     private ObjectMapper mapper;
-    private ObjectInput in;
-    private ObjectOutput out;
 
 
     @FXML // fx:id="titleField"
@@ -86,17 +78,8 @@ public class ComposeArticleController implements Initializable {
             req.setRequest("SUBMIT_ARTICLE_USER");
             req.setContent(a);
 
-            out.writeObject(mapper.writeValueAsString(req));
-
-            req = mapper.readValue((String)in.readObject(), Request.class);
-            String status = (String)req.getContent();
-
-            if(status.equals("OK") && req.getRequest().equals("SUBMIT_ARTICLE_RESPONSE")) {
-                System.out.println("Article successfully submitted");
-            } else {
-                System.out.println("Could not submit article");
-            }
-        } catch(IOException | ClassNotFoundException e) {
+            ClientUtils.getSocketOut().writeObject(mapper.writeValueAsString(req));
+        } catch(IOException e) {
             e.printStackTrace();
         }
 
@@ -104,57 +87,9 @@ public class ComposeArticleController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            socket = new Socket("localhost", 5678);
-            ClientUtils.setServerCon(socket);
-            out = ClientUtils.getSocketOut();
-            in = ClientUtils.getSocketIn();
-            mapper = new ObjectMapper();
+        mapper = new ObjectMapper();
 
-            Request req = new Request();
-            req.setRequest("LOG_IN_USER");
-
-            user = new User();
-            user.setEmail("test@testus.com");
-            user.setPassword("sidetest");
-            req.setContent(user);
-
-            out.writeObject(mapper.writeValueAsString(req));
-
-            req = mapper.readValue((String)in.readObject(), Request.class);
-            user = mapper.convertValue(req.getContent(), User.class);
-            if(user == null) {
-                System.out.println("Invalid credentials");
-            } else {
-                System.out.println("Welcome, " + user.getName());
-            }
-            System.out.println("Log In ID: " + user.getId());
-
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // get the list of articles
-        Request req = new Request();
-        req.setRequest("GET_ARTICLES_METADATA");
-        req.setContent("");
-        try {
-            System.out.println(out);
-            System.out.println(mapper);
-            out.writeObject(mapper.writeValueAsString(req));
-            req = mapper.readValue((String)in.readObject(), Request.class);
-            List a = mapper.convertValue(req.getContent(), ArrayList.class);
-            ObservableList<ArticleDTO> res = FXCollections.observableArrayList();
-            for(Object o : a) {
-                res.add(new ArticleDTO(mapper.convertValue(o, Article.class)));
-            }
-            ClientUtils.setArticles(res);
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        relatedTable.setItems(ClientUtils.getArticles());
+        relatedTable.itemsProperty().bind(ClientUtils.articlesProperty());
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         abstractCol.setCellValueFactory(new PropertyValueFactory<>("articleAbstract"));
         checkedCol.setCellValueFactory(new PropertyValueFactory<>("checked"));
@@ -166,11 +101,11 @@ public class ComposeArticleController implements Initializable {
 
         // the lists are already set
         User presUser = new User();
-        presUser.setId(user.getId());
-        presUser.setName(user.getName());
+        presUser.setId(ClientUtils.getCurrentUser().getId());
+        presUser.setName(ClientUtils.getCurrentUser().getName());
 
         result.setAuthor(presUser);
-        result.setId(String.format("%d-%d", user.getId(), System.currentTimeMillis()));
+        result.setId(String.format("%d-%d", ClientUtils.getCurrentUser().getId(), System.currentTimeMillis()));
         result.setTitle(titleField.getText());
         result.setArticleAbstract(abstractField.getText());
 

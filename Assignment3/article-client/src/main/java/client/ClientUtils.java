@@ -1,7 +1,6 @@
 package client;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.ArticleDTO;
@@ -13,12 +12,13 @@ import java.net.Socket;
 public class ClientUtils {
 
     private static Socket serverCon = null;
-    private static ObservableList<ArticleDTO> articles = FXCollections.observableArrayList();
+    private static ListProperty<ArticleDTO> articles = new SimpleListProperty<>();
     private static ArticleDTO currentArticle = null;
     private static ObjectOutput socketOut = null;
     private static ObjectInput socketIn = null;
 
-    private static IntegerProperty userId = new SimpleIntegerProperty(0);
+    private static IntegerProperty userRole = new SimpleIntegerProperty(0);
+    private static IntegerProperty connectedId = new SimpleIntegerProperty(0);
     private static User currentUser = null;
 
     private ClientUtils() {
@@ -30,12 +30,15 @@ public class ClientUtils {
     }
 
     public static void setServerCon(Socket serverCon) {
-        try {
-            ClientUtils.socketOut = new ObjectOutputStream(serverCon.getOutputStream());    // see ObjectInputStream docs
-            ClientUtils.socketIn = new ObjectInputStream(serverCon.getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(serverCon != null) {
+            try {
+                ClientUtils.socketOut = new ObjectOutputStream(serverCon.getOutputStream());    // see ObjectInputStream docs
+                ClientUtils.socketIn = new ObjectInputStream(serverCon.getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
         ClientUtils.serverCon = serverCon;
     }
 
@@ -45,10 +48,6 @@ public class ClientUtils {
 
     public static void addArticle(ArticleDTO a) {
         articles.add(a);
-    }
-
-    public static void setArticles(ObservableList<ArticleDTO> articles) {
-        ClientUtils.articles = articles;
     }
 
 
@@ -68,16 +67,16 @@ public class ClientUtils {
         return socketIn;
     }
 
-    public static int getUserId() {
-        return userId.get();
+    public static int getUserRole() {
+        return userRole.get();
     }
 
-    public static IntegerProperty userIdProperty() {
-        return userId;
+    public static IntegerProperty userRoleProperty() {
+        return userRole;
     }
 
-    public static void setUserId(int userId) {
-        ClientUtils.userId.set(userId);
+    public static void setUserRole(int userRole) {
+        ClientUtils.userRole.set(userRole);
     }
 
     public static User getCurrentUser() {
@@ -86,5 +85,25 @@ public class ClientUtils {
 
     public static void setCurrentUser(User currentUser) {
         ClientUtils.currentUser = currentUser;
+    }
+
+    public static int getConnectedId() {
+        return connectedId.get();
+    }
+
+    public static IntegerProperty connectedIdProperty() {
+        return connectedId;
+    }
+
+    public static void setConnectedId(int connectedId) {
+        ClientUtils.connectedId.set(connectedId);
+    }
+
+    public static ListProperty<ArticleDTO> articlesProperty() {
+        return articles;
+    }
+
+    public static void setArticles(ObservableList<ArticleDTO> articles) {
+        ClientUtils.articles.set(articles);
     }
 }
