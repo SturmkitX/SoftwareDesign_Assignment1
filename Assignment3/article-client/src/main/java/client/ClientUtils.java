@@ -1,7 +1,6 @@
 package client;
 
 import javafx.beans.property.*;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.ArticleDTO;
 import user.User;

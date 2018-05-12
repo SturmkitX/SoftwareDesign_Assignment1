@@ -7,13 +7,11 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -234,11 +232,35 @@ public class MainController implements Initializable {
                 }
             }
         });
+
+        articleView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ArticleDTO>() {
+            @Override
+            public void changed(ObservableValue<? extends ArticleDTO> observable, ArticleDTO oldValue, ArticleDTO newValue) {
+                if(newValue == null) {
+                    return;
+                }
+
+                ClientUtils.setCurrentArticle(newValue);
+
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("../view/article_detailed.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+
+                    stage.setScene(scene);
+                    stage.setTitle("Article details");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
     private void generateArticles() {
         Request req = new Request();
-        req.setRequest("GET_ARTICLES_METADATA");
+        req.setRequest("GET_ARTICLES");
 
         try {
             ClientUtils.getSocketOut().writeObject(mapper.writeValueAsString(req));

@@ -43,8 +43,7 @@ public class ClientHandler implements Runnable {
                 switch(req.getRequest()) {
                     case "LOG_IN_USER" : processLogIn(req.getContent()); break;
                     case "SUBMIT_ARTICLE_USER" : processSaveArticle(req.getContent()); break;
-                    case "GET_ARTICLES_METADATA" : processMetadata(); break;                            // get a lightweight list of articles
-                    case "GET_ARTICLE_COMPLETE" : processCompleteArticle(req.getContent()); break;      // get full data for an article
+                    case "GET_ARTICLES" : processMetadataComplete(); break;                            // get a list of articles
                     case "CLIENT_DISCONNECT" : processDisconnect(); break;
                 }
             }
@@ -84,38 +83,38 @@ public class ClientHandler implements Runnable {
 
             Request req = new Request();
             req.setRequest("SUBMIT_ARTICLE_RESPONSE");
-            req.setContent("OK");
-            this.out.writeObject(mapper.writeValueAsString(req));
+            req.setContent(a);
+
+            // perform the broadcast
+            for(ClientHandler handler : ServerUtils.getClients()) {
+                handler.out.writeObject(mapper.writeValueAsString(req));
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void processMetadata() {
+    private void processMetadataComplete() {
         List<Article> a = ArticleDAO.getAllArticlesMetadata();
 
+        for(Article x : a) {
+            String path = ArticleDAO.getArticleBodyPath(x.getId());
+            try {
+                InputStream is = new FileInputStream(path);
+                Article ar = mapper.readValue(is, Article.class);
+                x.setBody(ar.getBody());
+                x.setRelated(ar.getRelated());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         Request req = new Request();
-        req.setRequest("GET_ARTICLES_METADATA_RESPONSE");
+        req.setRequest("GET_ARTICLES_RESPONSE");
         req.setContent(a);
 
         try {
-            out.writeObject(mapper.writeValueAsString(req));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void processCompleteArticle(Object o) {
-        String id = (String)o;
-        String path = ArticleDAO.getArticleBodyPath(id);
-        try {
-            InputStream is = new FileInputStream(path);
-            Article a = mapper.readValue(is, Article.class);
-
-            Request req = new Request();
-            req.setRequest("GET_ARTICLE_COMPLETE_RESPONSE");
-            req.setContent(a);
-
             out.writeObject(mapper.writeValueAsString(req));
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,6 +1,5 @@
 package controller;
 
-import article.Article;
 import client.ClientUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.beans.value.ChangeListener;
@@ -18,7 +17,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.ArticleDTO;
-import requests.Request;
 
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -48,29 +46,11 @@ public class ArticleDetailController implements Initializable {
         title.setFont(Font.font(36));
         title.setUnderline(true);
 
+
         Text articleAbstract = new Text(article.getArticleAbstract());
         articleAbstract.setFont(Font.font(24));
+
         Text author = new Text(article.getAuthor());
-
-        System.out.println(article);
-        System.out.println(title.getText());
-        System.out.println(articleAbstract.getText());
-        System.out.println(author.getText());
-
-        // get the complete instantiation of the selected article
-        // all fields are the same, except the body, which is not null
-        Request req = new Request();
-        req.setRequest("GET_ARTICLE_COMPLETE");
-        req.setContent(article.getId());
-        try {
-            out.writeObject(mapper.writeValueAsString(req));
-            req = mapper.readValue((String)in.readObject(), Request.class);
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        Article a = mapper.convertValue(req.getContent(), Article.class);
-        article.computeObservableBody(a.getBody());
 
         // set the related articles table
         TableView<ArticleDTO> relatedTable = new TableView<>();
@@ -80,20 +60,16 @@ public class ArticleDetailController implements Initializable {
         relatedTitleCol.setText("Title");
         relatedAbstractCol.setText("Abstract");
 
-        article.computeObservableRelated(a.getRelated());
-
 
         relatedTable.getColumns().addAll(relatedTitleCol, relatedAbstractCol);
         relatedTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         relatedAbstractCol.setCellValueFactory(new PropertyValueFactory<>("articleAbstract"));
         relatedTable.setItems(article.getRelated());
 
-        System.out.println(article.getRelated().size());
-
-
         contentArea.getChildren().addAll(title, articleAbstract, author);
         contentArea.getChildren().addAll(article.getBody());
         contentArea.getChildren().add(relatedTable);
+
 
         relatedTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ArticleDTO>() {
             @Override
@@ -112,5 +88,7 @@ public class ArticleDetailController implements Initializable {
                 }
             }
         });
+
+
     }
 }

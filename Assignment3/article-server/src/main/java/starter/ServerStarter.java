@@ -15,9 +15,10 @@ public class ServerStarter {
         ServerSocket server = new ServerSocket(SERVER_PORT);
         while(true) {
             Socket client = server.accept();
-            ServerUtils.addClient(client);
+            ClientHandler handler = new ClientHandler(client);
+            ServerUtils.addClient(handler);
 
-            new Thread(new ClientHandler(client)).start();
+            new Thread(handler).start();
         }
     }
 }

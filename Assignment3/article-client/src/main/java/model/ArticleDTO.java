@@ -14,7 +14,6 @@ import javafx.scene.text.Text;
 
 import java.io.ByteArrayInputStream;
 import java.util.Base64;
-import java.util.List;
 
 public class ArticleDTO {
 
@@ -35,17 +34,13 @@ public class ArticleDTO {
         this.author = new SimpleStringProperty(src.getAuthor().getName());
         this.checked = new CheckBox();
 
-        this.related = null;
-        this.body = null;   // creating an image is a heavy task, so we will create it at the last moment
+        this.related = new SimpleListProperty<>(computeObservableRelated());
+        this.body = new SimpleListProperty<>(computeObservableBody());
     }
 
-    public void computeObservableBody(List<ArticleBodyData> nodes) {
-        if(this.body != null) {
-            return;
-        }
-
+    private ObservableList<Node> computeObservableBody() {
         ObservableList<Node> result = FXCollections.observableArrayList();
-        for(ArticleBodyData abd : nodes) {
+        for(ArticleBodyData abd : source.getBody()) {
             Node n = null;
             if(abd.isText()) {
                 n = new Text(abd.getContent());
@@ -55,20 +50,14 @@ public class ArticleDTO {
             result.add(n);
         }
 
-        this.body = new SimpleListProperty<>(result);
+        return result;
     }
 
-    public void computeObservableRelated(List<String> articles) {
-        if(related != null) {
-            return;
-        }
-
-        this.related = new SimpleListProperty<>();
-
+    private ObservableList<ArticleDTO> computeObservableRelated() {
         ObservableList<ArticleDTO> result = FXCollections.observableArrayList();
         ObservableList<ArticleDTO> interm = ClientUtils.getArticles();
 
-        for(String s : articles) {
+        for(String s : source.getRelated()) {
             for(ArticleDTO dto : interm) {
                 if(dto.getId().equals(s)) {
                     result.add(dto);
@@ -77,7 +66,7 @@ public class ArticleDTO {
             }
         }
 
-        this.related.set(result);
+        return result;
     }
 
     public Article getSource() {

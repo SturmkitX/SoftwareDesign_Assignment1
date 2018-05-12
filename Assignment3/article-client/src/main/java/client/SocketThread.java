@@ -2,7 +2,6 @@ package client;
 
 import article.Article;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.security.ntlm.Client;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.ArticleDTO;
@@ -39,8 +38,9 @@ public class SocketThread implements Runnable {
                 Request req = mapper.readValue((String)in.readObject(), Request.class);
                 switch(req.getRequest()) {
                     case "LOG_IN_RESPONSE" : processLogin(req.getContent()); break;
-                    case "GET_ARTICLES_METADATA_RESPONSE" : processMetadata(req.getContent()); break;
+                    case "GET_ARTICLES_RESPONSE" : processMetadataComplete(req.getContent()); break;
                     case "CLIENT_DISCONNECT_RESPONSE" : processDisconnect(); break;
+                    case "SUBMIT_ARTICLE_RESPONSE" : processArticleBroadcast(req.getContent()); break;
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -58,7 +58,7 @@ public class SocketThread implements Runnable {
         }
     }
 
-    private void processMetadata(Object data) {
+    private void processMetadataComplete(Object data) {
         List articles = mapper.convertValue(data, ArrayList.class);
         ObservableList<ArticleDTO> result = FXCollections.observableArrayList();
         for(Object o : articles) {
@@ -81,5 +81,10 @@ public class SocketThread implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void processArticleBroadcast(Object o) {
+        Article a = mapper.convertValue(o, Article.class);
+        ClientUtils.addArticle(new ArticleDTO(a));
     }
 }

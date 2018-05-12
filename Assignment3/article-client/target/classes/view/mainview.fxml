@@ -10,12 +10,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
-      <TextField fx:id="ipField" layoutX="14.0" layoutY="20.0" promptText="Address" />
-      <TextField fx:id="portField" layoutX="14.0" layoutY="55.0" promptText="Port" />
+      <TextField fx:id="ipField" layoutX="14.0" layoutY="20.0" promptText="Address" text="localhost" />
+      <TextField fx:id="portField" layoutX="14.0" layoutY="55.0" promptText="Port" text="5678" />
       <Button fx:id="connectButton" layoutX="69.0" layoutY="89.0" mnemonicParsing="false" onAction="#connectServer" text="Connect" />
       <Text fx:id="connectionStatus" layoutX="14.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="409.00000566244125" />
-      <TextField fx:id="emailField" layoutX="395.0" layoutY="20.0" promptText="E-Mail" />
-      <TextField fx:id="passField" layoutX="395.0" layoutY="55.0" promptText="Password" />
+      <TextField fx:id="emailField" layoutX="395.0" layoutY="20.0" promptText="E-Mail" text="test2@testus.com" />
+      <TextField fx:id="passField" layoutX="395.0" layoutY="55.0" promptText="Password" text="sidetest" />
       <Button fx:id="logInButton" layoutX="450.0" layoutY="89.0" mnemonicParsing="false" onAction="#logInUser" text="Log In" />
       <Label layoutX="262.0" layoutY="25.0" text="Welcome," />
       <Text fx:id="loggedUserName" layoutX="265.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" />
