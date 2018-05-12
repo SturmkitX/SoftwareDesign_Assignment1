@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import user.User;
 
+import java.util.Objects;
+
 public class UserDTO {
 
     private User source;
@@ -57,4 +59,5 @@ public class UserDTO {
     public StringProperty nameProperty() {
         return name;
     }
+
 }

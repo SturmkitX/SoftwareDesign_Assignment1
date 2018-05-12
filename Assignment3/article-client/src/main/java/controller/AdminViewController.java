@@ -2,7 +2,9 @@ package controller;
 
 import client.ClientUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -23,6 +25,7 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class AdminViewController implements Initializable {
 
@@ -71,6 +74,16 @@ public class AdminViewController implements Initializable {
 
     @FXML
     void addUser(ActionEvent event) {
+        if(!Pattern.compile("\\S+@\\S+\\.\\S+").matcher(emailField.getText()).find()) {
+            statusField.setText("Invalid email");
+            return;
+        }
+
+        if(nameField.getText().isEmpty() || passField.getText().isEmpty()) {
+            statusField.setText("No name / password provided");
+            return;
+        }
+
         User u = new User();
         u.setName(nameField.getText());
         u.setEmail(emailField.getText());
@@ -90,12 +103,52 @@ public class AdminViewController implements Initializable {
 
     @FXML
     void deleteUser(ActionEvent event) {
+        User u = new User();
+        u.setId(Integer.parseInt(idField.getText()));
+        u.setName(nameField.getText());
+        u.setEmail(emailField.getText());
+        u.setPassword(passField.getText());
+        u.setRole(1);
 
+        Request req = new Request();
+        req.setRequest("DELETE_WRITER");
+        req.setContent(u);
+
+        try {
+            out.writeObject(mapper.writeValueAsString(req));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void updateUser(ActionEvent event) {
+        if(!Pattern.compile("\\S+@\\S+\\.\\S+").matcher(emailField.getText()).find()) {
+            statusField.setText("Invalid email");
+            return;
+        }
 
+        if(nameField.getText().isEmpty() || passField.getText().isEmpty()) {
+            statusField.setText("No name / password provided");
+            return;
+        }
+
+        User u = new User();
+        u.setId(Integer.parseInt(idField.getText()));
+        u.setName(nameField.getText());
+        u.setEmail(emailField.getText());
+        u.setPassword(passField.getText());
+        u.setRole(1);
+
+        Request req = new Request();
+        req.setRequest("UPDATE_WRITER");
+        req.setContent(u);
+
+        try {
+            out.writeObject(mapper.writeValueAsString(req));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -115,6 +168,10 @@ public class AdminViewController implements Initializable {
         usersView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<UserDTO>() {
             @Override
             public void changed(ObservableValue<? extends UserDTO> observable, UserDTO oldValue, UserDTO newValue) {
+                if(newValue == null) {
+                    // usually happens when updating / deleting an element, the way it is done
+                    return;
+                }
                 idField.setText("" + newValue.getId());
                 nameField.setText(newValue.getName());
                 emailField.setText(newValue.getEmail());

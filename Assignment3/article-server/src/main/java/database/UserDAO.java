@@ -2,7 +2,6 @@ package database;
 
 import user.User;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +103,34 @@ public class UserDAO {
             if(rs.next()) {
                 user.setId(rs.getInt(1));
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            user.setId(-1);
+        }
+    }
+
+    public static void updateWriter(User user) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Users SET name = ?, email = ?, password = ?, role = ? WHERE id = ?");
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getPassword());
+            stmt.setInt(4, user.getRole());
+            stmt.setInt(5, user.getId());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            user.setId(-1);
+        }
+    }
+
+    public static void deletetWriter(User user) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Users WHERE id = ?");
+            stmt.setInt(1, user.getId());
+
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             user.setId(-1);

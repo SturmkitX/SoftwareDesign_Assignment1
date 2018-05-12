@@ -2,6 +2,7 @@ package client;
 
 import article.Article;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.ArticleDTO;
@@ -15,6 +16,7 @@ import java.io.ObjectOutput;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SocketThread implements Runnable {
 
@@ -44,6 +46,8 @@ public class SocketThread implements Runnable {
                     case "SUBMIT_ARTICLE_RESPONSE" : processArticleBroadcast(req.getContent()); break;
                     case "GET_WRITERS_LIST_RESPONSE" : processWritersList(req.getContent()); break;
                     case "ADD_WRITER_RESPONSE" : processWriterAdd(req.getContent()); break;
+                    case "UPDATE_WRITER_RESPONSE" : processWriterUpdate(req.getContent()); break;
+                    case "DELETE_WRITER_RESPONSE" : processWriterDelete(req.getContent()); break;
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -118,6 +122,31 @@ public class SocketThread implements Runnable {
         User u = mapper.convertValue(o, User.class);
         if(u.getId() > 0) {
             ClientUtils.writersProperty().add(new UserDTO(u));
+        } else {
+            System.out.println("Error creating writer account");
+        }
+    }
+
+    private void processWriterUpdate(Object o) {
+        User u = mapper.convertValue(o, User.class);
+        if(u.getId() > 0) {
+            ObservableList<UserDTO> aux = FXCollections.observableArrayList(
+                    ClientUtils.getWriters().stream().filter(w -> w.getSource().getId() != u.getId()).collect(Collectors.toList()));
+            aux.add(new UserDTO(u));
+            ClientUtils.setWriters(aux);
+        } else {
+            System.out.println("Error updating writer account");
+        }
+    }
+
+    private void processWriterDelete(Object o) {
+        User u = mapper.convertValue(o, User.class);
+        if(u.getId() > 0) {
+            ObservableList<UserDTO> aux = FXCollections.observableArrayList(
+                    ClientUtils.getWriters().stream().filter(w -> w.getSource().getId() != u.getId()).collect(Collectors.toList()));
+            ClientUtils.setWriters(aux);
+        } else {
+            System.out.println("Error deleting writer account");
         }
     }
 }

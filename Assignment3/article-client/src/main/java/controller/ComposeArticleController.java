@@ -59,6 +59,11 @@ public class ComposeArticleController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         Stage stage = (Stage) addImageBtn.getScene().getWindow();
         fileChooser.setTitle("Insert Image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png"),
+                new FileChooser.ExtensionFilter("BMP", "*.bmp")
+        );
         File file = fileChooser.showOpenDialog(stage);
 
         if(file == null) {

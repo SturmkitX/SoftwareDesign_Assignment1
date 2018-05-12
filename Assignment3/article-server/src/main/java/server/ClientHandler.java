@@ -47,6 +47,8 @@ public class ClientHandler implements Runnable {
                     case "CLIENT_DISCONNECT" : processDisconnect(); break;
                     case "GET_WRITERS_LIST" : processWriters(); break;
                     case "ADD_WRITER" : processWriterAdd(req.getContent()); break;
+                    case "UPDATE_WRITER" : processWriterUpdate(req.getContent()); break;
+                    case "DELETE_WRITER" : processWriterDelete(req.getContent()); break;
                 }
             }
         } catch(IOException | ClassNotFoundException e) {
@@ -157,7 +159,39 @@ public class ClientHandler implements Runnable {
         UserDAO.insertWriter(u);
 
         Request req = new Request();
-        req.setContent("ADD_WRITER_RESPONSE");
+        req.setRequest("ADD_WRITER_RESPONSE");
+        req.setContent(u);
+
+        try {
+            out.writeObject(mapper.writeValueAsString(req));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void processWriterUpdate(Object o) {
+        User u = mapper.convertValue(o, User.class);
+        UserDAO.updateWriter(u);
+
+        System.out.println("User ID : " + u.getId());
+
+        Request req = new Request();
+        req.setRequest("UPDATE_WRITER_RESPONSE");
+        req.setContent(u);
+
+        try {
+            out.writeObject(mapper.writeValueAsString(req));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void processWriterDelete(Object o) {
+        User u = mapper.convertValue(o, User.class);
+        UserDAO.deletetWriter(u);
+
+        Request req = new Request();
+        req.setRequest("DELETE_WRITER_RESPONSE");
         req.setContent(u);
 
         try {

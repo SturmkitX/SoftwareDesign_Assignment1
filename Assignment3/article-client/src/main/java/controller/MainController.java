@@ -50,7 +50,7 @@ public class MainController implements Initializable {
     private TextField emailField;
 
     @FXML
-    private TextField passField;
+    private PasswordField passField;
 
     @FXML
     private Button logInButton;

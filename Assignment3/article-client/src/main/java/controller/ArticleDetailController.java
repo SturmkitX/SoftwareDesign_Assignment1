@@ -66,6 +66,8 @@ public class ArticleDetailController implements Initializable {
         relatedAbstractCol.setCellValueFactory(new PropertyValueFactory<>("articleAbstract"));
         relatedTable.setItems(article.getRelated());
 
+        relatedTable.setMinHeight(100);
+
         contentArea.getChildren().addAll(title, articleAbstract, author);
         contentArea.getChildren().addAll(article.getBody());
         contentArea.getChildren().add(relatedTable);
