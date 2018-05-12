@@ -2,10 +2,10 @@ package database;
 
 import user.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.xml.transform.Result;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
@@ -64,5 +64,49 @@ public class UserDAO {
         }
 
         return result;
+    }
+
+    public static List<User> findAllWiters() {
+        List<User> result = new ArrayList<>();
+
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE role = 1");
+
+            while(rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setName(rs.getString("name"));
+                u.setEmail(rs.getString("email"));
+                u.setPassword(rs.getString("password"));
+                u.setRole(1);
+
+                result.add(u);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    public static void insertWriter(User user) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Users (name, email, password, role) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getPassword());
+            stmt.setInt(4, user.getRole());
+
+            stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            if(rs.next()) {
+                user.setId(rs.getInt(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            user.setId(-1);
+        }
     }
 }

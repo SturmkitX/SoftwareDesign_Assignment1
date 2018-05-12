@@ -198,6 +198,31 @@ public class MainController implements Initializable {
         }
     }
 
+    @FXML
+    void startAdminPanel(ActionEvent event) {
+        if(ClientUtils.getCurrentUser() == null) {
+            System.out.println("You are not logged in");
+            return;
+        }
+
+        if(ClientUtils.getCurrentUser().getRole() != 2) {
+            System.out.println("You are not an admin");
+            return;
+        }
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../view/admin_view.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            stage.setTitle("Admin view");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mapper = new ObjectMapper();
@@ -241,6 +266,8 @@ public class MainController implements Initializable {
                 }
 
                 ClientUtils.setCurrentArticle(newValue);
+                ClientUtils.getCurrentArticle().computeObservableBody();
+                ClientUtils.getCurrentArticle().computeObservableRelated();
 
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("../view/article_detailed.fxml"));

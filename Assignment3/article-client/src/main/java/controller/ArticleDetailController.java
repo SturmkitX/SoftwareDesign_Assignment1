@@ -74,7 +74,14 @@ public class ArticleDetailController implements Initializable {
         relatedTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ArticleDTO>() {
             @Override
             public void changed(ObservableValue<? extends ArticleDTO> observable, ArticleDTO oldValue, ArticleDTO newValue) {
+                if(newValue == null) {
+                    return;
+                }
+
                 ClientUtils.setCurrentArticle(newValue);
+                ClientUtils.getCurrentArticle().computeObservableBody();
+                ClientUtils.getCurrentArticle().computeObservableRelated();
+
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("../view/article_detailed.fxml"));
                     Scene scene = new Scene(root);

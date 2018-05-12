@@ -45,6 +45,8 @@ public class ClientHandler implements Runnable {
                     case "SUBMIT_ARTICLE_USER" : processSaveArticle(req.getContent()); break;
                     case "GET_ARTICLES" : processMetadataComplete(); break;                            // get a list of articles
                     case "CLIENT_DISCONNECT" : processDisconnect(); break;
+                    case "GET_WRITERS_LIST" : processWriters(); break;
+                    case "ADD_WRITER" : processWriterAdd(req.getContent()); break;
                 }
             }
         } catch(IOException | ClassNotFoundException e) {
@@ -131,6 +133,35 @@ public class ClientHandler implements Runnable {
             in.close();
             client.close();
             active = false;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void processWriters() {
+        List<User> result = UserDAO.findAllWiters();
+
+        Request req = new Request();
+        req.setRequest("GET_WRITERS_LIST_RESPONSE");
+        req.setContent(result);
+
+        try {
+            out.writeObject(mapper.writeValueAsString(req));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void processWriterAdd(Object o) {
+        User u = mapper.convertValue(o, User.class);
+        UserDAO.insertWriter(u);
+
+        Request req = new Request();
+        req.setContent("ADD_WRITER_RESPONSE");
+        req.setContent(u);
+
+        try {
+            out.writeObject(mapper.writeValueAsString(req));
         } catch (IOException e) {
             e.printStackTrace();
         }

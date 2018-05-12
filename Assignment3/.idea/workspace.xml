@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89f81d7b-2556-4221-9b8b-1fd08a111c35" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/article-client/src/main/java/client/ClientUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/article-client/src/main/java/client/ClientUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/article-client/src/main/java/client/SocketThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/article-client/src/main/java/client/SocketThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/article-client/src/main/java/controller/ArticleDemoController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/article-client/src/main/java/controller/ArticleDetailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/article-client/src/main/java/controller/ArticleDetailController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/article-client/src/main/java/model/ArticleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/article-client/src/main/java/model/ArticleDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/article-client/src/main/java/view/articles_all_demo.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/article-client/src/main/java/view/mainview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/article-client/src/main/java/view/mainview.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/article-client/target/classes/view/articles_all_demo.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/article-client/target/classes/view/mainview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/article-client/target/classes/view/mainview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/article-server/src/main/java/database/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/article-server/src/main/java/database/UserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/article-server/src/main/java/server/ServerUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/article-server/src/main/java/server/ServerUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/article-server/src/main/java/starter/ServerStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/article-server/src/main/java/starter/ServerStarter.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -31,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ArticleDetailController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ArticleDetailController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/article-client/src/main/java/controller/ArticleDetailController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="70" column="52" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
+            <state relative-caret-position="277">
+              <caret line="83" selection-start-line="83" selection-end-line="83" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,8 +40,8 @@
       <file leaf-file-name="ArticleDTO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/article-client/src/main/java/model/ArticleDTO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="70" selection-start-line="37" selection-start-column="70" selection-end-line="37" selection-end-column="70" />
+            <state relative-caret-position="442">
+              <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,8 +52,8 @@
       <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="239" column="32" selection-start-line="239" selection-start-column="32" selection-end-line="239" selection-end-column="32" />
+            <state relative-caret-position="413">
+              <caret line="217" column="33" lean-forward="true" selection-start-line="217" selection-start-column="33" selection-end-line="217" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,14 +61,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SocketThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/article-client/src/main/java/client/SocketThread.java">
+      <file leaf-file-name="AdminViewController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/article-client/src/main/java/controller/AdminViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+            <state relative-caret-position="379">
+              <caret line="85" column="33" lean-forward="true" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/article-server/src/main/java/database/UserDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="515">
+              <caret line="108" column="25" selection-start-line="108" selection-start-column="25" selection-end-line="108" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/article-api/src/main/java/user/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="8" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -82,8 +97,8 @@
       <file leaf-file-name="ClientHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1513">
-              <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
+            <state relative-caret-position="379">
+              <caret line="162" column="13" lean-forward="true" selection-start-line="162" selection-start-column="13" selection-end-line="162" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,11 +106,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ServerUtils.java">
+      <file leaf-file-name="SocketThread.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/article-client/src/main/java/client/SocketThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="515">
+              <caret line="119" column="62" selection-start-line="119" selection-start-column="62" selection-end-line="119" selection-end-column="62" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -103,11 +121,17 @@
       <file leaf-file-name="ClientUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/article-client/src/main/java/client/ClientUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="105" selection-start-line="105" selection-end-line="105" />
+            <state relative-caret-position="260">
+              <caret line="111" column="56" selection-start-line="111" selection-start-column="56" selection-end-line="111" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2733#2734#0" expanded="true" />
                 <element signature="e#2783#2784#0" expanded="true" />
+                <element signature="e#2983#2984#0" expanded="true" />
+                <element signature="e#3044#3045#0" expanded="true" />
+                <element signature="e#3074#3075#0" expanded="true" />
+                <element signature="e#3144#3145#0" expanded="true" />
+                <element signature="e#3192#3193#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -149,7 +173,6 @@
         <option value="$PROJECT_DIR$/article-api/src/main/java/article/ArticleJson.java" />
         <option value="$PROJECT_DIR$/article-api/src/main/java/requests/Request.java" />
         <option value="$PROJECT_DIR$/article-server/pom.xml" />
-        <option value="$PROJECT_DIR$/article-server/src/main/java/database/UserDAO.java" />
         <option value="$PROJECT_DIR$/article-server/src/main/java/database/ArticleDAO.java" />
         <option value="$PROJECT_DIR$/article-client/src/main/java/controller/ArticleDemoController.java" />
         <option value="$PROJECT_DIR$/article-client/src/main/java/view/MainView.java" />
@@ -158,12 +181,15 @@
         <option value="$PROJECT_DIR$/article-client/src/main/java/controller/ComposeArticleController.java" />
         <option value="$PROJECT_DIR$/article-server/src/main/java/server/ServerUtils.java" />
         <option value="$PROJECT_DIR$/article-server/src/main/java/starter/ServerStarter.java" />
-        <option value="$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java" />
-        <option value="$PROJECT_DIR$/article-client/src/main/java/client/ClientUtils.java" />
         <option value="$PROJECT_DIR$/article-client/src/main/java/model/ArticleDTO.java" />
-        <option value="$PROJECT_DIR$/article-client/src/main/java/client/SocketThread.java" />
-        <option value="$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java" />
         <option value="$PROJECT_DIR$/article-client/src/main/java/controller/ArticleDetailController.java" />
+        <option value="$PROJECT_DIR$/article-client/src/main/java/model/UserDTO.java" />
+        <option value="$PROJECT_DIR$/article-client/src/main/java/client/ClientUtils.java" />
+        <option value="$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java" />
+        <option value="$PROJECT_DIR$/article-client/src/main/java/controller/AdminViewController.java" />
+        <option value="$PROJECT_DIR$/article-server/src/main/java/database/UserDAO.java" />
+        <option value="$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java" />
+        <option value="$PROJECT_DIR$/article-client/src/main/java/client/SocketThread.java" />
       </list>
     </option>
   </component>
@@ -489,11 +515,11 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32900432" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -512,24 +538,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/client/ClientUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2783#2784#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/article-api/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
@@ -747,13 +755,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/article-api/src/main/java/article/ArticleUtils.java" />
-    <entry file="file://$PROJECT_DIR$/article-server/src/main/java/database/UserDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/article-api/src/main/java/article/ArticleBodyData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -773,13 +774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/article-api/src/main/java/user/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="66" selection-start-line="8" selection-start-column="66" selection-end-line="8" selection-end-column="66" />
         </state>
       </provider>
     </entry>
@@ -815,26 +809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/model/ArticleDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="70" selection-start-line="37" selection-start-column="70" selection-end-line="37" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/client/SocketThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ServerUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -842,31 +816,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java">
+    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/model/ArticleDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1513">
-          <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/client/ClientUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="105" selection-start-line="105" selection-end-line="105" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2783#2784#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="239" column="32" selection-start-line="239" selection-start-column="32" selection-end-line="239" selection-end-column="32" />
+        <state relative-caret-position="442">
+          <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -875,8 +828,109 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/article-client/src/main/java/controller/ArticleDetailController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="70" column="52" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
+        <state relative-caret-position="277">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-api/src/main/java/user/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="8" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/model/UserDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#792#793#0" expanded="true" />
+            <element signature="e#818#819#0" expanded="true" />
+            <element signature="e#849#850#0" expanded="true" />
+            <element signature="e#892#893#0" expanded="true" />
+            <element signature="e#917#918#0" expanded="true" />
+            <element signature="e#949#950#0" expanded="true" />
+            <element signature="e#983#984#0" expanded="true" />
+            <element signature="e#1028#1029#0" expanded="true" />
+            <element signature="e#1056#1057#0" expanded="true" />
+            <element signature="e#1091#1092#0" expanded="true" />
+            <element signature="e#1128#1129#0" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
+            <element signature="e#1207#1208#0" expanded="true" />
+            <element signature="e#1238#1239#0" expanded="true" />
+            <element signature="e#1271#1272#0" expanded="true" />
+            <element signature="e#1315#1316#0" expanded="true" />
+            <element signature="e#1342#1343#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/client/ClientUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="111" column="56" selection-start-line="111" selection-start-column="56" selection-end-line="111" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2733#2734#0" expanded="true" />
+            <element signature="e#2783#2784#0" expanded="true" />
+            <element signature="e#2983#2984#0" expanded="true" />
+            <element signature="e#3044#3045#0" expanded="true" />
+            <element signature="e#3074#3075#0" expanded="true" />
+            <element signature="e#3144#3145#0" expanded="true" />
+            <element signature="e#3192#3193#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="217" column="33" lean-forward="true" selection-start-line="217" selection-start-column="33" selection-end-line="217" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-server/src/main/java/database/UserDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="108" column="25" selection-start-line="108" selection-start-column="25" selection-end-line="108" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/controller/AdminViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="85" column="33" lean-forward="true" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-server/src/main/java/server/ClientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="162" column="13" lean-forward="true" selection-start-line="162" selection-start-column="13" selection-end-line="162" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/article-client/src/main/java/client/SocketThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="119" column="62" selection-start-line="119" selection-start-column="62" selection-end-line="119" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

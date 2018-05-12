@@ -34,11 +34,11 @@ public class ArticleDTO {
         this.author = new SimpleStringProperty(src.getAuthor().getName());
         this.checked = new CheckBox();
 
-        this.related = new SimpleListProperty<>(computeObservableRelated());
-        this.body = new SimpleListProperty<>(computeObservableBody());
+        this.related = new SimpleListProperty<>();
+        this.body = new SimpleListProperty<>();
     }
 
-    private ObservableList<Node> computeObservableBody() {
+    public void computeObservableBody() {
         ObservableList<Node> result = FXCollections.observableArrayList();
         for(ArticleBodyData abd : source.getBody()) {
             Node n = null;
@@ -50,10 +50,10 @@ public class ArticleDTO {
             result.add(n);
         }
 
-        return result;
+        this.bodyProperty().set(result);
     }
 
-    private ObservableList<ArticleDTO> computeObservableRelated() {
+    public void computeObservableRelated() {
         ObservableList<ArticleDTO> result = FXCollections.observableArrayList();
         ObservableList<ArticleDTO> interm = ClientUtils.getArticles();
 
@@ -66,7 +66,7 @@ public class ArticleDTO {
             }
         }
 
-        return result;
+        this.relatedProperty().set(result);
     }
 
     public Article getSource() {

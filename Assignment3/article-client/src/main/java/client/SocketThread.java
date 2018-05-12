@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.ArticleDTO;
+import model.UserDTO;
 import requests.Request;
 import user.User;
 
@@ -41,6 +42,8 @@ public class SocketThread implements Runnable {
                     case "GET_ARTICLES_RESPONSE" : processMetadataComplete(req.getContent()); break;
                     case "CLIENT_DISCONNECT_RESPONSE" : processDisconnect(); break;
                     case "SUBMIT_ARTICLE_RESPONSE" : processArticleBroadcast(req.getContent()); break;
+                    case "GET_WRITERS_LIST_RESPONSE" : processWritersList(req.getContent()); break;
+                    case "ADD_WRITER_RESPONSE" : processWriterAdd(req.getContent()); break;
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -53,6 +56,18 @@ public class SocketThread implements Runnable {
         if(user != null) {
             ClientUtils.setCurrentUser(user);
             ClientUtils.setUserRole(user.getRole());
+
+            if(user.getRole() == 2) {
+                // get the list of writers
+                Request req = new Request();
+                req.setRequest("GET_WRITERS_LIST");
+
+                try {
+                    out.writeObject(mapper.writeValueAsString(req));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
             ClientUtils.setUserRole(-1);   // signal an error
         }
@@ -86,5 +101,23 @@ public class SocketThread implements Runnable {
     private void processArticleBroadcast(Object o) {
         Article a = mapper.convertValue(o, Article.class);
         ClientUtils.addArticle(new ArticleDTO(a));
+    }
+
+    private void processWritersList(Object o) {
+        List aux = mapper.convertValue(o, ArrayList.class);
+        ObservableList<UserDTO> result = FXCollections.observableArrayList();
+        for(Object x : aux) {
+            User u = mapper.convertValue(x, User.class);
+            result.add(new UserDTO(u));
+        }
+
+        ClientUtils.setWriters(result);
+    }
+
+    private void processWriterAdd(Object o) {
+        User u = mapper.convertValue(o, User.class);
+        if(u.getId() > 0) {
+            ClientUtils.writersProperty().add(new UserDTO(u));
+        }
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminViewController">
+   <children>
+      <TableView fx:id="usersView" layoutX="175.0" layoutY="38.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nameCol" prefWidth="205.0" text="Name" />
+            <TableColumn fx:id="emailCol" prefWidth="149.0" text="Email" />
+            <TableColumn fx:id="passCol" prefWidth="170.0" text="Password" />
+        </columns>
+      </TableView>
+      <TextField fx:id="idField" editable="false" layoutX="21.0" layoutY="213.0" promptText="ID" />
+      <TextField fx:id="nameField" layoutX="21.0" layoutY="248.0" promptText="Name" />
+      <TextField fx:id="emailField" layoutX="21.0" layoutY="284.0" promptText="Email" />
+      <TextField fx:id="passField" layoutX="21.0" layoutY="320.0" promptText="Password" />
+      <Text fx:id="statusField" layoutX="286.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Button fx:id="addUserBtn" layoutX="362.0" layoutY="213.0" mnemonicParsing="false" onAction="#addUser" text="Add User" />
+      <Button fx:id="updateUserBtn" layoutX="362.0" layoutY="248.0" mnemonicParsing="false" onAction="#updateUser" text="Update User" />
+      <Button fx:id="delUserBtn" layoutX="364.0" layoutY="284.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
+   </children>
+</AnchorPane>

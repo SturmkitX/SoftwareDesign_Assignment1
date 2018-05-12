@@ -3,6 +3,7 @@ package client;
 import javafx.beans.property.*;
 import javafx.collections.ObservableList;
 import model.ArticleDTO;
+import model.UserDTO;
 import user.User;
 
 import java.io.*;
@@ -19,6 +20,8 @@ public class ClientUtils {
     private static IntegerProperty userRole = new SimpleIntegerProperty(0);
     private static IntegerProperty connectedId = new SimpleIntegerProperty(0);
     private static User currentUser = null;
+
+    private static ListProperty<UserDTO> writers = new SimpleListProperty<>();
 
     private ClientUtils() {
 
@@ -104,5 +107,17 @@ public class ClientUtils {
 
     public static void setArticles(ObservableList<ArticleDTO> articles) {
         ClientUtils.articles.set(articles);
+    }
+
+    public static ObservableList<UserDTO> getWriters() {
+        return writers.get();
+    }
+
+    public static ListProperty<UserDTO> writersProperty() {
+        return writers;
+    }
+
+    public static void setWriters(ObservableList<UserDTO> writers) {
+        ClientUtils.writers.set(writers);
     }
 }

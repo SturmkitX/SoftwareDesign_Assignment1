@@ -26,7 +26,7 @@
           <TableColumn fx:id="abstractCol" prefWidth="533.0" text="Abstract" />
         </columns>
       </TableView>
-      <Button fx:id="adminPanelBtn" layoutX="592.0" layoutY="89.0" mnemonicParsing="false" text="Admin Panel" />
+      <Button fx:id="adminPanelBtn" layoutX="592.0" layoutY="89.0" mnemonicParsing="false" onAction="#startAdminPanel" text="Admin Panel" />
       <Button fx:id="disconnectBtn" layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onAction="#disconnectServer" text="Disconnect" />
       <Button fx:id="writeArticleBtn" layoutX="256.0" layoutY="174.0" mnemonicParsing="false" onAction="#userWriteArticle" text="Write Article" />
    </children>
