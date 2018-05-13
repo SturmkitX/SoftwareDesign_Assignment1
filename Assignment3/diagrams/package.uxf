@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>520</x>
+      <y>80</y>
+      <w>320</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Client
+bg=blue
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>560</x>
+      <y>190</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>--
+Model
+layer=1
+bg=none
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>560</x>
+      <y>130</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>--
+View
+bg=none
+layer=1
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>560</x>
+      <y>250</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>--
+Controller
+bg=none
+layer=1
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>690</x>
+      <y>180</y>
+      <w>130</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>--
+Communications
+bg=none
+layer=1
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>60</x>
+      <y>80</y>
+      <w>320</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Server
+bg=blue
+group=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>130</x>
+      <y>120</y>
+      <w>150</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>--
+Communications
+bg=none
+layer=1
+group=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>130</x>
+      <y>190</y>
+      <w>150</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>--
+DAO
+bg=none
+layer=1
+group=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>290</x>
+      <y>450</y>
+      <w>330</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Article API
+bg=blue
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>390</x>
+      <y>480</y>
+      <w>130</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>--
+Article Utils
+layer=1
+bg=none
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>390</x>
+      <y>560</y>
+      <w>130</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>--
+User Utils
+layer=1
+bg=none
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>310</y>
+      <w>230</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;
+&lt;&lt;access&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;210.0;80.0;210.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>310</y>
+      <w>330</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=.
+&lt;&lt;access&gt;&gt;</panel_attributes>
+    <additional_attributes>250.0;10.0;250.0;80.0;10.0;80.0</additional_attributes>
+  </element>
+</diagram>

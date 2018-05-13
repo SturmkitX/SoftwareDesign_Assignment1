@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>60</y>
+      <w>220</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Article
+--
+- id : String
+- title : String
+- abstract : String
+- related : List&lt;String&gt;
+--
++ serialize() : String
++ deserialize(String) : Article</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>330</y>
+      <w>220</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>BodyMetadata
+--
+- text : boolean
+- content : String
+- extension : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>60</y>
+      <w>220</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>User
+--
+- id : int
+- name : String
+- email : String
+- password : String
+- role : int
+--
++ serialize() : String
++ deserialize(String) : User</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>120</y>
+      <w>270</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=0..1
+author</panel_attributes>
+    <additional_attributes>10.0;20.0;250.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>130</x>
+      <y>210</y>
+      <w>60</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=0..*
+body</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>360</y>
+      <w>260</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>ArticleDAO
+--
+- conn : Connection
+--
++ findAll() : List&lt;Article&gt;
++ insert(Article) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>840</x>
+      <y>360</y>
+      <w>330</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>UserDAO
+--
+- conn : Connection
+--
++ findAuthenticate(String, String) : User
++ find(int) : User
++ insert(User) : User
++ update(User) : User
++ delete(User) : User</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>610</x>
+      <y>640</y>
+      <w>240</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>ConnDriver
+--
+- conn : Connection
+--
+- ConnDriver()
++ getInstance()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>520</y>
+      <w>190</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;180.0;170.0;180.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>450</y>
+      <w>30</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>750</x>
+      <y>400</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>180</y>
+      <w>400</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0;80.0;120.0;380.0;120.0;380.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>140</y>
+      <w>270</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;250.0;10.0;250.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>540</y>
+      <w>220</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>ClientUtils
+--
+- currentCon : Socket
+- out : ObjectOutput
+- in : ObjectInput
+- currentArticle : ArticleDTO
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>350</x>
+      <y>540</y>
+      <w>180</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>ServerUtils
+--
+- clients : List&lt;Socket&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
