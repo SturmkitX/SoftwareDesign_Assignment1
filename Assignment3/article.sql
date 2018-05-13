@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 09, 2018 at 02:16 PM
+-- Generation Time: May 13, 2018 at 05:33 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -42,7 +42,9 @@ CREATE TABLE `Articles` (
 
 INSERT INTO `Articles` (`id`, `title`, `abstract`, `author_id`, `body`) VALUES
 ('1-1525822941755', 'Test article', 'This is an article intented for test puposes', 1, '/home/bogdan/SoftwareDesign_Assignment1/Assignment3/server-json/1-1525822941755'),
-('1-1525865730498', 'Second test article', 'This is the second test article', 1, '/home/bogdan/SoftwareDesign_Assignment1/Assignment3/server-json/1-1525865730498');
+('1-1525865730498', 'Second test article', 'This is the second test article', 1, '/home/bogdan/SoftwareDesign_Assignment1/Assignment3/server-json/1-1525865730498'),
+('2-1526162252788', 'Observable test', 'Obs test article', 2, '/home/bogdan/SoftwareDesign_Assignment1/Assignment3/server-json/2-1526162252788'),
+('4-1526161804164', 'Jaguar\'s article', 'This is Jaguar\'s article', 4, '/home/bogdan/SoftwareDesign_Assignment1/Assignment3/server-json/4-1526161804164');
 
 -- --------------------------------------------------------
 
@@ -63,7 +65,9 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`id`, `name`, `email`, `password`, `role`) VALUES
-(1, 'Test', 'test@testus.com', 'sidetest', 2);
+(1, 'Test', 'test@testus.com', 'sidetest', 2),
+(2, 'Test Maam', 'test2@testus.com', 'sidetest2', 1),
+(4, 'Jaguar', 'jag@testus.com', 'jagtest', 1);
 
 --
 -- Indexes for dumped tables
@@ -80,7 +84,8 @@ ALTER TABLE `Articles`
 -- Indexes for table `Users`
 --
 ALTER TABLE `Users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email_UNIQUE` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -90,7 +95,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Constraints for dumped tables

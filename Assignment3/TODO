@@ -1,5 +1,0 @@
-[] Metadata class for body elements
-[] Serialization / Deserialization (using Base64 for images)
-[] send json to server and register data into database
-[] send json to client and deserialize
-[] refactor users database
